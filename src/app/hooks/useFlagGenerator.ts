@@ -2,7 +2,7 @@ import countries from '@/app/data/countries.json'
 import useLocalStorage from './useLocalStorage'
 import { useEffect, useState } from 'react'
 
-const useFlagGenerator = function name(flagCount: number) {
+const useFlagGenerator = function(flagCount: number) {
 
     const [usedFlags, setUsedFlags] = useLocalStorage('chosenFlags', '[]')
     const [flag, setGeneratedFlag] = useState<string>('')
