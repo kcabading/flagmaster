@@ -1,5 +1,6 @@
 import './globals.css'
 import Navigation from './components/Nav'
+import Footer from './components/Footer'
 
 import { Inter } from 'next/font/google'
 
@@ -23,9 +24,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${monserrat.variable} font-mont dark bg-white h-full`}>
+      <body className={`${monserrat.variable} font-mont dark h-full`}>
         <Navigation />
         {children}
+        <Footer />
       </body>
     </html>
   )

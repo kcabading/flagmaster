@@ -16,6 +16,7 @@ const Timer = function (initial: number, ascending: boolean) {
     }
 
     function start() {
+        reset()
         let counterInterval = window.setInterval(() => {
             setCounter( (counter) => {
                 setTimer(convertToTime(ascending ? counter + 1 : counter - 1))
