@@ -89,7 +89,7 @@ export default function Home() {
               <Image priority={true} src='/leaderboards.png' height={300} width={300} alt='leaderboards image' className='sm:w-1/3 w-3/4'/>
               <div className="sm:w-2/3 w-full sm:text-right sm:pl-10 max-sm:mt-5">
                 <h2 className='font-bold text-3xl mb-5 text-cyan-500'>Climb the Leaderboards!</h2>
-                <p className='text-md'>FlagMaster isn't just a solo adventure; it's a global competition. Connect with friends or challenge fellow players from around the world in our multiplayer mode. Rise through the ranks, showcase your flag prowess, and establish yourself as the ultimate FlagMaster.</p>
+                <p className='text-md'>FlagMaster isn&apos;t just a solo adventure; it's a global competition. Connect with friends or challenge fellow players from around the world in our multiplayer mode. Rise through the ranks, showcase your flag prowess, and establish yourself as the ultimate FlagMaster.</p>
               </div>
             </div>
           </div>

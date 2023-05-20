@@ -18,7 +18,7 @@ const Results = function ( { correctAnswer, noOfFlags, timer, handleReset, answe
     return (
         <div className="finish-quiz flex flex-col place-content-center items-center max-lg:px-4">
             <h1 className="font-bold text-4xl">Congratulations!!!</h1>
-            <p className="mt-4">You"ve got <span>{correctAnswer}/{noOfFlags}</span> correct answer!</p>
+            <p className="mt-4">You&apos;ve got <span>{correctAnswer}/{noOfFlags}</span> correct answer!</p>
             <p>Time taken: {timer}</p>
             <button onClick={ () => handleReset() } className="mt-4 border-2 border-slate-500 p-2 rounded-md hover:bg-green-500">Try Again?</button>
             <div>
