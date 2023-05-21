@@ -2,6 +2,8 @@ import './globals.css'
 import Navigation from './components/Nav'
 import Footer from './components/Footer'
 
+import Providers from "@/app/components/Providers";
+
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -25,9 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${monserrat.variable} font-mont dark h-full`}>
-        <Navigation />
-        {children}
-        <Footer />
+        <Providers>
+          <Navigation />
+          <main className="flex flex-col items-center w-full m-auto dark:bg-slate-900 dark:text-white pt-32">
+            {children}
+          </main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   )

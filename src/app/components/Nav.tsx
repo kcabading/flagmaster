@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 import { useState, useEffect } from 'react'
+import SigninButton from "./SigninButton"
+
 
 import { Switch } from '@headlessui/react'
 import useColorMode from "@/app/hooks/useColorMode"
@@ -11,6 +13,7 @@ import {AiFillSetting, AiFillFacebook}  from "react-icons/ai";
 
 
 const Navigation = function () {
+
     const [switcheEnabled, setSwitchEnabled] = useState(false)
     const [mobileNavEnabled, setMobileNavEnabled] = useState(false)
     const [colorMode, setColorMode] = useColorMode()
@@ -29,7 +32,7 @@ const Navigation = function () {
                     <div className="flex max-sm:hidden dark:text-white">
                         <Link href="/leaderboards">Leaderboards</Link>
                         <Link className="ml-3" href="/multiplayer">Multiplayer</Link>
-                        <Link className="ml-3" href="/login">Login</Link>
+                        <SigninButton />
                         <Link className="ml-3 text-2xl" href="/settings"><AiFillSetting/></Link>
                         <Switch
                             checked={switcheEnabled}
@@ -62,10 +65,10 @@ const Navigation = function () {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </span>
-                    <Link href="/leaderboards" className="sm:ml-3">Leaderboards</Link>
-                    <Link href="/multiplayer" className="sm:ml-3">Multiplayer</Link>
-                    <Link href="/login" className="sm:ml-3">Login</Link>
-                    <div className="flex justify-between">
+                    <Link href="/leaderboards" className="text-xl sm:ml-3 mb-3 mt-5">Leaderboards</Link>
+                    <Link href="/multiplayer" className="text-xl sm:ml-3 mb-3">Multiplayer</Link>
+                    <Link href="/login" className="text-xl sm:ml-3 mb-3">Login</Link>
+                    <div className="text-xl flex justify-between mb-3">
                         <label htmlFor="">Dark Mode?</label>
                         <Switch
                             checked={switcheEnabled}

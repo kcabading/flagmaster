@@ -10,7 +10,6 @@ const QuizOptions = function (props: quizOptionsProps) {
     return (
         <>
             <div className="flex flex-col">
-                <p className="text-center font-bold">Try it Now!</p>
                 <label htmlFor="noOfFlags">How many flags:</label>
                 <input type="number" name="noOfFlags" className="dark:text-black border-2 border-black" onChange={props.setNoOfFlags}/>
                 <label>Select you difficulty</label>
