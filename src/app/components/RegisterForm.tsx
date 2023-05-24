@@ -1,19 +1,37 @@
+import { signIn, signOut, useSession } from "next-auth/react";
+
+
 
 const RegisterForm = () => {
+
+
+    const { data: session } = useSession();
+    
+    console.log(session?.user);
+    console.log(session)
+
+    function handleRegister () {
+        signIn('cognito', {callbackUrl: "http://localhost:3000/"})
+    }
+
     return (
         <div className="my-5">
             <label htmlFor="username">Username</label>
-            <input type="text" name="username" className="border-2 border-slate-500 rounded-sm w-full px-2 py-1 mb-3"/>
+            <input type="text" name="username" className="border-2 rounded-sm w-full px-2 py-1 mb-3"/>
             <label htmlFor="email">Email</label>
-            <input type="email" name="email"  className="border-2 border-slate-500 rounded-sm w-full px-2 py-1 mb-3"/>
+            <input type="email" name="email"  className="border-2 rounded-sm w-full px-2 py-1 mb-3"/>
             <label htmlFor="password1">Password</label>
-            <input type="password" name="password1"  className="border-2 border-slate-500 rounded-sm w-full px-2 py-1 mb-3"/>
+            <input type="password" name="password1"  className="border-2 rounded-sm w-full px-2 py-1 mb-3"/>
             <label htmlFor="password2">Re-type password</label>
-            <input type="password" name="password2"  className="border-2 border-slate-500 rounded-sm w-full px-2 py-1 mb-3"/>
+            <input type="password" name="password2"  className="border-2 rounded-sm w-full px-2 py-1 mb-3"/>
 
-            <button onClick={() => console.log('register')} className="bg-green-700 text-white text-md p-3 rounded-lg border-1 flex m-auto">
+            {/* <button onClick={() => handleRegister()} className="bg-green-700 hover:bg-green-500 text-white text-md p-3 rounded-lg border-1 flex m-auto">
                 Register
-            </button>
+            </button> */}
+
+            <a href="/api/auth/signin">Sign IN</a>
+
+            
         </div>
     )
 }

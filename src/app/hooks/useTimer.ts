@@ -1,37 +1,35 @@
 import { useState, useEffect } from "react";
 
+import convertTimeToString from '@/app/utils/convertTimeToString'
+
 const Timer = function (initial: number, ascending: boolean) {
     const [counter, setCounter] = useState(initial)
-    const [timer, setTimer] = useState('00.00')
+    const [timer, setTimer] = useState(convertTimeToString(initial))
     const [interval, setInterval] = useState<number>()
-
-    function convertToTime(counter: number) {   
-        let time = String(Math.floor(counter / 60)).padStart(2, '0') + ':' + String(Math.floor(counter % 60)).padStart(2, '0')
-        console.log('converting time', time)
-        return time
-    }
 
     function stop() {
         window.clearInterval(interval)
     }
-
+    // order - determines if ascending or descending counter
     function start() {
-        reset()
         let counterInterval = window.setInterval(() => {
-            setCounter( (counter) => {
-                setTimer(convertToTime(ascending ? counter + 1 : counter - 1))
-                return ascending ? counter + 1 : counter - 1
+            setCounter( (prev) => {
+                console.log('COUNTER:', prev)
+                console.log('ASC:', ascending)
+                setTimer(convertTimeToString(ascending ? prev + 1 : prev - 1))
+                return ascending ? prev + 1 : prev - 1
             })            
         }, 1000);
         setInterval(counterInterval)
     }
 
     function reset() {
-        setCounter(0)
-        setTimer('00.00')
+        console.log('reset from usetimer time', initial)
+        setCounter(initial)
+        setTimer(convertTimeToString(initial))
     }
     
-    return { timer, stop, start, reset }
+    return { timer, counter, stop, start, reset }
 }
 
 export default Timer

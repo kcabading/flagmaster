@@ -8,7 +8,7 @@ const Timer = function () {
     console.log('timer', timer)
     return (
         <>
-            Time: {timer} 
+            {/* Time: {timer}  */}
             {/* <button onClick={stop}>STOP</button>
             <button onClick={start}>START</button> */}
         </>

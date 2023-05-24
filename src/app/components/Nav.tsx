@@ -10,13 +10,15 @@ import useColorMode from "@/app/hooks/useColorMode"
 import Image from "next/image"
 
 import {AiFillSetting, AiFillFacebook}  from "react-icons/ai";
-
+import useIsLoggedIn from '@/app/hooks/useIsLoggedIn'
 
 const Navigation = function () {
 
     const [switcheEnabled, setSwitchEnabled] = useState(false)
     const [mobileNavEnabled, setMobileNavEnabled] = useState(false)
     const [colorMode, setColorMode] = useColorMode()
+
+    const isLoggedIn = useIsLoggedIn()
 
     useEffect(() => {   
         setColorMode( switcheEnabled ? "dark" : "light")
@@ -31,9 +33,9 @@ const Navigation = function () {
                     </h1>
                     <div className="flex max-sm:hidden dark:text-white">
                         <Link href="/leaderboards">Leaderboards</Link>
-                        <Link className="ml-3" href="/multiplayer">Multiplayer</Link>
+                        { isLoggedIn && <Link className="ml-3" href="/play">Play</Link> }
                         <SigninButton />
-                        <Link className="ml-3 text-2xl" href="/settings"><AiFillSetting/></Link>
+                        { isLoggedIn && <Link className="ml-3 text-2xl" href="/settings"><AiFillSetting/></Link> }
                         <Switch
                             checked={switcheEnabled}
                             onChange={setSwitchEnabled}
@@ -66,7 +68,7 @@ const Navigation = function () {
                         </svg>
                     </span>
                     <Link href="/leaderboards" className="text-xl sm:ml-3 mb-3 mt-5">Leaderboards</Link>
-                    <Link href="/multiplayer" className="text-xl sm:ml-3 mb-3">Multiplayer</Link>
+                    <Link href="/play" className="text-xl sm:ml-3 mb-3">Play</Link>
                     <Link href="/login" className="text-xl sm:ml-3 mb-3">Login</Link>
                     <div className="text-xl flex justify-between mb-3">
                         <label htmlFor="">Dark Mode?</label>

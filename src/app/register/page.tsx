@@ -14,11 +14,11 @@ const Register = () => {
                 <RegisterForm />
             </div>
             <div className="flex items-center justify-between sm:w-3/4 m-auto">
-                <button onClick={() => signIn('facebook')} className="bg-blue-700 text-white text-md p-3 rounded-lg border-1 flex items-center">
-                <AiFillFacebook className="inline mr-3"/> Sign In with Facebook
+                <button onClick={() => signIn('facebook')} className="text-md p-3 rounded-lg border-2 flex items-center">
+                <AiFillFacebook className="inline mr-3 text-2xl"/> Sign In with Facebook
                 </button>
-                <button onClick={() => signIn('google')} className="bg-green-700 text-white text-md p-3 rounded-lg border-1 flex items-center">
-                <AiFillGoogleCircle className="inline mr-3" /> Sign In with Google
+                <button onClick={() => signIn('google')} className="text-md p-3 rounded-lg border-2 flex items-center">
+                <AiFillGoogleCircle className="inline mr-3 text-2xl" /> Sign In with Google
                 </button>
             </div>
         </div>

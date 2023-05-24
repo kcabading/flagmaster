@@ -1,25 +1,32 @@
 
+import convertTimeToNumber from "@/app/utils/convertTimetoNumber"
+
 type AnswerRow = {
     answer: string,
     correct: string
 }
 
-
 type ResultsProps = {
     correctAnswer: number,
     noOfFlags: number,
     timer: string,
+    initialTime: number,
     handleReset: () => void,
     answerHistory: AnswerRow[]
 }
 
 
-const Results = function ( { correctAnswer, noOfFlags, timer, handleReset, answerHistory }: ResultsProps ) {
+const Results = function ( { correctAnswer, noOfFlags, timer, handleReset, answerHistory, initialTime }: ResultsProps ) {
+    console.log('initial time', initialTime)
+    console.log('timer', timer)
+
+    console.log('time left', convertTimeToNumber(timer))
+
     return (
         <div className="finish-quiz flex flex-col place-content-center items-center max-lg:px-4">
             <h1 className="font-bold text-4xl">Congratulations!!!</h1>
             <p className="mt-4">You&apos;ve got <span className="font-bold text-xl">{correctAnswer}/{noOfFlags}</span> correct answer!</p>
-            <p>Time taken: {timer}</p>
+            <p>Time taken: { initialTime > 0 ? initialTime - convertTimeToNumber(timer) : timer}</p>
             <button onClick={ () => handleReset() } className="mt-4 border-2 border-slate-500 p-2 rounded-md hover:bg-green-500">Try Again?</button>
             <div>
               <table className="table-fixed border-spacing-2 border-2 border-slate-500 mt-4">
