@@ -24,9 +24,9 @@ const Flags = () => {
                     {
                         countries.map( (country, index) => {
                             return (
-                                <div>
+                                <div key={index}>
                                     <p className='text-md'>{country.name}</p>
-                                    <div key={index} className=''>
+                                    <div className=''>
                                         <Image src={country.file_url} width={300} height={300} alt={country.name} className='border-2 hover:border-yellow-500' />
                                     </div>
                                 </div>
