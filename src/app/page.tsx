@@ -55,7 +55,7 @@ export default function Home() {
               <h2 className='font-bold text-3xl mb-5 text-cyan-500'>Climb the Leaderboards!</h2>
               <p className='text-md'>FlagMaster isn&apos;t just a solo adventure; it&apos;s a global competition. Connect with friends or challenge fellow players from around the world in our multiplayer mode. Rise through the ranks, showcase your flag prowess, and establish yourself as the ultimate FlagMaster.</p>
               {
-                !session?.user?.email && <button onClick={ (e) => signIn('cognito') } className='mt-3 border-2 border-slate-500 rounded-lg py-2 px-4 font-bold hover:bg-amber-400' >Register Now !</button>
+                !session?.user?.email && <button onClick={ (e) => signIn('cognito') } className='mt-3 border-2 border-slate-500 rounded-lg py-2 px-4 font-bold hover:bg-amber-400' >Sign In Now !</button>
               }
             </div>
           </div>

@@ -35,7 +35,8 @@ const handler = NextAuth({
         },
 
         async session({ session, token }) {
-          console.log('session callback')
+          console.log('session', session)
+          console.log('token', token)
           session.user = token as any;
           return session;
         },

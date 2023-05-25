@@ -69,7 +69,7 @@ const Leaderboards = function() {
                 <ul className="leader-list">
                     {leaders.map( (leader, index) => {
                         return (
-                            <li key={index} className={`flex justify-between ${index === 0 ? 'bg-amber-900' :  'bg-amber-500'} text-white p-5 mb-2 rounded-md items-center`}>
+                            <li key={index} className={`flex justify-between ${index === 0 ? 'bg-amber-900' :  'bg-amber-500'} text-white p-5 mb-2 rounded-md items-center hover:bg-amber-400`}>
                                 <div className="w-1/5 font-bold">{rankToText(index)}</div>
                                 <div className="w-3/5 font-bold flex items-center background-white">
                                     <Image src={'/flagmaster.png'} width={50} height={50} alt="leader logo" className="rounded-[50%] border-4 border-white mr-4"/>

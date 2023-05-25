@@ -27,84 +27,29 @@ const Play = function() {
             {
               id: 1,
               title: 'Finish Easy difficulty in 1 minute',
-              date: '5h ago',
+              mode: 'Multiple choices',
               commentCount: 5,
               shareCount: 2,
             },
             {
               id: 2,
               title: "Finish Medium difficulty in 2 minutes",
-              date: '2h ago',
+              mode: 'Guess the letter',
               commentCount: 3,
               shareCount: 2,
             },
             {
               id: 3,
               title: "Finish Hard difficulty in 3 minutes",
-              date: '2h ago',
+              mode: 'Guess the letter',
               commentCount: 3,
               shareCount: 2,
             },
         ]    
     )
 
-    let [categories] = useState({
-        Challenges: [
-          {
-            id: 1,
-            title: 'Finish Easy difficulty in 1 minute',
-            date: '5h ago',
-            commentCount: 5,
-            shareCount: 2,
-          },
-          {
-            id: 2,
-            title: "Finish Medium difficulty in 2 minutes",
-            date: '2h ago',
-            commentCount: 3,
-            shareCount: 2,
-          },
-          {
-            id: 3,
-            title: "Finish Hard difficulty in 3 minutes",
-            date: '2h ago',
-            commentCount: 3,
-            shareCount: 2,
-          },
-        ],
-        Multiplayer: [
-          {
-            id: 1,
-            roomName: 'Room 123: Ready?',
-            date: 'Jan 7',
-            commentCount: 29,
-            shareCount: 16,
-          },
-          {
-            id: 2,
-            roomName: 'Room 456: Come on Play!',
-            date: 'Mar 19',
-            commentCount: 24,
-            shareCount: 12,
-          },
-        ],
-        // Trending: [
-        //   {
-        //     id: 1,
-        //     title: 'Ask Me Anything: 10 answers to your questions about coffee',
-        //     date: '2d ago',
-        //     commentCount: 9,
-        //     shareCount: 5,
-        //   },
-        //   {
-        //     id: 2,
-        //     title: "The worst advice we've ever heard about coffee",
-        //     date: '4d ago',
-        //     commentCount: 1,
-        //     shareCount: 2,
-        //   },
-        // ],
-    })
+
+
 
     function startChallenge(id:number) {
         router.push(`play/challenges/${id}`)
@@ -112,7 +57,7 @@ const Play = function() {
 
     return (
         <>
-            <div className="w-full lg:w-2/3">
+            <div className="lg:w-3/4 max-lg:px-4">
                 <p className='text-left mb-5'><span className='text-2xl font-bold'>Hi {currentUser?.name}</span> are you up for a challenge or ready to battle other players?</p>
 
                 <div className="challenges">
@@ -129,11 +74,11 @@ const Play = function() {
                                 </h3>
 
                                 <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
-                                <li>{post.date}</li>
-                                <li>&middot;</li>
+                                <li>{post.mode}</li>
+                                {/* <li>&middot;</li>
                                 <li>{post.commentCount} comments</li>
                                 <li>&middot;</li>
-                                <li>{post.shareCount} shares</li>
+                                <li>{post.shareCount} shares</li> */}
                                 </ul>
 
                                 {/* <a

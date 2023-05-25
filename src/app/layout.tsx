@@ -1,6 +1,6 @@
 import './globals.css'
-import Navigation from './components/Nav'
-import Footer from './components/Footer'
+import Navigation from './components/layouts/Nav'
+import Footer from './components/layouts/Footer'
 
 import Providers from "@/app/components/Providers";
 

@@ -1,14 +1,19 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Game from '@/app/components/Game'
+import Game from '@/app/components/game/Game'
 import useCurrentUser from '@/app/hooks/useCurrentUser'
 import { useRouter,useSearchParams,usePathname } from 'next/navigation'
 
 const Challenge = function() {
 
     const [ start, setStart ] = useState(false)
-    const [ gameOptions, setGameOptions] = useState({ flagNumberOption: 5, initialTimeOption:0, ascTimeOption: true })
+    const [ gameOptions, setGameOptions] = useState({ 
+        flagNumberOption: 5, 
+        initialTimeOption:0, 
+        ascTimeOption: true, 
+        modeOption: 'multiple' 
+    })
 
     const searchParams = useSearchParams()
     const pathname = usePathname()
@@ -24,7 +29,8 @@ const Challenge = function() {
                     ...options,
                     flagNumberOption: 10,
                     initialTimeOption: 60,
-                    ascTimeOption: false
+                    ascTimeOption: false,
+                    modeOption: 'fill'
                 }
             })
             setStart(true)

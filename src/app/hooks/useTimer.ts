@@ -14,8 +14,6 @@ const Timer = function (initial: number, ascending: boolean) {
     function start() {
         let counterInterval = window.setInterval(() => {
             setCounter( (prev) => {
-                console.log('COUNTER:', prev)
-                console.log('ASC:', ascending)
                 setTimer(convertTimeToString(ascending ? prev + 1 : prev - 1))
                 return ascending ? prev + 1 : prev - 1
             })            

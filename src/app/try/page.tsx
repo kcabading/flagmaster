@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 import { useSearchParams, usePathname } from "next/navigation";
-import Game from "@/app/components/Game";
+import Game from "@/app/components/game/Game";
 
 
 const Try = () => {
@@ -11,7 +11,7 @@ const Try = () => {
     const searchParams = useSearchParams()
     const pathnames = usePathname()
     const [ start, setStart ] = useState(false)
-    const [ gameOptions, setGameOptions] = useState({ flagNumberOption: 5, initialTimeOption:0, ascTimeOption: true })
+    const [ gameOptions, setGameOptions] = useState({ flagNumberOption: 5, initialTimeOption:0, ascTimeOption: true, modeOption: 'multiple' })
 
     useEffect(() => {
         setGameOptions( (prevOptions) => {

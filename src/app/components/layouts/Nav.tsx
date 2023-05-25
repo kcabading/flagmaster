@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useState, useEffect } from 'react'
-import SigninButton from "./SigninButton"
+import SigninButton from "../SigninButton"
 
 
 import { Switch } from '@headlessui/react'
@@ -32,8 +32,11 @@ const Navigation = function () {
                         <Link href="/"><Image className="inline" src="/flagmaster.png" width={50} height={50} alt="flagmaster logo"/>Flag Master</Link>
                     </h1>
                     <div className="flex max-sm:hidden dark:text-white">
-                        <Link href="/leaderboards">Leaderboards</Link>
+                        <Link href="/flags">Flags</Link>
+                        <Link href="/leaderboards" className="ml-3" >Leaderboards</Link>
                         { isLoggedIn && <Link className="ml-3" href="/play">Play</Link> }
+                    </div>
+                    <div className="flex max-sm:hidden dark:text-white">
                         <SigninButton />
                         { isLoggedIn && <Link className="ml-3 text-2xl" href="/settings"><AiFillSetting/></Link> }
                         <Switch
@@ -68,8 +71,8 @@ const Navigation = function () {
                         </svg>
                     </span>
                     <Link href="/leaderboards" className="text-xl sm:ml-3 mb-3 mt-5">Leaderboards</Link>
-                    <Link href="/play" className="text-xl sm:ml-3 mb-3">Play</Link>
-                    <Link href="/login" className="text-xl sm:ml-3 mb-3">Login</Link>
+                    { isLoggedIn && <Link href="/play" className="text-xl sm:ml-3 mb-3">Play</Link> }
+                    <SigninButton />
                     <div className="text-xl flex justify-between mb-3">
                         <label htmlFor="">Dark Mode?</label>
                         <Switch
