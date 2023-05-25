@@ -93,6 +93,7 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
         let firstInput = allInputs[0] as HTMLInputElement
         // console.log('FIRST INPUT', firstInput)
         firstInput?.focus()
+        firstInput?.click()
     }
 
     function handleOnSkip() {
@@ -146,8 +147,8 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
                 guessLetters.map( (letter, index) => {
                     return (
                         letter.value === '-' || letter.value === ' '
-                        ? <span key={index} className="mx-2">{letter.value}</span>
-                        : <input key={index} type="text" maxLength={1} data-order={letter.order} className={`${!isCorrect && isCorrect !== null ? 'border-red-500' : ''} ${isCorrect && isCorrect !== null ? 'border-green-500' : ''} letter-inputs border-2 w-8 text-2xl text-center mx-1 rounded-md`} onKeyUp={handleOnChange}/>
+                        ? <span key={index} className="mx-2 block">{letter.value}</span>
+                        : <input key={index} type="text" maxLength={1} data-order={letter.order} className={`${!isCorrect && isCorrect !== null ? 'border-red-500' : ''} ${isCorrect && isCorrect !== null ? 'border-green-500' : ''} letter-inputs border-2 w-8 text-2xl text-center mx-1 my-1 rounded-md dark:text-black`} onKeyUp={handleOnChange}/>
                         
                     )
                 })

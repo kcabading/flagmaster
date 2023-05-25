@@ -9,7 +9,7 @@ const SigninButton = () => {
         ?
         <div className="ml-5 flex">
             <p>Hi, {session?.user.name}</p>
-            <button onClick={() => signOut({ callbackUrl: window.location.host })} className="text-red-600 ml-3 cursor-pointer">
+            <button onClick={() => signOut()} className="text-red-600 ml-3 cursor-pointer">
             Sign Out
             </button>
         </div>
