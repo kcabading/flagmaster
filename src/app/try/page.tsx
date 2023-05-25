@@ -11,13 +11,14 @@ const Try = () => {
     const searchParams = useSearchParams()
     const pathnames = usePathname()
     const [ start, setStart ] = useState(false)
-    const [ gameOptions, setGameOptions] = useState({ flagNumberOption: 5, initialTimeOption:0, ascTimeOption: true, modeOption: 'multiple' })
+    const [ gameOptions, setGameOptions] = useState({ flagNumberOption: 5, initialTimeOption:0, ascTimeOption: true, modeOption: 'multiple', difficultyOption: 'easy' })
 
     useEffect(() => {
         setGameOptions( (prevOptions) => {
             return {
                 ...prevOptions,
-                flagNumberOption: Number(searchParams.get('flag'))
+                flagNumberOption: Number(searchParams.get('flag')),
+                difficultyOption: String(searchParams.get('level')?.toLowerCase())
             }
         })
         setStart(true)

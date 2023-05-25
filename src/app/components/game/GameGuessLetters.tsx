@@ -15,6 +15,7 @@ type GuessLetter = {
 
 const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAnswer, handleSkip }: FlagLetterProps)  => {
 
+    console.log('game guess letter render')
     const [ isCorrect, setIsCorrect ] = useState<boolean | null>(null)
     const [ guessLetters, setGuessLetters] = useState<GuessLetter[]>([])
     const [ skipFlag, setSkipFlag ] = useState<boolean>(false)
@@ -24,8 +25,6 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
         let currentInput = e.target as HTMLInputElement
         let currentOrder = Number(currentInput.dataset.order)
         let letterInputs:HTMLCollection = document.getElementsByClassName("letter-inputs")
-
-        console.log(e.key)
         
         let nextInputIndex:number = 0
 
@@ -82,8 +81,6 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
 
     function resetInputs() {
         setIsCorrect(null)
-        console.log('reset all inputs')
-
         let allInputs:HTMLCollection = document.getElementsByClassName('letter-inputs')
         Array.from(allInputs).forEach( (element:any, index) => {
             element.value = ''
@@ -132,14 +129,8 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
 
 
     useEffect(() => {
-        console.log('guess letter change')
         resetInputs()
-    
-    //   return () => {
-    //     resetInputs()
-    //   }
     }, [guessLetters])
-    
 
     return (
         <>

@@ -7,6 +7,7 @@ import useTimer from '@/app/hooks/useTimer'
 import Results from '@/app/components/game/Results'
 import convertTimeToNumber from '@/app/utils/convertTimetoNumber'
 import GameGuessLetters from '@/app/components/game/GameGuessLetters'
+import GameMultipleChoices from './GameMultipleChoices'
 
 type AnswerHistory = {
   answer: string,
@@ -18,12 +19,12 @@ interface GameProps {
     flagNumberOption: number,
     initialTimeOption: number,
     ascTimeOption: boolean,
-    modeOption: string // multiple, fill
+    modeOption: string // multiple, fill,
+    difficultyOption: string
 }
 
-const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTimeOption, modeOption }:GameProps ) {
+const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption }:GameProps ) {
 
-    // console.log('game render')
     const [ noOfFlags, setNoOfFlags] = useState(5)
     const [ flagCount, setFlagCount ] = useState(0)
     const { timer, start, stop, reset } = useTimer(initialTimeOption, ascTimeOption)
@@ -32,7 +33,7 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
     
     const [ correctAnswer, setCorrectAnswer ] = useState(0)
     const [ answered, setAnswered ] = useState(false)
-    const { flag, flagUrl, choices, usedFlags, setUsedFlags } = useFlagGenerator(flagCount)
+    const { flag, flagUrl, choices, usedFlags, setUsedFlags } = useFlagGenerator(flagCount, difficultyOption)
 
     function handleReset() {
         console.log('handlereset')
@@ -64,10 +65,6 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
                 setUsedFlags(JSON.stringify([flag]))
             }
         }, 500)
-    }
-
-    function handleCorrectAnswer (){
-        console.log('from parent correct answer')
     }
 
     function handleSkip() {
@@ -116,23 +113,30 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
                         {
                             modeOption === 'fill'
                             ? <GameGuessLetters flagLetters={flag} handleCorrectAnswer={handleGuessFlag} handleIncorrectAnswer={handleIncorrectAnswer} handleSkip={handleSkip}/>
-                            : <div className="grid grid-cols-2 gap-4">
-                                { 
-                                choices.map( (option, index) => {
-                                    return (
-                                    <button
-                                        disabled={answered ? true : false}
-                                        key={index}
-                                        className={`
-                                        ${ chosenFlag === flag && chosenFlag === option && 'bg-green-400'} 
-                                        ${ chosenFlag !== flag && chosenFlag === option && 'bg-red-400'}
-                                        border-2 p-2 rounded-md sm:hover:border-blue-500`} 
-                                        onClick={ () => handleGuessFlag(option) }>{option}
-                                    </button>
-                                    )
-                                })
-                                }
-                            </div>
+                            : <GameMultipleChoices 
+                                flag={flag} 
+                                answered={answered} 
+                                chosenFlag={chosenFlag} 
+                                choices={choices}
+                                handleGuessFlag={handleGuessFlag} />
+                            
+                            // <div className="grid grid-cols-2 gap-4">
+                            //     { 
+                            //     choices.map( (option, index) => {
+                            //         return (
+                            //         <button
+                            //             disabled={answered ? true : false}
+                            //             key={index}
+                            //             className={`
+                            //             ${ chosenFlag === flag && chosenFlag === option && 'bg-green-400'} 
+                            //             ${ chosenFlag !== flag && chosenFlag === option && 'bg-red-400'}
+                            //             border-2 p-2 rounded-md sm:hover:border-blue-500`} 
+                            //             onClick={ () => handleGuessFlag(option) }>{option}
+                            //         </button>
+                            //         )
+                            //     })
+                            //     }
+                            // </div>
                         }
                     </div>
                 </div>

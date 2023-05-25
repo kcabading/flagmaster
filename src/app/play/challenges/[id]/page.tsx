@@ -12,7 +12,8 @@ const Challenge = function() {
         flagNumberOption: 5, 
         initialTimeOption:0, 
         ascTimeOption: true, 
-        modeOption: 'multiple' 
+        modeOption: 'multiple',
+        difficultyOption: 'easy'
     })
 
     const searchParams = useSearchParams()
@@ -30,7 +31,8 @@ const Challenge = function() {
                     flagNumberOption: 10,
                     initialTimeOption: 60,
                     ascTimeOption: false,
-                    modeOption: 'fill'
+                    modeOption: 'fill',
+                    difficultyOption: 'medium'
                 }
             })
             setStart(true)
