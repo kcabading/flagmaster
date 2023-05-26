@@ -17,8 +17,8 @@ export async function GET(request:NextRequest) {
     if (paths.length !== 4 ) throw new Error("Invalid pathname");
     const id = paths[3]
 
-    await setTimeout(5000, 'result')
-    
+    // await setTimeout(5000, 'result')
+
     const gameOptions = {
         flagNumberOption: 10,
         initialTimeOption: 240,

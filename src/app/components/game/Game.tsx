@@ -25,13 +25,20 @@ interface GameProps {
 
 const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption }:GameProps ) {
 
-    console.log('game render')
+    // console.log('game render')
 
     const [ noOfFlags, setNoOfFlags] = useState(flagNumberOption)
     const [ flagCount, setFlagCount ] = useState(0)
     const { timer, start, stop, reset } = useTimer(initialTimeOption, ascTimeOption)
     const [ answerHistory, setAnswerHistory ] = useState<AnswerHistory[]>([])
     const [ chosenFlag, setChosenFlag ] = useState<string | null>(null)
+    
+    
+    // reveal1 - reveal 1 letter
+    // reveal2 - reveal 2 letter
+    // reveal3 - reveal 3 letter
+    const [ powerUps, setPowerUps] = useState<string[]>([])
+    const [ powerUpsUsed, setPowerUpUsed] = useState(false)
     
     const [ correctAnswer, setCorrectAnswer ] = useState(0)
     const [ answered, setAnswered ] = useState(false)
@@ -44,11 +51,13 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
         setFlagCount(0)
         setCorrectAnswer(0)
         setAnswerHistory([])
+        setPowerUps([])
         reset()
         start()
     }
     
     function handleGuessFlag( guess: string ) {
+        setPowerUpUsed(false)
         console.log('handle guess flag')
         setChosenFlag(guess)
         setAnswered(true)
@@ -75,6 +84,20 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
 
     function handleIncorrectAnswer() {
         console.log('incorrect answer')
+    }
+
+    function powerStopTime() {
+        stop()
+    }
+
+    function addPowerReveal(reveal: string) {
+        setPowerUpUsed(true)
+        setPowerUps((prev) => {
+            return [
+                ...prev,
+                reveal
+            ]
+        })
     }
 
     useEffect(() => {
@@ -109,10 +132,22 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
                     <div className='mt-5'>
                     { flagUrl && <Image priority={true} src={flagUrl} width={300} height={300} alt="flag image" className="m-auto md:w-1/2 max-sm:w-full border-slate-500 border-2" /> }
                     </div>
+                    {
+                        modeOption === 'fill'
+                        ?
+                        <div className="power-ups mt-4">
+                            <button disabled={powerUps.includes('reveal1') || powerUpsUsed ?  true: false} onClick={ () => addPowerReveal('reveal1')} className={`${powerUps.includes('reveal1') ? 'bg-gray-300 ': ''}  border-2 bg-lime-500 px-2 py-1 text-white rounded-md mx-2`}>Reveal 1</button>
+                            <button disabled={powerUps.includes('reveal2') || powerUpsUsed ? true: false} onClick={ () => addPowerReveal('reveal2')} className={`${powerUps.includes('reveal2') ? 'bg-gray-300 ': ''}  border-2 bg-lime-500 px-2 py-1 text-white rounded-md mx-2`}>Reveal 2</button>
+                        </div>
+                        :
+                        <div className="power-ups mt-4">
+                            <button disabled={powerUps.includes('reveal1') || powerUpsUsed ?  true: false} onClick={ () => addPowerReveal('reveal1')} className={`${powerUps.includes('reveal1') ? 'bg-gray-300 ': ''}  border-2 bg-lime-500 px-2 py-1 text-white rounded-md mx-2`}>50/50</button>
+                        </div>
+                    }
                     <div className="choices mt-5">
                         {
                             modeOption === 'fill'
-                            ? <GameGuessLetters flagLetters={flag} handleCorrectAnswer={handleGuessFlag} handleIncorrectAnswer={handleIncorrectAnswer} handleSkip={handleSkip}/>
+                            ? <GameGuessLetters powerUps={powerUps} flagLetters={flag} handleCorrectAnswer={handleGuessFlag} handleIncorrectAnswer={handleIncorrectAnswer} handleSkip={handleSkip}/>
                             : <GameMultipleChoices 
                                 flag={flag} 
                                 answered={answered} 
