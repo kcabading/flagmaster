@@ -194,7 +194,7 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
             })
         }    
 
-    }, [powerUps.length])
+    }, [powerUps])
 
     return (
         <>
