@@ -1,14 +1,24 @@
 import useTimer from '@/app/hooks/useTimer'
+import convertTimeToNumber from '@/app/utils/convertTimetoNumber'
 
-const Timer = function () {
+interface TimerProps {
+    initialTimeOption: number,
+    ascTimeOption: boolean
+}
 
-    console.log('COUNTER COMPONENT render')
-    const { timer } = useTimer(0, true)
+const Timer = function ({ initialTimeOption, ascTimeOption }: TimerProps) {
 
-    console.log('timer', timer)
+    const { timer, start, stop, reset } = useTimer(initialTimeOption, ascTimeOption)
+
+    // console.log('COUNTER COMPONENT render')
+    // const { timer } = useTimer(0, true)
+
+    // console.log('timer', timer)
     return (
         <>
-            {/* Time: {timer}  */}
+            <div className={`${initialTimeOption > 0 && convertTimeToNumber(timer) <= 10 ? 'text-red-500' : ''} font-bold text-4xl`}>
+                {timer} 
+            </div>
             {/* <button onClick={stop}>STOP</button>
             <button onClick={start}>START</button> */}
         </>

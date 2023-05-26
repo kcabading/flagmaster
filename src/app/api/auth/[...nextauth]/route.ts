@@ -31,12 +31,13 @@ const handler = NextAuth({
       // },
     callbacks: {
         async jwt({ token, user }) {
+          // console.log('jwt token')
           return { ...token, ...user };
         },
 
         async session({ session, token }) {
-          console.log('session', session)
-          console.log('token', token)
+          // console.log('session', session)
+          // console.log('token', token)
           session.user = token as any;
           return session;
         },

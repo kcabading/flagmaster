@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, useEffect, ChangeEvent } from 'react'
+import { useState, useEffect, ChangeEvent, useMemo } from 'react'
 import useFlagGenerator from '@/app/hooks/useFlagGenerator'
 import useTimer from '@/app/hooks/useTimer'
 import Results from '@/app/components/game/Results'
@@ -25,7 +25,9 @@ interface GameProps {
 
 const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption }:GameProps ) {
 
-    const [ noOfFlags, setNoOfFlags] = useState(5)
+    console.log('game render')
+
+    const [ noOfFlags, setNoOfFlags] = useState(flagNumberOption)
     const [ flagCount, setFlagCount ] = useState(0)
     const { timer, start, stop, reset } = useTimer(initialTimeOption, ascTimeOption)
     const [ answerHistory, setAnswerHistory ] = useState<AnswerHistory[]>([])
@@ -76,9 +78,7 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
     }
 
     useEffect(() => {
-        setNoOfFlags(flagNumberOption)
         start()
-
         return () => {
             reset()
         }
@@ -119,24 +119,6 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
                                 chosenFlag={chosenFlag} 
                                 choices={choices}
                                 handleGuessFlag={handleGuessFlag} />
-                            
-                            // <div className="grid grid-cols-2 gap-4">
-                            //     { 
-                            //     choices.map( (option, index) => {
-                            //         return (
-                            //         <button
-                            //             disabled={answered ? true : false}
-                            //             key={index}
-                            //             className={`
-                            //             ${ chosenFlag === flag && chosenFlag === option && 'bg-green-400'} 
-                            //             ${ chosenFlag !== flag && chosenFlag === option && 'bg-red-400'}
-                            //             border-2 p-2 rounded-md sm:hover:border-blue-500`} 
-                            //             onClick={ () => handleGuessFlag(option) }>{option}
-                            //         </button>
-                            //         )
-                            //     })
-                            //     }
-                            // </div>
                         }
                     </div>
                 </div>

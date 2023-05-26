@@ -9,7 +9,7 @@ type quizOptionsProps = {
 
 const QuizOptions = function (props: quizOptionsProps) {
 
-    let noOfFlags = [10, 20, 50]
+    let noOfFlags = [10, 20, 30]
 
     return (
         <>

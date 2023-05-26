@@ -1,56 +1,55 @@
-'use client'
-
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import Game from '@/app/components/game/Game'
-import useCurrentUser from '@/app/hooks/useCurrentUser'
-import { useRouter,useSearchParams,usePathname } from 'next/navigation'
+// import useCurrentUser from '@/app/hooks/useCurrentUser'
+// import { useRouter,useSearchParams,usePathname } from 'next/navigation'
+import { headers } from 'next/headers';
 
-const Challenge = function() {
 
-    const [ start, setStart ] = useState(false)
-    const [ gameOptions, setGameOptions] = useState({ 
-        flagNumberOption: 5, 
-        initialTimeOption:0, 
-        ascTimeOption: true, 
-        modeOption: 'multiple',
-        difficultyOption: 'easy'
-    })
+async function getGameOption(id: string) {
+    const res = await fetch(`http://localhost:3000/api/challenges/${id}`);
+    // Recommendation: handle errors
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error('Failed to fetch data');
+    }
+   
+    return res.json();
+  }
 
-    const searchParams = useSearchParams()
-    const pathname = usePathname()
-    const urlPaths = pathname.split('/')
 
-    useEffect(() => {
-      
-        if (urlPaths.length === 4) {
-            // TODO: getting challenge options async
-            console.log('getting challenge options')
-            setGameOptions( (options) => {
-                return {
-                    ...options,
-                    flagNumberOption: 10,
-                    initialTimeOption: 60,
-                    ascTimeOption: false,
-                    modeOption: 'fill',
-                    difficultyOption: 'medium'
-                }
-            })
-            setStart(true)
-        }
+
+const Challenge = async function() {
+
+    console.log('challenge render')
+    const headerList = headers()
+    const pathname = headerList.get('x-invoke-path')!
+    const urlPaths: string[] = pathname.split('/')
+
+    if (urlPaths.length !== 4) throw new Error('Invalid parameter!')
+    const challengeId = urlPaths[3]
     
-        return () => {
-            console.log('dismount')
-        }
-    }, [pathname, searchParams])
+    let gameOptions = await getGameOption(urlPaths[3])
 
+    // const [ start, setStart ] = useState(false)
+    // const [ gameOptions, setGameOptions] = useState({ 
+    //     flagNumberOption: 5, 
+    //     initialTimeOption:0, 
+    //     ascTimeOption: true, 
+    //     modeOption: 'multiple',
+    //     difficultyOption: 'easy'
+    // })
+
+    // const searchParams = useSearchParams()
+    // const pathname = usePathname()
+    // const urlPaths = pathname.split('/')
+
+    // const challengeId = urlPaths[3]
+
+    
     return (
-        <>
-            <h1 className='font-bold text-xl mb-5'>Challenge#: {urlPaths && urlPaths[3]}</h1>
-            { 
-                start 
-                ? <Game startOption={start} {...gameOptions} />
-                : <p>Loading game...</p>
-            }
+        <>  
+            <h1 className='font-bold text-xl mb-5'>Challenge#: {challengeId}</h1>
+            <Game startOption={true} {...gameOptions} />   
         </>
     )
 }

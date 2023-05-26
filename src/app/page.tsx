@@ -6,12 +6,6 @@ import QuizOptions from '@/app/components/QuizOptions'
 import { useRouter } from 'next/navigation'
 import { signIn, useSession } from 'next-auth/react'
 
-
-type AnswerHistory = {
-  answer: string,
-  correct: string
-}
-
 export default function Home() {
   console.log('render')
   
@@ -19,7 +13,7 @@ export default function Home() {
   const { data: session } = useSession();
 
   const [ noOfFlags, setNoOfFlags] = useState(5)
-  const [ level, setLevel] = useState('')
+  const [ level, setLevel] = useState('easy')
 
   function handleTryNow() {
     router.push(`try?flag=${noOfFlags}&level=${level}`);

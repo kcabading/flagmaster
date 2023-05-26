@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.338.0",
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
     "@types/node": "20.1.7",
@@ -24,6 +25,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "uuid": "^9.0.0"
   }
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Tab } from '@headlessui/react'
 import useCurrentUser from '@/app/hooks/useCurrentUser'
 import { useRouter } from 'next/navigation'
@@ -9,10 +9,21 @@ function classNames(...classes:string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
+async function getAllChallenges() {
+  const res = await fetch(`http://localhost:3000/api/challenges`);
+  // Recommendation: handle errors
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+ 
+  return res.json();
+}
+
 type Post = {
     id: number,
     title: string,
-    date: string,
+    mode: string,
     commentCount: number,
     shareCount: number,
 }
@@ -21,39 +32,22 @@ const Play = function() {
 
     let currentUser = useCurrentUser()
     const router = useRouter();
-
-    let [ challenges ] = useState(
-        [
-            {
-              id: 1,
-              title: 'Finish Easy difficulty in 1 minute',
-              mode: 'Multiple choices',
-              commentCount: 5,
-              shareCount: 2,
-            },
-            {
-              id: 2,
-              title: "Finish Medium difficulty in 2 minutes",
-              mode: 'Guess the letter',
-              commentCount: 3,
-              shareCount: 2,
-            },
-            {
-              id: 3,
-              title: "Finish Hard difficulty in 3 minutes",
-              mode: 'Guess the letter',
-              commentCount: 3,
-              shareCount: 2,
-            },
-        ]    
-    )
-
-
-
-
+    const [ isLoading, setIsLoading] = useState(false)
+    const [ challenges, setChallenges ] = useState<Post[]>([])
+    
     function startChallenge(id:number) {
         router.push(`play/challenges/${id}`)
     }
+
+    useEffect(() => {
+      setIsLoading(true);
+      getAllChallenges()
+        .then((data) => {
+          console.log(data)
+          setChallenges(data);
+          setIsLoading(false);
+        })
+    }, [])
 
     return (
         <>
@@ -62,6 +56,10 @@ const Play = function() {
 
                 <div className="challenges">
                     <p className='mb-5 text-xl font-xl font-bold italic'>Challenges</p>
+                    {
+                    isLoading 
+                    ? <>Loading...</>
+                    :
                     <ul>
                         {challenges.map((post) => (
                         <li
@@ -95,6 +93,7 @@ const Play = function() {
                         </li>
                         ))}
                     </ul>
+                    }
                 </div>
             </div>
         </>

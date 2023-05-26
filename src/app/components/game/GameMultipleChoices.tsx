@@ -8,6 +8,8 @@ interface IMultipleChoicesProps {
 
 const GameMultipleChoices = ({ flag, answered, chosenFlag, choices, handleGuessFlag}: IMultipleChoicesProps) => {
 
+    console.log('guess multiple render')
+
     return (
         <div className="grid grid-cols-2 gap-4">
         { 

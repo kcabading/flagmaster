@@ -27,7 +27,7 @@ const Flags = () => {
                                 <div key={index}>
                                     <p className='text-md'>{country.name}</p>
                                     <div className=''>
-                                        <Image src={country.file_url} width={300} height={300} alt={country.name} className='border-2 hover:border-yellow-500' />
+                                        <Image src={country.file_url} width={300} height={300} alt={country.name} className='border-2 hover:drop-shadow-lg' />
                                     </div>
                                 </div>
                             )
