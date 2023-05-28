@@ -6,7 +6,7 @@ import { headers } from 'next/headers';
 
 
 async function getGameOption(id: string) {
-    const res = await fetch(`http://localhost:3000/api/challenges/${id}`);
+    const res = await fetch( process.env.NEXTAUTH_URL + `/api/challenges/${id}`);
     // Recommendation: handle errors
     if (!res.ok) {
       // This will activate the closest `error.js` Error Boundary
@@ -14,7 +14,7 @@ async function getGameOption(id: string) {
     }
    
     return res.json();
-  }
+}
 
 
 
@@ -29,22 +29,6 @@ const Challenge = async function() {
     const challengeId = urlPaths[3]
     
     let gameOptions = await getGameOption(urlPaths[3])
-
-    // const [ start, setStart ] = useState(false)
-    // const [ gameOptions, setGameOptions] = useState({ 
-    //     flagNumberOption: 5, 
-    //     initialTimeOption:0, 
-    //     ascTimeOption: true, 
-    //     modeOption: 'multiple',
-    //     difficultyOption: 'easy'
-    // })
-
-    // const searchParams = useSearchParams()
-    // const pathname = usePathname()
-    // const urlPaths = pathname.split('/')
-
-    // const challengeId = urlPaths[3]
-
     
     return (
         <>  

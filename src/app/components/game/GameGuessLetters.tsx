@@ -42,11 +42,14 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
         if(e.key === 'Backspace' || e.key === 'ArrowLeft') {
             
             nextInputIndex = currentOrder -1
-            let prevInput = letterInputs[nextInputIndex] as HTMLInputElement  
+            console.log(nextInputIndex)
+            let prevInput = letterInputs[nextInputIndex] as HTMLInputElement 
+
             if (nextInputIndex >= 0 && nextInputIndex < letterInputs.length) {
                 prevInput.focus()
+                console.log('NEXT INDEX', nextInputIndex)
 
-                if (prevInput.hasAttribute('disabled')) {
+                if (prevInput.hasAttribute('disabled') && ( (nextInputIndex - 1) !== -1)) {
                     let nextNextInput = letterInputs[nextInputIndex - 1] as HTMLInputElement
                     nextNextInput.focus()
                 }
@@ -79,20 +82,21 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
                     handleIncorrectAnswer()
                     setIsCorrect(false)
                 }   
-            } else {
+            } 
 
-                if (nextInputIndex > 0 && nextInputIndex < letterInputs.length) {
-                    console.log('next focus')
-                    nextInput.focus()
-    
-                    if (nextInput.hasAttribute('disabled')) {
-                        // nextInput.focus()
-                        let nextNextInput = letterInputs[nextInputIndex + 1] as HTMLInputElement
-                        nextNextInput.focus()
-                        // let nextnextInput letterInputs[nextInputIndex + 2]
-                    }
+            if (nextInputIndex > 0 && nextInputIndex < letterInputs.length) {
+                console.log('next focus')
+                nextInput.focus()
+
+                if (nextInput.hasAttribute('disabled') && ( (nextInputIndex + 1) < letterInputs.length) ) {
+                    console.log('next focus has disabled')
+                    // nextInput.focus()
+                    let nextNextInput = letterInputs[nextInputIndex + 1] as HTMLInputElement
+                    nextNextInput.focus()                        
+                    // let nextnextInput letterInputs[nextInputIndex + 2]
                 }
             }
+            
         }
     }, [flagLetters])
 

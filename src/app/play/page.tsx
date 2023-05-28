@@ -10,7 +10,10 @@ function classNames(...classes:string[]) {
 }
 
 async function getAllChallenges() {
-  const res = await fetch(`http://localhost:3000/api/challenges`);
+
+  
+
+  const res = await fetch( window.location.origin + '/api/challenges');
   // Recommendation: handle errors
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary

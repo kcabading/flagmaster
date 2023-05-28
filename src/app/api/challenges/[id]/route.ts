@@ -24,7 +24,7 @@ export async function GET(request:NextRequest) {
         initialTimeOption: 240,
         ascTimeOption: false,
         modeOption: 'fill',
-        difficultyOption: 'medium'
+        difficultyOption: 'hard'
     }
 
     // const token = cookieStore.get('token');

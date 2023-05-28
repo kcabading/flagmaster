@@ -44,11 +44,9 @@ const GameMultipleChoices = ({ flag, answered, chosenFlag, choices, handleGuessF
             Array.from(allInputs).forEach( (element:any, index) => {
                 if (randomChoices.includes(index)) {
                     element.innerText = '-'
+                    element.setAttribute('disabled', 'true')
                 }
             })
-
-            
-
 
             console.log(correctAnswerButton)
             

@@ -19,10 +19,6 @@ type ResultsProps = {
 
 
 const Results = function ( { correctAnswer, noOfFlags, timer, handleReset, answerHistory, initialTime }: ResultsProps ) {
-    // console.log('initial time', initialTime)
-    // console.log('timer', timer)
-
-    // console.log('time left', convertTimeToNumber(timer))
     const pathnames = usePathname()
     const paths = pathnames.split('/')
 
@@ -43,7 +39,7 @@ const Results = function ( { correctAnswer, noOfFlags, timer, handleReset, answe
               <p>Time taken: { initialTime > 0 ? initialTime - convertTimeToNumber(timer) : timer}</p>
               <div className="flex">
                 <button onClick={ () => handleReset() } className="w-1/2 mt-4 border-2 border-slate-500 p-2 rounded-md hover:bg-green-500 mx-2">Try Again?</button>
-                <button onClick={handleNextChallenge} className="w-1/2 mt-4 border-2 border-slate-500 p-2 rounded-md hover:bg-green-500 mx-2">Next Challenge</button>
+                {paths[1] === 'play' && <button onClick={handleNextChallenge} className="w-1/2 mt-4 border-2 border-slate-500 p-2 rounded-md hover:bg-green-500 mx-2">Next Challenge</button>}
               </div>
             </div>
             

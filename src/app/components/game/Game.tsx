@@ -136,12 +136,12 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
                         modeOption === 'fill'
                         ?
                         <div className="power-ups mt-4">
-                            <button disabled={powerUps.includes('reveal1') || powerUpsUsed ?  true: false} onClick={ () => addPowerUps('reveal1')} className={`${powerUps.includes('reveal1') ? 'bg-gray-300 ': ''}  border-2 bg-lime-500 px-2 py-1 text-white rounded-md mx-2`}>Reveal 1</button>
-                            <button disabled={powerUps.includes('reveal2') || powerUpsUsed ? true: false} onClick={ () => addPowerUps('reveal2')} className={`${powerUps.includes('reveal2') ? 'bg-gray-300 ': ''}  border-2 bg-lime-500 px-2 py-1 text-white rounded-md mx-2`}>Reveal 2</button>
+                            <button disabled={powerUps.includes('reveal1') || powerUpsUsed ?  true: false} onClick={ () => addPowerUps('reveal1')} className={`${powerUps.includes('reveal1') ? 'bg-gray-300 ': 'bg-lime-500'}  border-2 px-2 py-1 text-white rounded-md mx-2`}>Reveal 1</button>
+                            <button disabled={powerUps.includes('reveal2') || powerUpsUsed ? true: false} onClick={ () => addPowerUps('reveal2')} className={`${powerUps.includes('reveal2') ? 'bg-gray-300 ': 'bg-lime-500'}  border-2 px-2 py-1 text-white rounded-md mx-2`}>Reveal 2</button>
                         </div>
                         :
                         <div className="power-ups mt-4">
-                            <button disabled={powerUps.includes('5050') || powerUpsUsed ?  true: false} onClick={ () => addPowerUps('5050')} className={`${powerUps.includes('5050') ? 'bg-gray-300 ': ''}  border-2 bg-lime-500 px-2 py-1 text-white rounded-md mx-2`}>50/50</button>
+                            <button disabled={powerUps.includes('5050') || powerUpsUsed ?  true: false} onClick={ () => addPowerUps('5050')} className={`${powerUps.includes('5050') ? 'bg-gray-300 ': 'bg-lime-500'}  border-2 px-2 py-1 text-white rounded-md mx-2`}>50/50</button>
                         </div>
                     }
                     <div className="choices mt-5">
