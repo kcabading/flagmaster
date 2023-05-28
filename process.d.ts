@@ -4,5 +4,6 @@ declare namespace NodeJS {
         FACEBOOK_CLIENT_SECRET: string
         COGNITO_CLIENT_ID: string
         COGNITO_CLIENT_SECRET: string
+        NEXTAUTH_URL: string
     }
   }

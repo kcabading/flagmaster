@@ -11,7 +11,7 @@ const RegisterForm = () => {
     console.log(session)
 
     function handleRegister () {
-        signIn('cognito', {callbackUrl: "http://localhost:3000/"})
+        signIn('cognito')
     }
 
     return (

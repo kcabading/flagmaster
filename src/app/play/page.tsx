@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Tab } from '@headlessui/react'
 import useCurrentUser from '@/app/hooks/useCurrentUser'
 import { useRouter } from 'next/navigation'
 
@@ -10,9 +9,6 @@ function classNames(...classes:string[]) {
 }
 
 async function getAllChallenges() {
-
-  
-
   const res = await fetch( window.location.origin + '/api/challenges');
   // Recommendation: handle errors
   if (!res.ok) {
@@ -39,7 +35,7 @@ const Play = function() {
     const [ challenges, setChallenges ] = useState<Post[]>([])
     
     function startChallenge(id:number) {
-        router.push(`play/challenges/${id}`)
+        router.push(window.location.origin +  `/play/challenges/${id}`)
     }
 
     useEffect(() => {

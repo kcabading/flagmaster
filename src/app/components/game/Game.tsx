@@ -33,10 +33,6 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
     const [ answerHistory, setAnswerHistory ] = useState<AnswerHistory[]>([])
     const [ chosenFlag, setChosenFlag ] = useState<string | null>(null)
     
-    
-    // reveal1 - reveal 1 letter
-    // reveal2 - reveal 2 letter
-    // reveal3 - reveal 3 letter
     const [ powerUps, setPowerUps] = useState<string[]>([])
     const [ powerUpsUsed, setPowerUpUsed] = useState(false)
     
@@ -86,10 +82,6 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
         console.log('incorrect answer')
     }
 
-    function powerStopTime() {
-        stop()
-    }
-
     function addPowerUps(powerup: string) {
         setPowerUpUsed(true)
         setPowerUps((prev) => {
@@ -103,7 +95,7 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
     useEffect(() => {
         start()
         return () => {
-            reset()
+            handleReset()
         }
     }, [startOption]);
 
