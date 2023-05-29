@@ -1,8 +1,5 @@
-// import { useState, useEffect } from 'react'
-// import useCurrentUser from '@/app/hooks/useCurrentUser'
-// import { useRouter } from 'next/navigation'
-import getURL from '../utils/getURL'
 
+import getURL from '../utils/getURL'
 import Link from 'next/link'
 
 type IChallengeType = {
@@ -34,7 +31,6 @@ const Play = async function( props: IPageProps ) {
     return (
         <>
             <div className="lg:w-3/4 max-lg:px-4">
-                {/* <p className='text-left mb-5'><span className='text-2xl font-bold'>Hi {currentUser?.name}</span> are you up for a challenge or ready to battle other players?</p> */}
 
                 <div className="challenges">
                     <p className='mb-5 text-xl font-xl font-bold italic'>Challenges</p>
