@@ -14,9 +14,13 @@ const Play = async function() {
 
     let challenges = []
     const apiURL = getURL() + 'api/challenges'
+
+    console.log('API URL')
+
     let res = await fetch(apiURL)
 
-    if (!res.ok) {
+    console.log('res', res)
+    if (res.status !== 200) {
         throw new Error('Failed to fetch data');
     }
 
