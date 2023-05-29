@@ -10,19 +10,13 @@ type IChallengeType = {
     shareCount: number,
 }
 
-interface IPageProps {
-    params: { id: string }
-}
-
-const Play = async function( props: IPageProps ) {
+const Play = async function() {
 
     let challenges = []
     const apiURL = getURL() + 'api/challenges'
-    // let currentUser = useCurrentUser()
     let res = await fetch(apiURL)
-    
+
     if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data');
     }
 
