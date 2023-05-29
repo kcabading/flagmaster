@@ -19,11 +19,6 @@ const Play = async function() {
 
     let res = await fetch(apiURL)
 
-    console.log('res', res)
-    if (res.status !== 200) {
-        throw new Error('Failed to fetch data');
-    }
-
     challenges = await res.json()
 
     return (
