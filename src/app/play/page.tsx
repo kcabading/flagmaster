@@ -3,13 +3,16 @@
 import { useState, useEffect } from 'react'
 import useCurrentUser from '@/app/hooks/useCurrentUser'
 import { useRouter } from 'next/navigation'
+import getURL from '../utils/getURL'
+
 
 function classNames(...classes:string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 async function getAllChallenges() {
-  const res = await fetch( window.location.origin + '/api/challenges');
+    console.log(getURL())
+  const res = await fetch( getURL() + 'api/challenges');
   // Recommendation: handle errors
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
@@ -35,7 +38,7 @@ const Play = function() {
     const [ challenges, setChallenges ] = useState<Post[]>([])
     
     function startChallenge(id:number) {
-        router.push(window.location.origin +  `/play/challenges/${id}`)
+        router.push(getURL() +  `play/challenges/${id}`)
     }
 
     useEffect(() => {

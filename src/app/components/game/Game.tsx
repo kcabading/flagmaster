@@ -8,6 +8,7 @@ import Results from '@/app/components/game/Results'
 import convertTimeToNumber from '@/app/utils/convertTimetoNumber'
 import GameGuessLetters from '@/app/components/game/GameGuessLetters'
 import GameMultipleChoices from './GameMultipleChoices'
+import Timer from '../Timer'
 
 type AnswerHistory = {
   answer: string,
@@ -15,7 +16,6 @@ type AnswerHistory = {
 }
 
 interface GameProps {
-    startOption: boolean,
     flagNumberOption: number,
     initialTimeOption: number,
     ascTimeOption: boolean,
@@ -23,11 +23,8 @@ interface GameProps {
     difficultyOption: string
 }
 
-const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption }:GameProps ) {
+const Game = function({ flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption }:GameProps ) {
 
-    // console.log('game render')
-
-    const [ noOfFlags, setNoOfFlags] = useState(flagNumberOption)
     const [ flagCount, setFlagCount ] = useState(0)
     const { timer, start, stop, reset } = useTimer(initialTimeOption, ascTimeOption)
     const [ answerHistory, setAnswerHistory ] = useState<AnswerHistory[]>([])
@@ -92,23 +89,24 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
         })
     }
 
+    if (flagCount === flagNumberOption ||  (!ascTimeOption && timer === '00:00')) stop()
+        
+    
     useEffect(() => {
         start()
         return () => {
             handleReset()
         }
-    }, [startOption]);
-
-    if (flagCount === noOfFlags ||  (!ascTimeOption && timer === '00:00')) stop()
+    }, [flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption]);
 
     return (
         <>
             {
-            flagCount === noOfFlags || (!ascTimeOption && timer === '00:00')
+                flagCount === flagNumberOption ||  (!ascTimeOption && timer === '00:00')
                 ? 
                 <Results
                     correctAnswer={correctAnswer}
-                    noOfFlags={noOfFlags}
+                    noOfFlags={flagNumberOption}
                     timer={timer}
                     initialTime={initialTimeOption}
                     handleReset={handleReset}
@@ -117,9 +115,15 @@ const Game = function({ startOption, flagNumberOption, initialTimeOption, ascTim
                 :
                 <div className='lg:w-1/2 w-full text-center max-lg:px-4'>
                     <div className="counter flex justify-between w-full items-center">
-                        <div className="w-1/3 sm:text-xl text-left">Flags: {flagCount}/{noOfFlags}</div>
-                        <div className={`${initialTimeOption > 0 && convertTimeToNumber(timer) <= 10 ? 'text-red-500' : ''} font-bold text-4xl`}>{timer}</div>
-                        <div className="w-1/3 sm:text-xl text-right">Answers: {correctAnswer}/{noOfFlags}</div>
+                        <div className="w-1/3 sm:text-xl text-left">Flags: {flagCount}/{flagNumberOption}</div>
+                        {/* <div className={`${initialTimeOption > 0 && convertTimeToNumber(timer) <= 10 ? 'text-red-500' : ''} font-bold text-4xl`}>{timer}</div> */}
+
+                        <Timer 
+                            timer={timer}
+                            initialTimeOption={initialTimeOption}
+                        />
+
+                        <div className="w-1/3 sm:text-xl text-right">Answers: {correctAnswer}/{flagNumberOption}</div>
                     </div>
                     <div className='mt-5'>
                     { flagUrl && <Image priority={true} src={flagUrl} width={300} height={300} alt="flag image" className="m-auto md:w-1/2 max-sm:w-full border-slate-500 border-2" /> }

@@ -1,37 +1,56 @@
+
+'use client'
+
+import { useState, useEffect } from 'react';
 import Game from '@/app/components/game/Game'
-import { headers } from 'next/headers';
-import { URL } from 'url';
 
+import getURL from '@/app/utils/getURL';
+import { usePathname } from 'next/navigation';
 
-
-async function getGameOption() {
-
-    const headersList = headers();
-    const domain = headersList.get('host') || "";
-    const fullUrl = headersList.get('referer') || "";
-    const urlPaths: string[] = fullUrl.split('/')
-    let challegeId = urlPaths[urlPaths.length - 1]
-    const baseUrl = new URL('/', fullUrl)
-    const res = await fetch( baseUrl + `/api/challenges/${challegeId}`);
-    // Recommendation: handle errors
-    if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch data');
-    }
-   
-    return res.json()
+interface GameProps {
+    flagNumberOption: number,
+    initialTimeOption: number,
+    ascTimeOption: boolean,
+    modeOption: string // multiple, fill,
+    difficultyOption: string
 }
 
+const Challenge = function() {
 
+    const pathnames = usePathname()
+    const paths = pathnames.split('/')
+    const challengeId = paths[paths.length - 1]
+    const apiURL = getURL() + `api/challenges/${challengeId}`
+    
+    const [gameOptions, setGameOptions] = useState<GameProps>({
+        initialTimeOption:0,
+        ascTimeOption: true, 
+        modeOption: 'multiple',
+        flagNumberOption: 5,
+        difficultyOption: 'easy'
+    });
+    const [isLoading, setLoading] = useState(true);
 
-const Challenge = async function() {
+    useEffect(() => {
+        fetch(apiURL)
+          .then((res) => res.json())
+          .then((data) => {
+            setGameOptions(data);
+            setLoading(false);
+          })
+      }, [])
 
-    console.log('challenge render')
-    let gameOptions = await getGameOption()
+    console.log(gameOptions)
     return (
-        <>  
-            {/* <h1 className='font-bold text-xl mb-5'>Challenge#: {challengeId}</h1> */}
-            <Game startOption={true} {...gameOptions} />   
+        <>
+            <h1 className='font-bold text-xl mb-5'>Challenge#: {challengeId}</h1>
+            { 
+            isLoading
+            ?
+                `Loading...`
+            :
+                <Game {...gameOptions} />
+            }
         </>
     )
 }

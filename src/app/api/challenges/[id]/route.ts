@@ -1,31 +1,56 @@
 import { NextResponse, NextRequest } from 'next/server';
 
 import { URL } from 'url';
+import { getToken } from "next-auth/jwt"
 
-import { cookies } from 'next/headers';
-
-import { useSession } from 'next-auth/react';
-import { setTimeout } from 'timers/promises';
+import getURL from '@/app/utils/getURL';
 
  
-export async function GET(request:NextRequest) {
+export async function GET(req:NextRequest) {
 
     // const cookieStore = cookies();
-    const { pathname } = new URL(request.url);
-    const paths = pathname.split('/')
+    const fullURL = getURL(req.url)
+    const paths = fullURL.split('/')
 
-    if (paths.length !== 4 ) throw new Error("Invalid pathname");
-    const id = paths[3]
+    console.log('PATHS', fullURL)
+
+    let challengeId = Number(paths[paths.length - 1])
+
+    let gameOptions = {}
+
+    switch (challengeId) {
+      case 1:
+        gameOptions = {
+          flagNumberOption: 10,
+          initialTimeOption: 0,
+          ascTimeOption: true,
+          modeOption: 'multiple',
+          difficultyOption: 'hard'
+        }
+        break;
+      case 2:
+        gameOptions = {
+          flagNumberOption: 10,
+          initialTimeOption: 30,
+          ascTimeOption: false,
+          modeOption: 'fill',
+          difficultyOption: 'hard'
+        }
+        break;
+      case 3:
+        gameOptions = {
+          flagNumberOption: 10,
+          initialTimeOption: 120,
+          ascTimeOption: false,
+          modeOption: 'fill',
+          difficultyOption: 'hard'
+        }
+        break;
+      default:
+        break;
+    }
 
     // await setTimeout(5000, 'result')
-
-    const gameOptions = {
-        flagNumberOption: 10,
-        initialTimeOption: 240,
-        ascTimeOption: false,
-        modeOption: 'fill',
-        difficultyOption: 'hard'
-    }
 
     // const token = cookieStore.get('token');
     // console.log('TOKEN', token)
@@ -36,8 +61,8 @@ export async function GET(request:NextRequest) {
 //     },
 //   });
 //   const data = await res.json();
- 
-  return NextResponse.json({ ...gameOptions });
+    console.log('gameoptions', gameOptions)
+    return NextResponse.json({ ...gameOptions });
 }
 
 

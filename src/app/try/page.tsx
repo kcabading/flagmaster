@@ -6,7 +6,6 @@ import Game from "@/app/components/game/Game"
 const Try = () => {
     const searchParams = useSearchParams()
     const gameOptions = {
-        startOption: true,
         initialTimeOption:0, 
         ascTimeOption: true, 
         modeOption: 'multiple',

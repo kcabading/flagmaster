@@ -3,13 +3,14 @@ import { NextResponse, NextRequest } from 'next/server';
 import { URL } from 'url';
 
 import { cookies } from 'next/headers';
-
 import { getToken } from "next-auth/jwt"
 
 import { setTimeout } from 'timers/promises';
  
 export async function GET(req:NextRequest) {
     const token = await getToken({ req })
+
+    console.log('token', token)
     if (!token) {
         let url = new URL(req.url)        
         console.log('not signed in', url)
