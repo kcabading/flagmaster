@@ -16,17 +16,17 @@ interface IPageProps {
 
 const Play = async function( props: IPageProps ) {
 
-    let {params} = {...props}
+    let challenges = []
     const apiURL = getURL() + 'api/challenges'
     // let currentUser = useCurrentUser()
     let res = await fetch(apiURL)
+    
     if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data');
     }
 
-    let challenges = await res.json()
-    console.log('challenges', challenges)
+    challenges = await res.json()
 
     return (
         <>
@@ -47,19 +47,7 @@ const Play = async function( props: IPageProps ) {
 
                                 <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
                                 <li>{record.mode}</li>
-                                {/* <li>&middot;</li>
-                                <li>{post.commentCount} comments</li>
-                                <li>&middot;</li>
-                                <li>{post.shareCount} shares</li> */}
                                 </ul>
-
-                                {/* <a
-                                href="#"
-                                className={classNames(
-                                    'absolute inset-0 rounded-md',
-                                    'ring-blue-400 focus:z-10 focus:outline-none focus:ring-2'
-                                )}
-                                /> */}
                             </div>
                             <div className="w-1/5 text-right" >
                                 <Link href={getURL() +  `play/challenges/${record.id}`} className='bg-amber-500 hover:bg-amber-400 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Start</Link>
