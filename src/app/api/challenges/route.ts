@@ -1,21 +1,18 @@
 import { NextResponse, NextRequest } from 'next/server';
 
 import { URL } from 'url';
-
 import { cookies } from 'next/headers';
 import { getToken } from "next-auth/jwt"
-
 import { setTimeout } from 'timers/promises';
  
 export async function GET(req:NextRequest) {
-    const token = await getToken({ req })
-
-    console.log('token', token)
-    if (!token) {
-        let url = new URL(req.url)        
-        console.log('not signed in', url)
-        return NextResponse.json({ error: 'unauthorized'}, { status: 403});
-    } else {
+    // const token = await getToken({ req })
+    // console.log('token', token)
+    // if (!token) {
+    //     let url = new URL(req.url)        
+    //     console.log('not signed in', url)
+    //     return NextResponse.json({ error: 'unauthorized'}, { status: 403});
+    // } else {
         // setTimeout(5000, 'test')
         let challenges = [
             {
@@ -52,11 +49,11 @@ export async function GET(req:NextRequest) {
     //   });
     //   const data = await res.json();
 
-        console.log('challenges', challenges)
-    
-        return NextResponse.json([ ...challenges ]);
+    console.log('challenges', challenges)
 
-    }
+    return NextResponse.json([ ...challenges ]);
+
+    // }
 }
 
 

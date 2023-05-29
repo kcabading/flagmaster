@@ -9,16 +9,24 @@ import { Switch } from '@headlessui/react'
 import useColorMode from "@/app/hooks/useColorMode"
 import Image from "next/image"
 
-import {AiFillSetting, AiFillFacebook}  from "react-icons/ai";
+import {AiOutlineMenu, AiOutlineClose, AiFillSetting, AiFillFacebook, AiFillInstagram}  from "react-icons/ai";
 import useIsLoggedIn from '@/app/hooks/useIsLoggedIn'
 
+import { useRouter } from "next/navigation"
+
 const Navigation = function () {
+
+    const router = useRouter()
 
     const [switcheEnabled, setSwitchEnabled] = useState(false)
     const [mobileNavEnabled, setMobileNavEnabled] = useState(false)
     const [colorMode, setColorMode] = useColorMode()
-
     const isLoggedIn = useIsLoggedIn()
+
+    const handleNavClick = function(link: string) {
+        setMobileNavEnabled(false)
+        router.push(link)
+    }
 
     useEffect(() => {   
         setColorMode( switcheEnabled ? "dark" : "light")
@@ -26,7 +34,7 @@ const Navigation = function () {
 
     return (
         <>
-            <nav className="w-full fixed top-0 backdrop-blur border-b border-slate-900/10 dark:border-slate-50/[0.06] bg-white/75 dark:bg-slate-900/75 py-3 max-lg:px-4">
+            <nav className="w-full fixed backdrop-blur border-b border-slate-900/10 dark:border-slate-50/[0.06] bg-white/75 dark:bg-slate-900/75 py-3 max-lg:px-4">
                 <div className="z-10 lg:z-50 flex items-center justify-between w-full lg:w-3/4 m-auto">
                     <h1 className="text-black font-bold font-mont dark:text-white">
                         <Link href="/"><Image className="inline" src="/flagmaster.png" width={50} height={50} alt="flagmaster logo"/>Flag Master</Link>
@@ -54,26 +62,24 @@ const Navigation = function () {
                             />
                         </Switch>
                     </div>
-                    <div className="sm:hidden cursor-pointer dark:text-white" onClick={ () => setMobileNavEnabled(!mobileNavEnabled)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
-                        </svg>
-                    </div>
+                    {
+                        mobileNavEnabled
+                        ? <AiOutlineClose className="sm:hidden text-lg cursor-pointer dark:text-white" onClick={ () => setMobileNavEnabled(!mobileNavEnabled)} />
+                        : <AiOutlineMenu className="sm:hidden text-lg cursor-pointer dark:text-white" onClick={ () => setMobileNavEnabled(!mobileNavEnabled)}/>
+                    }
                 </div>
             </nav>
             <nav className={`
-                ${mobileNavEnabled ? 'right-0' : '-right-80'}
-                z-10 w-[50%] h-full fixed bg-slate-800/90 transition-right ease-in-out duration-200 sm:hidden p-5 text-white`}>
+                ${mobileNavEnabled ? 'right-0' : 'right-[100%]'}
+                z-10 mt-[75px] w-full h-full fixed bg-slate-800/90 transition-right ease-in-out duration-200 sm:hidden p-5 text-white`}>
                 <div className="flex flex-col">
-                    <span className="cursor-pointer flex justify-end" onClick={()=>setMobileNavEnabled(!mobileNavEnabled) }>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </span>
-                    <Link href="/leaderboards" className="text-xl sm:ml-3 mb-3 mt-5">Leaderboards</Link>
-                    { isLoggedIn && <Link href="/play" className="text-xl sm:ml-3 mb-3">Play</Link> }
-                    <SigninButton />
-                    <div className="text-xl flex justify-between mb-3">
+                    <div className="w-full flex text-xl my-3">
+                        <SigninButton />
+                    </div>
+                    <button onClick={ () => handleNavClick('/flags')} className="text-xl my-3 text-left">Flags</button>
+                    <button onClick={ () => handleNavClick('/leaderboards')} className="text-xl my-3 text-left">Leaderboards</button>
+                    { isLoggedIn && <button onClick={ () => handleNavClick('/play')} className="text-xl my-3 text-left">Play</button> }
+                    <div className="text-xl flex justify-between my-3">
                         <label htmlFor="">Dark Mode?</label>
                         <Switch
                             checked={switcheEnabled}
@@ -90,8 +96,9 @@ const Navigation = function () {
                             />
                         </Switch>
                     </div>
-                    <div className="social-icons flex justify-between mt-3">
-                        <a href="" className="github text-2xl"><AiFillFacebook /></a>
+                    <div className="social-icons flex justify-start text-4xl mt-3">
+                        <a href="" className="github"><AiFillFacebook /></a>
+                        <a href="" className="github ml-5"><AiFillInstagram /></a>
                     </div>
                 </div>
             </nav>

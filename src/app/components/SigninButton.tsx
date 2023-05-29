@@ -5,18 +5,22 @@ import React from "react";
 const SigninButton = () => {
   const { data: session } = useSession();
   return (
-        session && session.user
-        ?
-        <div className="ml-5 flex">
-            <p>Hi, {session?.user.name}</p>
-            <button onClick={() => signOut()} className="text-red-600 ml-3 cursor-pointer">
-            Sign Out
+        <>
+        {session && session.user
+          ?
+            <>
+              <p>Hi, {session?.user.name}</p>
+              <button onClick={() => signOut()} className="text-red-600 ml-3 cursor-pointer">
+              Sign Out
+              </button>
+            </>
+          
+          :
+            <button onClick={() => signIn('cognito')} className="ml-3 cursor-pointer">
+            Sign In
             </button>
-        </div>
-        :
-        <button onClick={() => signIn('cognito')} className="ml-3 cursor-pointer">
-        Sign In
-        </button>
+        }
+        </>
   )
 }
 

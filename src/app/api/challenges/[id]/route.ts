@@ -21,7 +21,7 @@ export async function GET(req:NextRequest) {
     switch (challengeId) {
       case 1:
         gameOptions = {
-          flagNumberOption: 10,
+          flagNumberOption: 5,
           initialTimeOption: 0,
           ascTimeOption: true,
           modeOption: 'multiple',
@@ -39,8 +39,8 @@ export async function GET(req:NextRequest) {
         break;
       case 3:
         gameOptions = {
-          flagNumberOption: 10,
-          initialTimeOption: 120,
+          flagNumberOption: 20,
+          initialTimeOption: 60,
           ascTimeOption: false,
           modeOption: 'fill',
           difficultyOption: 'hard'
