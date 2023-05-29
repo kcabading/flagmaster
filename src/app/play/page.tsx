@@ -13,22 +13,18 @@ type IChallengeType = {
 const Play = async function() {
 
     let challenges = []
-    const apiURL = getURL() + 'api/challenges'
-
-    console.log('API URL')
-
-    let res = await fetch(apiURL)
-
+    // const apiURL = getURL() + 'api/challenges'
+    console.log('API URL', getURL())
+    let res = await fetch(getURL() + "/api/challenges")
     challenges = await res.json()
 
     return (
         <>
             <div className="lg:w-3/4 max-lg:px-4">
-
                 <div className="challenges">
                     <p className='mb-5 text-xl font-xl font-bold italic'>Challenges</p>
                     <ul>
-                        {challenges.map(( record: IChallengeType ) => (
+                        {challenges && challenges.map(( record: IChallengeType ) => (
                         <li
                             key={record.id}
                             className="relative rounded-md p-3 hover:bg-gray-100 flex justify-between"
