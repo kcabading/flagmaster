@@ -9,9 +9,14 @@ interface IPageProps {
 const Challenge = async function( props: IPageProps ) {
     let {params} = {...props}
     const apiURL = getURL() + `api/challenges/${params.id}`
-    let data = await fetch(apiURL, { next: { revalidate : 360 }})
-    let gameOptions = await data.json()
-
+    let res = await fetch(apiURL, { next: { revalidate : 10 }})
+    if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error('Failed to fetch data');
+    }
+    let data = await res.json()
+    let gameOptions = JSON.parse(data)
+    
     return (
         <>
             <h1 className='font-bold text-xl mb-5'>Challenge#: {params.id}</h1>

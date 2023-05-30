@@ -12,21 +12,20 @@ function classNames(...classes:string[]) {
 
 async function getAllChallenges() {
     console.log(getURL())
-  const res = await fetch( getURL() + 'api/challenges');
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
-  }
- 
-  return res.json();
+    const res = await fetch( getURL() + 'api/challenges');
+    if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error('Failed to fetch data');
+    }
+    
+    return res.json();
 }
 
 type Post = {
-    id: number,
+    sk: string,
     title: string,
     mode: string,
-    commentCount: number,
-    shareCount: number,
+    points: number,
 }
 
 interface IPageProps {
@@ -43,7 +42,7 @@ const Play = function( props: IPageProps ) {
     const [ isLoading, setIsLoading] = useState(false)
     const [ challenges, setChallenges ] = useState<Post[]>([])
     
-    function startChallenge(id:number) {
+    function startChallenge(id:string) {
         router.push(getURL() +  `play/challenges/${id}`)
     }
 
@@ -61,7 +60,6 @@ const Play = function( props: IPageProps ) {
         <>
             <div className="lg:w-3/4 max-lg:px-4">
                 <p className='text-left mb-5'><span className='text-2xl font-bold'>Hi {currentUser?.name}</span> are you up for a challenge or ready to battle other players?</p>
-
                 <div className="challenges">
                     <p className='mb-5 text-xl font-xl font-bold italic'>Challenges</p>
                     {
@@ -71,7 +69,7 @@ const Play = function( props: IPageProps ) {
                     <ul>
                         {challenges.map((post) => (
                         <li
-                            key={post.id}
+                            key={post.sk}
                             className="relative rounded-md p-3 hover:bg-gray-100 flex justify-between"
                         >
                             <div className="w-4/5" >
@@ -96,7 +94,7 @@ const Play = function( props: IPageProps ) {
                                 /> */}
                             </div>
                             <div className="w-1/5 text-right" >
-                                    <button onClick={ () => startChallenge(post.id)} className='bg-amber-500 hover:bg-amber-400 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Start</button>
+                                    <button onClick={ () => startChallenge(post.sk) } className='bg-amber-500 hover:bg-amber-400 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Start</button>
                             </div>
                         </li>
                         ))}
