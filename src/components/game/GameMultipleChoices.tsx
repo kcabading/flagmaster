@@ -11,14 +11,10 @@ interface IMultipleChoicesProps {
 
 const GameMultipleChoices = ({ flag, answered, chosenFlag, choices, handleGuessFlag, powerUps}: IMultipleChoicesProps) => {
 
-    console.log('guess multiple render')
-
     useEffect( () => {
         console.log('powerups')
         console.log(powerUps)
         if (powerUps.includes('5050')) {
-
-
             let correctAnswerButton
             // let randomChoices = Math.floor(Math.random() * 4)
             let allInputs:HTMLCollection = document.getElementsByClassName('flag-choices')
@@ -54,21 +50,20 @@ const GameMultipleChoices = ({ flag, answered, chosenFlag, choices, handleGuessF
 
     }, [powerUps])
 
-
     return (
         <div className="grid grid-cols-2 gap-4">
         { 
             choices.map( (option, index) => {
                 return (
-                <button
-                    disabled={answered ? true : false}
-                    key={index}
-                    className={`
-                    ${ chosenFlag === flag && chosenFlag === option && 'bg-green-400'} 
-                    ${ chosenFlag !== flag && chosenFlag === option && 'bg-red-400'}
-                    border-2 p-2 rounded-md sm:hover:border-blue-500 flag-choices`} 
-                    onClick={ () => handleGuessFlag(option) }>{option}
-                </button>
+                    <button
+                        disabled={answered ? true : false}
+                        key={index}
+                        className={`
+                        ${ chosenFlag === flag && chosenFlag === option && 'bg-green-400'} 
+                        ${ chosenFlag !== flag && chosenFlag === option && 'bg-red-400'}
+                        border-2 p-2 rounded-md sm:hover:border-blue-500 flag-choices`} 
+                        onClick={ () => handleGuessFlag(option) }>{option}
+                    </button>
                 )
             })
         }

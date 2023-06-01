@@ -26,7 +26,7 @@
 
 export { default } from "next-auth/middleware"
 
-export const config = { matcher: ["/settings", "/play/challenges/:path*"] }
+export const config = { matcher: ["/settings", "/play/:path*"] }
 
 // import { getSession } from "next-auth/react";
 // import { getServerSession } from "next-auth";

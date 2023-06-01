@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import { useRouter } from 'next/navigation'
 import getURL from '../../utils/getURL'
-import convertTimeToString from '../../utils/convertTimeToString'
 
 
 function classNames(...classes:string[]) {
@@ -29,7 +28,8 @@ type IChallenges = {
     points: number,
     completed: boolean,
     pointsEarned: number,
-    timeTaken: string
+    timeTaken: string,
+    status: string
 }
 
 interface IPageProps {
@@ -40,6 +40,7 @@ const Play = function( props: IPageProps ) {
 
     const router = useRouter()
     let currentUser = useCurrentUser()
+    console.log('CURRENT USER', currentUser)
     const [ isLoading, setIsLoading] = useState(false)
     const [ challenges, setChallenges ] = useState<IChallenges[]>([])
 
@@ -60,7 +61,7 @@ const Play = function( props: IPageProps ) {
     return (
         <>
             <div className="lg:w-3/4 max-lg:px-4">
-                <p className='text-left mb-5'><span className='text-2xl font-bold'>Hi {currentUser?.name}</span> are you up for a challenge or ready to battle other players?</p>
+                <p className='text-left mb-5'><span className='text-2xl font-bold'>Hi {currentUser?.email}</span> are you up for a challenge or ready to battle other players?</p>
                 <div className="challenges">
                     <p className='mb-5 text-xl font-xl font-bold italic'>Challenges</p>
                     {
@@ -71,9 +72,9 @@ const Play = function( props: IPageProps ) {
                         {challenges.map((challenge) => (
                         <li
                             key={challenge.sk}
-                            className="relative rounded-md p-3 hover:bg-gray-100 flex justify-between"
+                            className="rounded-md p-3 hover:bg-gray-100 flex justify-between"
                         >
-                            <div className="w-4/5" >
+                            <div className="w-3/5 lg:w-4/5" >
                                 <h3 className="text-sm font-medium leading-5">
                                 {challenge.title}
                                 </h3>
@@ -90,13 +91,15 @@ const Play = function( props: IPageProps ) {
                                 }
                                 </ul>
                             </div>
-                            <div className="w-1/5 text-right" >
+                            <div className="w-2/5 lg:w-1/5 text-right flex items-center justify-end" >
                                 {
-                                    challenge.completed 
-                                    ?
-                                    <button disabled className='bg-green-500 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>FINISHED</button>
-                                    :
-                                    <button onClick={ () => startChallenge(challenge.sk) } className='bg-amber-500 hover:bg-amber-400 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Start</button>
+                                    challenge.completed && challenge.status === 'PASSED' && <button disabled className='w-full text-xs lg:text-md bg-green-500 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Finished</button>                                    
+                                }
+                                {
+                                    challenge.completed && challenge.status === 'FAILED' && <button disabled className='w-full text-xs lg:text-md bg-red-500 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Failed</button>
+                                }
+                                {
+                                    challenge.completed === false && <button onClick={ () => startChallenge(challenge.sk) } className='w-full text-xs lg:text-md bg-amber-500 hover:bg-amber-400 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Start</button>
                                 }
                             </div>
                         </li>

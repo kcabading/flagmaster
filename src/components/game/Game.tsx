@@ -23,7 +23,7 @@ interface GameProps {
     ascTimeOption: boolean,
     modeOption: string // multiple, fill,
     difficultyOption: string,
-    handleGameFinished: (challengeId: string, timer: string | number, correctAnswer: number) => void
+    handleGameFinished: (challengeId: string, timer: string | number, status: string) => void
 }
 
 const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption, handleGameFinished }:GameProps ) {
@@ -63,13 +63,17 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
             if (guess === flag) setCorrectAnswer( prev => prev + 1)
             setAnswered(false)
             let parsedFlags = JSON.parse(usedFlags)
+            let newUsedFlags: string = '[]'
             if(usedFlags.length > 0) {
                 parsedFlags.push(flag)
-                setUsedFlags(JSON.stringify(parsedFlags))
+                newUsedFlags = JSON.stringify(parsedFlags)
             } else {
-                setUsedFlags(JSON.stringify([flag]))
+                newUsedFlags = JSON.stringify([flag])
             }
-            generateNewFlag()
+            setUsedFlags( () => {
+                generateNewFlag()
+                return newUsedFlags
+            })
         }, 500)
     }
 
@@ -94,16 +98,17 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
     if (flagCount === flagNumberOption ||  (!ascTimeOption && timer === '00:00')) {
         stop()
         let timeTaken =  initialTimeOption > 0 ? convertTimeToString(initialTimeOption - convertTimeToNumber(timer)) : timer
-        handleGameFinished(challengeId, timeTaken, correctAnswer)
+        let status = correctAnswer === flagNumberOption ? 'PASSED' : 'FAILED'
+        handleGameFinished(challengeId, timeTaken, status)
     } 
     
     useEffect(() => {
-        start()
+        handleReset()
         generateNewFlag()
         return () => {
             handleReset()
         }
-    }, [flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption])
+    }, [flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption])    
 
     return (
         <>

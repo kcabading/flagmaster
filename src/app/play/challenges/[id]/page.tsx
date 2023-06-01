@@ -2,24 +2,27 @@
 
 import Game from '@/components/game/Game'
 import getURL from '@/utils/getURL'
+import { useEffect, useState } from 'react'
 
 interface IPageProps {
     params: { id: string }
 }
 
-function handleGameFinished(challengeId: string | undefined, timeTaken: string | number, correctAnswer: number){
-    console.log(' SAVING GAME RESULTS')
-    console.log(challengeId)
-    console.log(timeTaken)
-    console.log(correctAnswer)
+interface IGameOptions {
+    flagNumberOption: number
+    initialTimeOption: number,
+    ascTimeOption: boolean,
+    modeOption: string,
+    difficultyOption: string
+}
 
+function handleGameFinished(challengeId: string | undefined, timeTaken: string | number, status: string){
     const apiURL = getURL() + `api/challenges/${challengeId}`
 
     let gameResult = {
-        user: 'USER#facebook_10224223657447688',
         challengeId,
         timeTaken,
-        correctAnswer
+        status
     }
 
     const requestOptions = {
@@ -29,28 +32,53 @@ function handleGameFinished(challengeId: string | undefined, timeTaken: string |
     };
 
     let body = JSON.stringify(gameResult)
-
     fetch(apiURL, requestOptions)
 
 }
 
-const Challenge = async function( props: IPageProps ) {
-    let {params} = {...props}
-    const apiURL = getURL() + `api/challenges/${params.id}`
-    const challengeId = params.id
-    console.log('APIURL ', apiURL)
-    let res = await fetch(apiURL, { cache: 'no-store' })
+
+async function getChallenge(challengeId: string) {
+    const res = await fetch(`${getURL()}api/challenges/${challengeId}`);
     if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data');
     }
-    let data = await res.json()
-    let gameOptions = JSON.parse(data)
+    
+    return res.json();
+}
+
+const Challenge = function( props: IPageProps ) {
+    let {params} = {...props}
+    const apiURL = getURL() + `api/challenges/${params.id}`
+    const challengeId = params.id
+
+    const [ gameOptions, setGameOptions ] = useState<IGameOptions>({
+        flagNumberOption: 5,
+        initialTimeOption: 0,
+        ascTimeOption: true,
+        modeOption: 'multiple',
+        difficultyOption: 'easy'
+    })
+    const [ isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        setIsLoading(true)
+        console.log('use effect')
+        getChallenge(challengeId)
+            .then((data) => {
+            setGameOptions(JSON.parse(data));
+            setIsLoading(false);
+            })
+    }, [])
 
     return (
         <>
             <h1 className='font-bold text-xl mb-5'>Challenge#: {challengeId}</h1>
-            <Game {...gameOptions} handleGameFinished={handleGameFinished} challengeId={challengeId} />
+            {
+                isLoading
+                ? <p>Loading...</p>
+                : <Game {...gameOptions} handleGameFinished={handleGameFinished} challengeId={challengeId} />
+            }
         </>
     )
 }

@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/data/authOptions';
+import { getToken } from "next-auth/jwt"
 
 import {
     QueryCommand,
@@ -20,18 +21,21 @@ type Challenge = {
     points: number,
     completed: boolean,
     pointsEarned: number,
-    timeTaken: string
+    timeTaken: string,
+    status: string
 }
  
 export async function GET(req:NextRequest) {
 
     const session = await getServerSession(authOptions)
-    if (!session) {
-      // Not Signed in
-      console.log('NOT SIGNED IN')
-      NextResponse.json({ error: 'Unauthorized access' }, { status: 401 })
-    } else {
-
+    const token = await getToken({ req })
+    console.log("TOKENNNNNN", token?.sub)
+    // get current user id
+    let userId = token?.sub
+    if (session && userId) {
+        //Signed in
+        console.log('SESSION')
+        console.log(session)
         let challenges:Challenge[] = []
         try {
             const promise1 = client.send(
@@ -51,7 +55,7 @@ export async function GET(req:NextRequest) {
                     TableName: 'flagmasters',
                     KeyConditionExpression: "pk = :pk and begins_with(sk, :sk)",
                     ExpressionAttributeValues: {
-                        ":pk": {S: "USER#facebook_10224223657447688"},
+                        ":pk": {S: `USER#${userId}`},
                         ":sk": {S: "CHALLENGE#"}
                     }
                 })
@@ -73,7 +77,8 @@ export async function GET(req:NextRequest) {
                     mode : Object.values(challenge.mode)[0],
                     completed: false,
                     pointsEarned: 0,
-                    timeTaken: ''
+                    timeTaken: '',
+                    status: '',
                 }
 
                 // loop through user challenges
@@ -85,7 +90,8 @@ export async function GET(req:NextRequest) {
                             ...challengeItem,
                             completed: isCompleted,
                             pointsEarned: Object.values(uChallenge.pointsEarned)[0],
-                            timeTaken: Object.values(uChallenge.timeTaken)[0]
+                            timeTaken: Object.values(uChallenge.timeTaken)[0],
+                            status: Object.values(uChallenge.status)[0],
                         }
                     }
                 })
@@ -119,10 +125,12 @@ export async function GET(req:NextRequest) {
             return NextResponse.json(allChallenges);
 
         } catch (error) {
-            // error handling.
-        } finally {
-            // finally.
-        }
+            console.log('NOT SIGNED IN')
+            NextResponse.json({ error }, { status: 500 })
+        } 
+    } else {
+        console.log('NOT SIGNED IN')
+        NextResponse.json({ error: 'Unauthorized access' }, { status: 401 })
     }
     // Check if user is logged in
 //   const session = await getServerSession(req, res, authOptions);

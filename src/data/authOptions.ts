@@ -11,5 +11,27 @@ export const authOptions: AuthOptions = {
         checks: 'nonce'
       })
     ],
-    session: { strategy: "jwt" }
+    session: { strategy: "jwt" },
+    callbacks: {
+      // async jwt({ token, account, profile }) {
+      //   console.log('JWT TOKEN')
+      //   console.log(token)
+      //   console.log(account)
+      //   console.log(profile)
+      //   console.log(typeof profile)
+      //   // console.log()
+      //   // if (profile && !token.hasOwnProperty('name')) {
+      //   //   token.name = profile["cognito:username"]
+      //   // }
+      //   // if (profile) {
+      //   //   token.
+      //   // }
+      //   // Persist the OAuth access_token and or the user id to the token right after signin
+      //   // if (account) {
+      //   //   token.accessToken = account.access_token
+      //   //   token.id = profile.id
+      //   // }
+      //   return token
+      // }
+    }
   }
