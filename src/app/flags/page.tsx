@@ -1,7 +1,7 @@
 
 import countries from '@/data/countries.json'
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { authOptions } from '@/data/authOptions'
 import Image from 'next/image'
 
 const Flags = async () => {
