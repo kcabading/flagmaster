@@ -2,11 +2,12 @@
 
 import Image from 'next/image'
 import { useState, useEffect, ChangeEvent, useMemo } from 'react'
-import useFlagGenerator from '@/app/hooks/useFlagGenerator'
-import useTimer from '@/app/hooks/useTimer'
-import Results from '@/app/components/game/Results'
-import convertTimeToNumber from '@/app/utils/convertTimetoNumber'
-import GameGuessLetters from '@/app/components/game/GameGuessLetters'
+import useFlagGenerator from '@/hooks/useFlagGenerator'
+import useTimer from '@/hooks/useTimer'
+import Results from '@/components/game/Results'
+import convertTimeToNumber from '@/utils/convertTimetoNumber'
+import convertTimeToString from '@/utils/convertTimeToString'
+import GameGuessLetters from '@/components/game/GameGuessLetters'
 import GameMultipleChoices from './GameMultipleChoices'
 import Timer from '../Timer'
 
@@ -16,14 +17,16 @@ type AnswerHistory = {
 }
 
 interface GameProps {
+    challengeId: string,
     flagNumberOption: number,
     initialTimeOption: number,
     ascTimeOption: boolean,
     modeOption: string // multiple, fill,
-    difficultyOption: string
+    difficultyOption: string,
+    handleGameFinished: (challengeId: string, timer: string | number, correctAnswer: number) => void
 }
 
-const Game = function({ flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption }:GameProps ) {
+const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption, handleGameFinished }:GameProps ) {
 
     const [ flagCount, setFlagCount ] = useState(0)
     const { timer, start, stop, reset } = useTimer(initialTimeOption, ascTimeOption)
@@ -35,10 +38,9 @@ const Game = function({ flagNumberOption, initialTimeOption, ascTimeOption, mode
     
     const [ correctAnswer, setCorrectAnswer ] = useState(0)
     const [ answered, setAnswered ] = useState(false)
-    const { flag, flagUrl, choices, usedFlags, setUsedFlags } = useFlagGenerator(flagCount, difficultyOption)
+    const { flag, flagUrl, choices, usedFlags, setUsedFlags, generateNewFlag } = useFlagGenerator(flagCount, difficultyOption)
 
     function handleReset() {
-        console.log('handlereset')
         setUsedFlags('[]')
         setChosenFlag('')
         setFlagCount(0)
@@ -51,7 +53,6 @@ const Game = function({ flagNumberOption, initialTimeOption, ascTimeOption, mode
     
     function handleGuessFlag( guess: string ) {
         setPowerUpUsed(false)
-        console.log('handle guess flag')
         setChosenFlag(guess)
         setAnswered(true)
         
@@ -68,6 +69,7 @@ const Game = function({ flagNumberOption, initialTimeOption, ascTimeOption, mode
             } else {
                 setUsedFlags(JSON.stringify([flag]))
             }
+            generateNewFlag()
         }, 500)
     }
 
@@ -89,15 +91,19 @@ const Game = function({ flagNumberOption, initialTimeOption, ascTimeOption, mode
         })
     }
 
-    if (flagCount === flagNumberOption ||  (!ascTimeOption && timer === '00:00')) stop()
-        
+    if (flagCount === flagNumberOption ||  (!ascTimeOption && timer === '00:00')) {
+        stop()
+        let timeTaken =  initialTimeOption > 0 ? convertTimeToString(initialTimeOption - convertTimeToNumber(timer)) : timer
+        handleGameFinished(challengeId, timeTaken, correctAnswer)
+    } 
     
     useEffect(() => {
         start()
+        generateNewFlag()
         return () => {
             handleReset()
         }
-    }, [flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption]);
+    }, [flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption])
 
     return (
         <>

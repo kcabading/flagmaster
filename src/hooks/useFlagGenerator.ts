@@ -1,6 +1,6 @@
-import countries from '@/app/data/countries.json'
+import countries from '@/data/countries.json'
 import useLocalStorage from './useLocalStorage'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 const useFlagGenerator = function(flagCount: number, difficulty: string) {
 
@@ -9,7 +9,7 @@ const useFlagGenerator = function(flagCount: number, difficulty: string) {
     const [flagUrl, setFlagUrl] = useState<string>('')
     const [choices, setChoices] = useState<string[]>([])
 
-    function generateFlagFromData() : { flagName: string, flagUrl: string} {
+    const generateFlagFromData = useCallback(() => {
         let flagName: string, flagUrl: string, filteredCountries
 
         if (difficulty === 'all') {
@@ -26,9 +26,9 @@ const useFlagGenerator = function(flagCount: number, difficulty: string) {
             flagName,
             flagUrl
         }
-    }
+    }, [flagCount, difficulty])
 
-    useEffect(() => {
+    function generateNewFlag() {
         let options: string[] = []
         let generatedFlag: {flagName: string, flagUrl: string}        
         let parsedFlags = JSON.parse(usedFlags)
@@ -47,15 +47,15 @@ const useFlagGenerator = function(flagCount: number, difficulty: string) {
         setFlagUrl(flagUrl)
         // shuffle the choices
         setChoices(options.sort( () => Math.random() - 0.5))
-
-    }, [flagCount])
+    }
 
     return { 
         flag,
         flagUrl,
         choices,
         usedFlags,
-        setUsedFlags
+        setUsedFlags,
+        generateNewFlag
     }
 }
 

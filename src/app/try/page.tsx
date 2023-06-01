@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams, usePathname } from "next/navigation"
-import Game from "@/app/components/game/Game"
+import Game from "@/components/game/Game"
 
 const Try = () => {
     const searchParams = useSearchParams()

@@ -1,9 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import useCurrentUser from '@/app/hooks/useCurrentUser'
+import useCurrentUser from '@/hooks/useCurrentUser'
 import { useRouter } from 'next/navigation'
-import getURL from '../utils/getURL'
+import getURL from '../../utils/getURL'
+import convertTimeToString from '../../utils/convertTimeToString'
 
 
 function classNames(...classes:string[]) {
@@ -21,11 +22,14 @@ async function getAllChallenges() {
     return res.json();
 }
 
-type Post = {
+type IChallenges = {
     sk: string,
     title: string,
     mode: string,
     points: number,
+    completed: boolean,
+    pointsEarned: number,
+    timeTaken: string
 }
 
 interface IPageProps {
@@ -34,28 +38,25 @@ interface IPageProps {
 
 const Play = function( props: IPageProps ) {
 
-    let {params} = {...props}
-    const apiURL = getURL() + 'api/challenges'
-
+    const router = useRouter()
     let currentUser = useCurrentUser()
-    const router = useRouter();
     const [ isLoading, setIsLoading] = useState(false)
-    const [ challenges, setChallenges ] = useState<Post[]>([])
-    
+    const [ challenges, setChallenges ] = useState<IChallenges[]>([])
+
     function startChallenge(id:string) {
         router.push(getURL() +  `play/challenges/${id}`)
     }
-
+        
     useEffect(() => {
-      setIsLoading(true);
-      getAllChallenges()
-        .then((data) => {
-          console.log(data)
-          setChallenges(data);
-          setIsLoading(false);
-        })
+        setIsLoading(true);
+        getAllChallenges()
+            .then((data) => {
+            console.log(data)
+            setChallenges(data);
+            setIsLoading(false);
+            })
     }, [])
-
+    
     return (
         <>
             <div className="lg:w-3/4 max-lg:px-4">
@@ -67,34 +68,36 @@ const Play = function( props: IPageProps ) {
                     ? <>Loading...</>
                     :
                     <ul>
-                        {challenges.map((post) => (
+                        {challenges.map((challenge) => (
                         <li
-                            key={post.sk}
+                            key={challenge.sk}
                             className="relative rounded-md p-3 hover:bg-gray-100 flex justify-between"
                         >
                             <div className="w-4/5" >
                                 <h3 className="text-sm font-medium leading-5">
-                                {post.title}
+                                {challenge.title}
                                 </h3>
 
                                 <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
-                                <li>{post.mode}</li>
-                                {/* <li>&middot;</li>
-                                <li>{post.commentCount} comments</li>
-                                <li>&middot;</li>
-                                <li>{post.shareCount} shares</li> */}
+                                <li><span className='font-bold'>{challenge.mode}</span> mode</li>
+                                {
+                                    challenge.completed && <>
+                                        <li>&middot;</li>
+                                        <li><span className='font-bold'>{challenge.pointsEarned}</span> points earned</li>
+                                        <li>&middot;</li>
+                                        <li><span className='font-bold'>{challenge.timeTaken}</span> time taken</li>
+                                    </>
+                                }
                                 </ul>
-
-                                {/* <a
-                                href="#"
-                                className={classNames(
-                                    'absolute inset-0 rounded-md',
-                                    'ring-blue-400 focus:z-10 focus:outline-none focus:ring-2'
-                                )}
-                                /> */}
                             </div>
                             <div className="w-1/5 text-right" >
-                                    <button onClick={ () => startChallenge(post.sk) } className='bg-amber-500 hover:bg-amber-400 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Start</button>
+                                {
+                                    challenge.completed 
+                                    ?
+                                    <button disabled className='bg-green-500 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>FINISHED</button>
+                                    :
+                                    <button onClick={ () => startChallenge(challenge.sk) } className='bg-amber-500 hover:bg-amber-400 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Start</button>
+                                }
                             </div>
                         </li>
                         ))}
@@ -104,6 +107,7 @@ const Play = function( props: IPageProps ) {
             </div>
         </>
     )
+    
 }
 
 export default Play

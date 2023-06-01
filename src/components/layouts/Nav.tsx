@@ -6,11 +6,11 @@ import SigninButton from "../SigninButton"
 
 
 import { Switch } from '@headlessui/react'
-import useColorMode from "@/app/hooks/useColorMode"
+import useColorMode from "@/hooks/useColorMode"
 import Image from "next/image"
 
 import {AiOutlineMenu, AiOutlineClose, AiFillSetting, AiFillFacebook, AiFillInstagram}  from "react-icons/ai";
-import useIsLoggedIn from '@/app/hooks/useIsLoggedIn'
+import useIsLoggedIn from '@/hooks/useIsLoggedIn'
 
 import { useRouter } from "next/navigation"
 

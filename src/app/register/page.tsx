@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react";
 import React from "react";
 
 import {AiFillGoogleCircle, AiFillFacebook}  from "react-icons/ai";
-import RegisterForm from "@/app/components/RegisterForm";
+import RegisterForm from "@/components/RegisterForm";
 
 const Register = () => {
   return (

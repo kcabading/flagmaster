@@ -1,8 +1,8 @@
 import './globals.css'
-import Navigation from './components/layouts/Nav'
-import Footer from './components/layouts/Footer'
+import Navigation from '../components/layouts/Nav'
+import Footer from '../components/layouts/Footer'
 
-import Providers from "@/app/components/Providers";
+import Providers from "@/components/Providers";
 
 import { Inter } from 'next/font/google'
 

@@ -1,4 +1,4 @@
-import convertTimeToNumber from '@/app/utils/convertTimetoNumber'
+import convertTimeToNumber from '@/utils/convertTimetoNumber'
 
 interface TimerProps {
     timer: string,

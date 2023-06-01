@@ -1,8 +1,13 @@
 
 import countries from '@/app/data/countries.json'
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import Image from 'next/image'
 
-const Flags = () => {
+const Flags = async () => {
+
+    const session = await getServerSession(authOptions);
+    console.log('SESSION', session)
 
     // let flagName: string, flagUrl: string
     //     let rand = Math.random() * countries.length

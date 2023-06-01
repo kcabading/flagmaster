@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
-import QuizOptions from '@/app/components/QuizOptions'
+import QuizOptions from '@/components/QuizOptions'
 import { useRouter } from 'next/navigation'
 import { signIn, useSession } from 'next-auth/react'
 

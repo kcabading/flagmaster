@@ -1,5 +1,5 @@
 
-import convertTimeToNumber from "@/app/utils/convertTimetoNumber"
+import convertTimeToNumber from "@/utils/convertTimetoNumber"
 
 import { useRouter, usePathname } from "next/navigation"
 
@@ -19,6 +19,8 @@ type ResultsProps = {
 
 
 const Results = function ( { correctAnswer, noOfFlags, timer, handleReset, answerHistory, initialTime }: ResultsProps ) {
+
+  console.log('RESULTS RENDER')
     const pathnames = usePathname()
     const paths = pathnames.split('/')
 
@@ -28,8 +30,6 @@ const Results = function ( { correctAnswer, noOfFlags, timer, handleReset, answe
       // TODO: api for next challenge
       router.push(`play/challenges/${Number(paths[3]) + 1}`)
     }
-
-    
 
     return (
         <div className="finish-quiz flex flex-col lg:flex-row place-content-center justify-around lg:w-3/4 max-lg:px-4">
