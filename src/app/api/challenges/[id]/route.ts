@@ -58,18 +58,30 @@ export async function POST(req:NextRequest, { params }: IGetParams) {
 
     let challengeId = params.id
     let body = await req.json()
-  
-
     console.log("POST API")
     console.log(challengeId)
-    console.log(body)
-    //   const res = await fetch('https://data.mongodb-api.com/...', {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'API-Key': process.env.DATA_API_KEY,
-    //     },
-    //   });
-    //   const data = await res.json();
+    console.log(typeof body)
+
+    let { user, timeTaken, correctAnswer } = body
+
+
+
+    const updateResult = await client.send(
+      new UpdateItemCommand({
+          TableName: 'flagmasters',
+          Key: {
+            "pk": { S: user },
+            "sk": { S: `CHALLENGE#${challengeId}` },
+          },
+          UpdateExpression: "set completed=:x, timeTaken = :y, pointsEarned = :a",
+          ExpressionAttributeValues: {
+            ":x": { BOOL : true },
+            ":y": { S : timeTaken },
+            ":a": { N : '10'}
+          }
+      })
+    )
+    console.log('UPDATE RESULT', updateResult)
      
-      return NextResponse.json({ message: 'From the Leaderboards API' });
+    return NextResponse.json({ message: 'Successfully updated game result' });
 }

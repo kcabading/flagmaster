@@ -60,6 +60,8 @@ export async function GET(req:NextRequest) {
             let [challenges, userChallenges] = await Promise.all([promise1, promise2])
 
             
+            console.log('use challenges', userChallenges.Items)
+            
             let allChallenges = challenges.Items?.map( challenge => {
                 let sk = Object.values(challenge.sk)[0]
                 let challengeSortKey = sk.split('#')[1]
