@@ -13,8 +13,12 @@ const Try = () => {
         difficultyOption: searchParams.has('level') ? String(searchParams.get('level')?.toLowerCase()) : 'easy'
     }
 
+    function handleGameFinished() {
+        console.log('trying game finished')
+    }
+
     return (
-        <Game {...gameOptions}/>
+        <Game {...gameOptions} challengeId="" handleGameFinished={handleGameFinished}/>
     )
 }
 

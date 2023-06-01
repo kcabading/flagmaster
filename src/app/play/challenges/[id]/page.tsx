@@ -7,7 +7,7 @@ interface IPageProps {
     params: { id: string }
 }
 
-function handleGameFinished(challengeId: string, timeTaken: string | number, correctAnswer: number){
+function handleGameFinished(challengeId: string | undefined, timeTaken: string | number, correctAnswer: number){
     console.log(' SAVING GAME RESULTS')
     console.log(challengeId)
     console.log(timeTaken)
