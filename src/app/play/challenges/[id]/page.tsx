@@ -16,13 +16,21 @@ interface IGameOptions {
     difficultyOption: string
 }
 
-function handleGameFinished(challengeId: string | undefined, timeTaken: string | number, status: string){
+function handleGameFinished(
+    challengeId: string | undefined,
+    timeTaken: string | number,
+    status: string,
+    flagNumberOption: number,
+    correctAnswer: number
+    ){
     const apiURL = getURL() + `api/challenges/${challengeId}`
 
     let gameResult = {
         challengeId,
         timeTaken,
-        status
+        status,
+        flagNumberOption,
+        correctAnswer
     }
 
     const requestOptions = {
@@ -59,6 +67,7 @@ const Challenge = function( props: IPageProps ) {
         modeOption: 'multiple',
         difficultyOption: 'easy'
     })
+
     const [ isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {

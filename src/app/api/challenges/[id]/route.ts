@@ -12,6 +12,7 @@ import {
   UpdateItemCommand,
   DeleteItemCommand,
 } from '@aws-sdk/client-dynamodb'
+import convertTimeToNumber from '@/utils/convertTimetoNumber';
 
 const client = new DynamoDBClient({})
 
@@ -21,29 +22,35 @@ type IGetParams = {
   }
 }
 
+async function getChallengeRecordById (id: string) {
+  console.log('getITEM COmmand ')
+  let response = await client.send(
+    new GetItemCommand({
+        TableName: 'flagmasters',
+        Key: {
+          "pk": { S: 'challenges' },
+          "sk": { S: `CHALLENGE#${id}` },
+        }
+    })
+  )
+
+  return response
+}
+
 
 export async function GET(req:NextRequest, { params }: IGetParams) {
     const session = await getServerSession(authOptions)
     const token = await getToken({ req })
-    // get current user id
+
     let userId = token?.sub
     let challengeId = params.id
-    console.log('getting challenge: ', challengeId)
-    console.log(token, session)
-    if (session) {
-      try {
-        console.log('getITEM COmmand ')
-        const { Item } = await client.send(
-            new GetItemCommand({
-                TableName: 'flagmasters',
-                Key: {
-                  "pk": { S: 'challenges' },
-                  "sk": { S: `CHALLENGE#${challengeId}` },
-                }
-            })
-        )
 
+    if (session && userId) {
+      try {
+        let { Item } = await getChallengeRecordById(challengeId)
+        console.log('CHALLENGE ITEM', Item)
         let jsonOptions = Item?.gameOptions || {}
+        
         return NextResponse.json(Object.values(jsonOptions)[0]);
 
       } catch (error) {
@@ -55,40 +62,75 @@ export async function GET(req:NextRequest, { params }: IGetParams) {
     }
 }
 
+// Max points - (  (Max points / 2)  - Math.floor( Total Time - Time taken / 4 * Total Time / 60 ) ) =  Points earned
+function calculatePoints(maxPoints: number, totalTime: number, timeTaken: number, flagNumberOption:number, correctAnswer:number ): string {
+  let totalPointsFromTime = maxPoints - (  (maxPoints / 2) - Math.floor( (totalTime - timeTaken) / (4 *  (totalTime / 60 )) ) )
+  // make sure to set the max points
+  totalPointsFromTime = totalPointsFromTime > maxPoints ? maxPoints : totalPointsFromTime
+  let incorrectMultiplier = totalTime / 60
+  let pointsToDeduct = (flagNumberOption - correctAnswer) * incorrectMultiplier
+  let totalPoints = totalPointsFromTime - pointsToDeduct
+
+  return totalPoints > 0 ? String(totalPoints) : '0'
+}
+
 
 export async function POST(req:NextRequest, { params }: IGetParams) {
 
-    const token = await getToken({ req })
-    // get current user id
-    let userId = token?.sub
-    let challengeId = params.id
-    let body = await req.json()
-    console.log("POST API")
-    console.log(challengeId)
-    console.log(typeof body)
+  const session = await getServerSession(authOptions)
+  const token = await getToken({ req })
 
-    let { timeTaken, correctAnswer, status } = body
+  if (!session || !token) {
+    // Not Signed in
+    NextResponse.json({ error: 'Unauthorized access' }, { status: 401 })
+  } else {
+    try {
+      // get current user id
+      let userId = token?.sub
+      let challengeId = params.id
+      let body = await req.json()
 
-    const updateResult = await client.send(
-      new UpdateItemCommand({
-          TableName: 'flagmasters',
-          Key: {
-            "pk": { S: `USER#${userId}` },
-            "sk": { S: `CHALLENGE#${challengeId}` },
-          },
-          UpdateExpression: "set completed=:x, timeTaken = :y, pointsEarned = :a, #status = :b",
-          ExpressionAttributeValues: {
-            ":x": { BOOL : true },
-            ":y": { S : timeTaken },
-            ":a": { N : '10'},
-            ":b": { S : status }
-          },
-          ExpressionAttributeNames: {
-            "#status": "status"
-          }
-      })
-    )
-    console.log('UPDATE RESULT', updateResult)
-     
-    return NextResponse.json({ message: 'Successfully updated game result' });
+      let { timeTaken, status, flagNumberOption, correctAnswer} = body
+
+      let timeUsed = convertTimeToNumber(timeTaken)
+      // get the challenge options
+      let { Item } = await getChallengeRecordById(challengeId)
+      let points = Number(Object.values(Item?.points || 10)[0])
+      let timeToFinish = Number(Object.values(Item?.timeToFinish || 60)[0])
+      
+      let pointsEarned = status === 'PASSED' ? calculatePoints(points, timeToFinish, timeUsed, flagNumberOption, correctAnswer) : '0'
+
+      console.log('POINTS', Number(Object.values(Item?.points || 10)[0]))
+      console.log('TIME TO FINISH', Number(Object.values(Item?.timeToFinish || 60)[0]))
+      console.log('time Taken', timeUsed, typeof timeUsed)
+      console.log('STATUS', status)
+      console.log("POINTS EARNED:", pointsEarned)
+      
+
+      const updateResult = await client.send(
+        new UpdateItemCommand({
+            TableName: 'flagmasters',
+            Key: {
+              "pk": { S: `USER#${userId}` },
+              "sk": { S: `CHALLENGE#${challengeId}` },
+            },
+            UpdateExpression: "set completed=:x, timeTaken = :y, pointsEarned = :a, #status = :b",
+            ExpressionAttributeValues: {
+              ":x": { BOOL : true },
+              ":y": { S : timeTaken },
+              ":a": { N : pointsEarned},
+              ":b": { S : status }
+            },
+            ExpressionAttributeNames: {
+              "#status": "status"
+            }
+        })
+      )
+      console.log('UPDATE RESULT', updateResult)
+        
+      return NextResponse.json({ message: 'Successfully updated game result' })
+    } catch (error) {
+      NextResponse.json({ error }, { status: 500 })
+    } 
+  }
 }

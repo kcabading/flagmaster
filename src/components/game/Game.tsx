@@ -23,7 +23,13 @@ interface GameProps {
     ascTimeOption: boolean,
     modeOption: string // multiple, fill,
     difficultyOption: string,
-    handleGameFinished: (challengeId: string, timer: string | number, status: string) => void
+    handleGameFinished: (
+        challengeId: string, 
+        timer: string | number, 
+        status: string,
+        flagNumberOption: number,
+        correctAnswer: number
+        ) => void
 }
 
 const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption, handleGameFinished }:GameProps ) {
@@ -98,8 +104,12 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
     if (flagCount === flagNumberOption ||  (!ascTimeOption && timer === '00:00')) {
         stop()
         let timeTaken =  initialTimeOption > 0 ? convertTimeToString(initialTimeOption - convertTimeToNumber(timer)) : timer
-        let status = correctAnswer === flagNumberOption ? 'PASSED' : 'FAILED'
-        handleGameFinished(challengeId, timeTaken, status)
+        // let status = correctAnswer === flagNumberOption ? 'PASSED' : 'FAILED'
+        //  answerHistory.length === flagNumberOption ? 
+
+         let status = answerHistory.length === flagNumberOption || ( correctAnswer > (flagNumberOption / 2) ) ? 'PASSED' : 'FAILED'
+
+        handleGameFinished(challengeId, timeTaken, status, flagNumberOption, correctAnswer)
     } 
     
     useEffect(() => {
