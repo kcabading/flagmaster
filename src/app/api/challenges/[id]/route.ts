@@ -67,11 +67,10 @@ function calculatePoints(maxPoints: number, totalTime: number, timeTaken: number
   let totalPointsFromTime = maxPoints - (  (maxPoints / 2) - Math.floor( (totalTime - timeTaken) / (4 *  (totalTime / 60 )) ) )
   // make sure to set the max points
   totalPointsFromTime = totalPointsFromTime > maxPoints ? maxPoints : totalPointsFromTime
-  let incorrectMultiplier = totalTime / 60
-  let pointsToDeduct = (flagNumberOption - correctAnswer) * incorrectMultiplier
+  let pointsToDeduct = Math.ceil( ((flagNumberOption - correctAnswer)/flagNumberOption) * 10 )
   let totalPoints = totalPointsFromTime - pointsToDeduct
 
-  return totalPoints > 0 ? String(totalPoints) : '0'
+  return String(totalPoints)
 }
 
 
@@ -89,9 +88,7 @@ export async function POST(req:NextRequest, { params }: IGetParams) {
       let userId = token?.sub
       let challengeId = params.id
       let body = await req.json()
-
       let { timeTaken, status, flagNumberOption, correctAnswer} = body
-
       let timeUsed = convertTimeToNumber(timeTaken)
       // get the challenge options
       let { Item } = await getChallengeRecordById(challengeId)
@@ -99,9 +96,6 @@ export async function POST(req:NextRequest, { params }: IGetParams) {
       let timeToFinish = Number(Object.values(Item?.timeToFinish || 60)[0])
       
       let pointsEarned = status === 'PASSED' ? calculatePoints(points, timeToFinish, timeUsed, flagNumberOption, correctAnswer) : '0'
-
-      console.log('UPDATING')
-      console.log(userId, challengeId, timeTaken, pointsEarned, status)
 
       const updateResult = await client.send(
         new UpdateItemCommand({

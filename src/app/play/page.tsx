@@ -74,7 +74,7 @@ const Play = function( props: IPageProps ) {
                             key={challenge.sk}
                             className="rounded-md p-3 hover:bg-gray-100 dark:hover:text-black flex justify-between"
                         >
-                            <div className="w-3/5 lg:w-4/5" >
+                            <div className="w-4/5 lg:w-4/5" >
                                 <h3 className="text-sm font-medium leading-5">
                                 {challenge.title}
                                 </h3>
@@ -98,10 +98,10 @@ const Play = function( props: IPageProps ) {
                                 }
                                 </ul>
                             </div>
-                            <div className="w-2/5 lg:w-1/5 text-right flex items-center justify-end" >
+                            <div className="w-1/5 lg:w-1/5 text-right flex items-center justify-end" >
                                 {
                                     challenge.completed
-                                    ? <button onClick={ () => startChallenge(challenge.sk) } className='w-full text-xs lg:text-md bg-gray-500 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Retry</button>
+                                    ? <button onClick={ () => startChallenge(challenge.sk) } className='w-full text-xs lg:text-md bg-gray-500 hover:bg-gray-400 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Retry</button>
                                     : challenge.completed === false && <button onClick={ () => startChallenge(challenge.sk) } className='w-full text-xs lg:text-md bg-amber-500 hover:bg-amber-400 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Start</button>
                                 }
                             </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, useEffect, ChangeEvent, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import useFlagGenerator from '@/hooks/useFlagGenerator'
 import useTimer from '@/hooks/useTimer'
 import Results from '@/components/game/Results'
@@ -33,7 +33,7 @@ interface GameProps {
 }
 
 const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption, handleGameFinished }:GameProps ) {
-
+    console.log('GAME RENDER')
     const [ flagCount, setFlagCount ] = useState(0)
     const { timer, start, stop, reset } = useTimer(initialTimeOption, ascTimeOption)
     const [ answerHistory, setAnswerHistory ] = useState<AnswerHistory[]>([])
@@ -76,10 +76,7 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
             } else {
                 newUsedFlags = JSON.stringify([flag])
             }
-            setUsedFlags( () => {
-                generateNewFlag()
-                return newUsedFlags
-            })
+            setUsedFlags(newUsedFlags)
         }, 500)
     }
 
@@ -104,21 +101,20 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
     if (flagCount === flagNumberOption ||  (!ascTimeOption && timer === '00:00')) {
         stop()
         let timeTaken =  initialTimeOption > 0 ? convertTimeToString(initialTimeOption - convertTimeToNumber(timer)) : timer
-        // let status = correctAnswer === flagNumberOption ? 'PASSED' : 'FAILED'
-        //  answerHistory.length === flagNumberOption ? 
-
-         let status =  correctAnswer >= (flagNumberOption / 2) ? 'PASSED' : 'FAILED'
-
+        let status =  correctAnswer < (flagNumberOption / 2) || answerHistory.length !== flagNumberOption ? 'FAILED' : 'PASSED'
         handleGameFinished(challengeId, timeTaken, status, flagNumberOption, correctAnswer)
     } 
     
     useEffect(() => {
         handleReset()
-        generateNewFlag()
         return () => {
             handleReset()
         }
-    }, [flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption])    
+    }, [flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption])
+
+    useEffect(() => {
+        generateNewFlag()
+    }, [flagCount])
 
     return (
         <>
@@ -137,8 +133,6 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
                 <div className='lg:w-1/2 w-full text-center max-lg:px-4'>
                     <div className="counter flex justify-between w-full items-center">
                         <div className="w-1/3 sm:text-xl text-left">Flags: {flagCount}/{flagNumberOption}</div>
-                        {/* <div className={`${initialTimeOption > 0 && convertTimeToNumber(timer) <= 10 ? 'text-red-500' : ''} font-bold text-4xl`}>{timer}</div> */}
-
                         <Timer 
                             timer={timer}
                             initialTimeOption={initialTimeOption}
