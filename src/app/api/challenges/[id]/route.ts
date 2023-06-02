@@ -100,12 +100,8 @@ export async function POST(req:NextRequest, { params }: IGetParams) {
       
       let pointsEarned = status === 'PASSED' ? calculatePoints(points, timeToFinish, timeUsed, flagNumberOption, correctAnswer) : '0'
 
-      console.log('POINTS', Number(Object.values(Item?.points || 10)[0]))
-      console.log('TIME TO FINISH', Number(Object.values(Item?.timeToFinish || 60)[0]))
-      console.log('time Taken', timeUsed, typeof timeUsed)
-      console.log('STATUS', status)
-      console.log("POINTS EARNED:", pointsEarned)
-      
+      console.log('UPDATING')
+      console.log(userId, challengeId, timeTaken, pointsEarned, status)
 
       const updateResult = await client.send(
         new UpdateItemCommand({

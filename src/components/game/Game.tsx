@@ -107,7 +107,7 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
         // let status = correctAnswer === flagNumberOption ? 'PASSED' : 'FAILED'
         //  answerHistory.length === flagNumberOption ? 
 
-         let status = answerHistory.length === flagNumberOption || ( correctAnswer > (flagNumberOption / 2) ) ? 'PASSED' : 'FAILED'
+         let status =  correctAnswer >= (flagNumberOption / 2) ? 'PASSED' : 'FAILED'
 
         handleGameFinished(challengeId, timeTaken, status, flagNumberOption, correctAnswer)
     } 

@@ -72,7 +72,7 @@ const Play = function( props: IPageProps ) {
                         {challenges.map((challenge) => (
                         <li
                             key={challenge.sk}
-                            className="rounded-md p-3 hover:bg-gray-100 flex justify-between"
+                            className="rounded-md p-3 hover:bg-gray-100 dark:hover:text-black flex justify-between"
                         >
                             <div className="w-3/5 lg:w-4/5" >
                                 <h3 className="text-sm font-medium leading-5">
@@ -87,19 +87,22 @@ const Play = function( props: IPageProps ) {
                                         <li><span className='font-bold'>{challenge.pointsEarned}</span> points earned</li>
                                         <li>&middot;</li>
                                         <li><span className='font-bold'>{challenge.timeTaken}</span> time taken</li>
+                                        <li>&middot;</li>
+                                        {challenge.completed && challenge.status === 'PASSED' &&
+                                            <li><span className='font-bold bg-green-500 text-white py-1 px-2 rounded-md'>COMPLETED</span></li>
+                                        }
+                                        {challenge.completed && challenge.status === 'FAILED' &&
+                                            <li><span className='font-bold bg-red-500 text-white py-1 px-2 rounded-md'>FAILED</span></li>
+                                        }
                                     </>
                                 }
                                 </ul>
                             </div>
                             <div className="w-2/5 lg:w-1/5 text-right flex items-center justify-end" >
                                 {
-                                    challenge.completed && challenge.status === 'PASSED' && <button disabled className='w-full text-xs lg:text-md bg-green-500 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Finished</button>                                    
-                                }
-                                {
-                                    challenge.completed && challenge.status === 'FAILED' && <button disabled className='w-full text-xs lg:text-md bg-red-500 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Failed</button>
-                                }
-                                {
-                                    challenge.completed === false && <button onClick={ () => startChallenge(challenge.sk) } className='w-full text-xs lg:text-md bg-amber-500 hover:bg-amber-400 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Start</button>
+                                    challenge.completed
+                                    ? <button onClick={ () => startChallenge(challenge.sk) } className='w-full text-xs lg:text-md bg-gray-500 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Retry</button>
+                                    : challenge.completed === false && <button onClick={ () => startChallenge(challenge.sk) } className='w-full text-xs lg:text-md bg-amber-500 hover:bg-amber-400 text-white py-2 px-4 border-2 border-white font-bold rounded-md'>Start</button>
                                 }
                             </div>
                         </li>
