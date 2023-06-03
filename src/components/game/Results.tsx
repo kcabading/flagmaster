@@ -38,9 +38,9 @@ const Results = function ( { correctAnswer, noOfFlags, timer, handleReset, answe
               {
                 passed
                 ? <h1 className="font-bold text-4xl mt-5">Congratulations!!!</h1>
-                : <h1 className="font-bold text-xl mt-5">I'm sorry, you failed. Please try again</h1>
+                : <h1 className="font-bold text-xl mt-5">I am sorry, you failed. Please try again</h1>
               }
-              <p className="mt-4">{passed ? "You have" : "You only"} got <span className={`${passed ? 'text-green-500 ': 'text-red-500 '} font-bold text-xl`}>{correctAnswer}/{noOfFlags}</span> correct answer!</p>
+              <p className="mt-4">{`${passed ? "You have" : "You only"}`} got <span className={`${passed ? 'text-green-500 ': 'text-red-500 '} font-bold text-xl`}>{correctAnswer}/{noOfFlags}</span> correct answer!</p>
               <p>Time taken: { initialTime > 0 ? initialTime - convertTimeToNumber(timer) : timer}</p>
               <div className="flex">
                 <button onClick={ () => handleReset() } className="w-1/2 mt-4 border-2 border-slate-500 p-2 rounded-md hover:bg-green-500 mx-2">Try Again?</button>
