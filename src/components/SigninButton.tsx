@@ -8,13 +8,9 @@ const SigninButton = () => {
         <>
         {session && session.user
           ?
-            <>
-              <p>Hi, {session?.user.name}</p>
-              <button onClick={() => signOut()} className="text-red-600 ml-3 cursor-pointer">
-              Sign Out
-              </button>
-            </>
-          
+            <button onClick={() => signOut()} className="text-red-600 ml-3 cursor-pointer">
+            Sign Out
+            </button>
           :
             <button onClick={() => signIn('cognito')} className="ml-3 cursor-pointer">
             Sign In

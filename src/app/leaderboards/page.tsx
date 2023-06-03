@@ -50,7 +50,7 @@ const Leaderboards = function() {
     }, [])
 
     return (
-        <div className='lg:w-1/2 w-full text-center max-lg:px-4'>
+        <div className='lg:w-3/4 w-full text-center px-4 mb-10'>
             <h1 className="mb-3 text-4xl font-bold">Leaderboards</h1>
             <div className="w-full">
                 { 
@@ -61,13 +61,14 @@ const Leaderboards = function() {
                         {leaders.map( (leader, index) => {
                             return (
                                 <li key={index} className={`flex justify-between ${index === 0 ? 'bg-amber-900' :  'bg-amber-500'} text-white p-5 mb-2 rounded-md items-center hover:bg-amber-400`}>
-                                    <div className="w-1/5 font-bold">{rankToText(index)}</div>
+                                    <div className="w-1/5 font-bold lg:text-2xl">{rankToText(index)}</div>
                                     <div className="w-3/5 font-bold flex items-center background-white">
                                         <Image src={'/flagmaster.png'} width={50} height={50} alt="leader logo" className="rounded-[50%] border-4 border-white mr-4"/>
                                         <div className="w-full text-left">
-                                            <div>{leader.userPK}</div>
-                                            <ul className="flex text-sm">
-                                                <li>Challenges played: {leader.noOfChallenges}</li>
+                                            <div><a href="#" className="hover:underline">{leader.userPK}</a></div>
+                                            <ul className="flex space-x-1 text-xs font-normal leading-4 text-white">
+                                                <li># of Challenges played: {leader.noOfChallenges}</li>
+                                                <li>&middot;</li>
                                                 <li>Last played: {leader.lastPlayed}</li>
                                             </ul>
                                             <div className="points-range rounded-lg w-full h-4 bg-slate-500 mt-2 overflow-hidden">
@@ -75,7 +76,7 @@ const Leaderboards = function() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="w-1/5 font-bold">{leader.totalPoints}</div>
+                                    <div className="w-1/5 font-bold lg:text-2xl">{leader.totalPoints}</div>
                                 </li>
                             )
                         })}

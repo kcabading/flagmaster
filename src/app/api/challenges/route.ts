@@ -29,9 +29,9 @@ export async function GET(req:NextRequest) {
 
     const session = await getServerSession(authOptions)
     const token = await getToken({ req })
-    console.log("TOKENNNNNN", token?.sub)
     // get current user id
     let userId = token?.sub
+    let userEmail = session?.user?.email
     if (session && userId) {
         //Signed in
         console.log('SESSION')
@@ -48,14 +48,12 @@ export async function GET(req:NextRequest) {
                 })
             )
 
-            
-            console.log('getting all user challenges')
             const promise2 = client.send(
                 new QueryCommand({
                     TableName: 'flagmasters',
                     KeyConditionExpression: "pk = :pk and begins_with(sk, :sk)",
                     ExpressionAttributeValues: {
-                        ":pk": {S: `USER#${userId}`},
+                        ":pk": {S: `USER#${userEmail}`},
                         ":sk": {S: "CHALLENGE#"}
                     }
                 })

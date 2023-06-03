@@ -85,7 +85,7 @@ export async function POST(req:NextRequest, { params }: IGetParams) {
   } else {
     try {
       // get current user id
-      let userId = token?.sub
+      let userId = session?.user?.email
       let challengeId = params.id
       let body = await req.json()
       let { timeTaken, status, flagNumberOption, correctAnswer} = body

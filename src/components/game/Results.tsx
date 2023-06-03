@@ -29,18 +29,20 @@ const Results = function ( { correctAnswer, noOfFlags, timer, handleReset, answe
       router.push(`play/challenges/${Number(paths[3]) + 1}`)
     }
 
-    let passed = correctAnswer >= (noOfFlags / 2) ? true : false
+    // correctAnswer < (flagNumberOption / 2) || answerHistory.length !== flagNumberOption
+
+    let failedAttempt = correctAnswer < (noOfFlags / 2) || answerHistory.length !== noOfFlags ? true : false
 
     return (
         <div className="finish-quiz flex flex-col lg:flex-row place-content-center justify-around lg:w-3/4 max-lg:px-4">
             <div className="flex flex-col">
             { paths[1] === 'play' && <a href="#" onClick={ () => router.push('play') } className="hover:underline p-2 flex items-center justify-start"><AiOutlineArrowLeft /> &nbsp; Go Back to Challenges</a>}
               {
-                passed
+                !failedAttempt
                 ? <h1 className="font-bold text-4xl mt-5">Congratulations!!!</h1>
                 : <h1 className="font-bold text-xl mt-5">I am sorry, you failed. Please try again</h1>
               }
-              <p className="mt-4">{`${passed ? "You have" : "You only"}`} got <span className={`${passed ? 'text-green-500 ': 'text-red-500 '} font-bold text-xl`}>{correctAnswer}/{noOfFlags}</span> correct answer!</p>
+              <p className="mt-4">{`${!failedAttempt ? "You have" : "You only"}`} got <span className={`${!failedAttempt ? 'text-green-500 ': 'text-red-500 '} font-bold text-xl`}>{correctAnswer}/{noOfFlags}</span> correct answer!</p>
               <p>Time taken: { initialTime > 0 ? initialTime - convertTimeToNumber(timer) : timer}</p>
               <div className="flex">
                 <button onClick={ () => handleReset() } className="w-1/2 mt-4 border-2 border-slate-500 p-2 rounded-md hover:bg-green-500 mx-2">Try Again?</button>
