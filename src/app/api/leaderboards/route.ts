@@ -1,38 +1,60 @@
 import { NextResponse, NextRequest } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/data/authOptions';
+import { getToken } from "next-auth/jwt"
 
-import { URL } from 'url';
+import { S3Client, GetObjectCommand, AbortMultipartUploadCommand } from "@aws-sdk/client-s3";
 
-import { cookies } from 'next/headers';
+import {
+    QueryCommand,
+    DynamoDBClient,
+    PutItemCommand,
+    GetItemCommand,
+    UpdateItemCommand,
+    DeleteItemCommand
+} from '@aws-sdk/client-dynamodb';
 
-import { useSession } from 'next-auth/react';
+const client = new S3Client({ region: 'us-east-1'});
+
+type Challenge = {
+    sk: string,
+    title: string,
+    mode: string,
+    points: number,
+    completed: boolean,
+    pointsEarned: number,
+    timeTaken: string,
+    status: string
+}
  
 export async function GET(req:NextRequest) {
 
-    console.log(URL)
-    // const cookieStore = cookies();
-    // const token = cookieStore.get('token');
-    // console.log('TOKEN', token)
-//   const res = await fetch('https://data.mongodb-api.com/...', {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'API-Key': process.env.DATA_API_KEY,
-//     },
-//   });
-//   const data = await res.json();
- 
-  return NextResponse.json({ message: 'From the Leaderboards API with token' });
+    try {
+        const input = {
+            Bucket: process.env.DB_TABLE,
+            Key: process.env.LEADERBOARDS_KEY,
+        }
+
+        console.log('INPUT', input)
+
+        let command = new GetObjectCommand(input);
+        const response: any = await client.send(command);
+        const str = await response.Body.transformToString();
+        console.log(str);
+        let leaderboards = JSON.parse(str)
+        console.log('LEADERBOARDS', leaderboards)
+
+        
+        // console.log(Items)
+        return NextResponse.json(leaderboards);
+
+    } catch (error) {
+        console.log('ERROR:', error)
+        NextResponse.json({ error }, { status: 500 })
+    }
 }
 
 
-export async function POST() {
-
-    //   const res = await fetch('https://data.mongodb-api.com/...', {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'API-Key': process.env.DATA_API_KEY,
-    //     },
-    //   });
-    //   const data = await res.json();
-     
-      return NextResponse.json({ message: 'From the Leaderboards API' });
-    }
+export async function POST() {     
+    return NextResponse.json({ message: 'From the Leaderboards API' });
+}
