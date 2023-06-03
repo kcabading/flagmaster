@@ -1,9 +1,10 @@
 
+'use client'
 
 import Image from "next/image";
-import { S3Client, GetObjectCommand, AbortMultipartUploadCommand } from "@aws-sdk/client-s3";
-
-const client = new S3Client({ region: 'us-east-1'});
+import { useState, useEffect } from 'react'
+import useCurrentUser from '@/hooks/useCurrentUser'
+import getURL from '../../utils/getURL'
 
 interface ILeader {
     userPK: string,
@@ -23,44 +24,64 @@ function rankToText(rank: number): string {
     return `${ranking}th`
 }
 
-const Leaderboards = async function() {
-    let leaders: ILeader[] = []
-    const input = {
-        Bucket: process.env.DB_TABLE,
-        Key: process.env.LEADERBOARDS_KEY,
+async function getLeaderBoardsData() {
+    console.log(getURL())
+    const res = await fetch( getURL() + 'api/leaderboards');
+    if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error('Failed to fetch data');
     }
-    let command = new GetObjectCommand(input);
-    const response: any = await client.send(command);
-    const str = await response.Body.transformToString();
-    leaders = JSON.parse(str)
+    
+    return res.json();
+}
+
+const Leaderboards = function() {
+    let currentUser = useCurrentUser()
+    const [ isLoading, setIsLoading] = useState(true)
+    const [ leaders, setLeaders ] = useState<ILeader[]>([])
+        
+    useEffect(() => {
+        getLeaderBoardsData()
+            .then((data) => {
+                console.log(data)
+                setLeaders(data);
+                setIsLoading(false);
+            })
+    }, [])
 
     return (
         <div className='lg:w-1/2 w-full text-center max-lg:px-4'>
             <h1 className="mb-3 text-4xl font-bold">Leaderboards</h1>
             <div className="w-full">
-                <ul className="leader-list">
-                    {leaders.map( (leader, index) => {
-                        return (
-                            <li key={index} className={`flex justify-between ${index === 0 ? 'bg-amber-900' :  'bg-amber-500'} text-white p-5 mb-2 rounded-md items-center hover:bg-amber-400`}>
-                                <div className="w-1/5 font-bold">{rankToText(index)}</div>
-                                <div className="w-3/5 font-bold flex items-center background-white">
-                                    <Image src={'/flagmaster.png'} width={50} height={50} alt="leader logo" className="rounded-[50%] border-4 border-white mr-4"/>
-                                    <div className="w-full text-left">
-                                        <div>{leader.userPK}</div>
-                                        <ul className="flex text-sm">
-                                            <li>Challenges played: {leader.noOfChallenges}</li>
-                                            <li>Last played: {leader.lastPlayed}</li>
-                                        </ul>
-                                        <div className="points-range rounded-lg w-full h-4 bg-slate-500 mt-2 overflow-hidden">
-                                            <div className="w-3/5 bg-yellow-400 h-full" />
+                { 
+                    isLoading
+                    ? <>Loading...</>
+                    :
+                    <ul className="leader-list">
+                        {leaders.map( (leader, index) => {
+                            return (
+                                <li key={index} className={`flex justify-between ${index === 0 ? 'bg-amber-900' :  'bg-amber-500'} text-white p-5 mb-2 rounded-md items-center hover:bg-amber-400`}>
+                                    <div className="w-1/5 font-bold">{rankToText(index)}</div>
+                                    <div className="w-3/5 font-bold flex items-center background-white">
+                                        <Image src={'/flagmaster.png'} width={50} height={50} alt="leader logo" className="rounded-[50%] border-4 border-white mr-4"/>
+                                        <div className="w-full text-left">
+                                            <div>{leader.userPK}</div>
+                                            <ul className="flex text-sm">
+                                                <li>Challenges played: {leader.noOfChallenges}</li>
+                                                <li>Last played: {leader.lastPlayed}</li>
+                                            </ul>
+                                            <div className="points-range rounded-lg w-full h-4 bg-slate-500 mt-2 overflow-hidden">
+                                                <div className="w-3/5 bg-yellow-400 h-full" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="w-1/5 font-bold">{leader.totalPoints}</div>
-                            </li>
-                        )
-                    })}
-                </ul>
+                                    <div className="w-1/5 font-bold">{leader.totalPoints}</div>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                }
+                
             </div>
         </div>
     )
