@@ -8,11 +8,11 @@ const SigninButton = () => {
         <>
         {session && session.user
           ?
-            <button onClick={() => signOut()} className="text-red-600 ml-3 cursor-pointer">
+            <button onClick={() => signOut()} className="text-red-600 cursor-pointer">
             Sign Out
             </button>
           :
-            <button onClick={() => signIn('cognito')} className="ml-3 cursor-pointer">
+            <button onClick={() => signIn('cognito')} className="cursor-pointer">
             Sign In
             </button>
         }

@@ -5,15 +5,6 @@ import { getToken } from "next-auth/jwt"
 
 import { S3Client, GetObjectCommand, AbortMultipartUploadCommand } from "@aws-sdk/client-s3";
 
-import {
-    QueryCommand,
-    DynamoDBClient,
-    PutItemCommand,
-    GetItemCommand,
-    UpdateItemCommand,
-    DeleteItemCommand
-} from '@aws-sdk/client-dynamodb';
-
 const client = new S3Client({ region: 'us-east-1'});
 
 type Challenge = {
