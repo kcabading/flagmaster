@@ -4,6 +4,7 @@
       "alpha3": "AFG",
       "difficulty": "medium",
       "name": "Afghanistan",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_the_Taliban.svg",
       "license": "Public domain"
     },
@@ -12,6 +13,7 @@
       "alpha3": "ALB",
       "difficulty": "medium",
       "name": "Albania",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/3/36/Flag_of_Albania.svg",
       "license": "Public domain"
     },
@@ -20,6 +22,7 @@
       "alpha3": "DZA",
       "difficulty": "medium",
       "name": "Algeria",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg",
       "license": "Public domain"
     },
@@ -28,6 +31,7 @@
       "alpha3": "AND",
       "difficulty": "medium",
       "name": "Andorra",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Andorra.svg",
       "license": "Public domain"
     },
@@ -36,6 +40,7 @@
       "alpha3": "AGO",
       "difficulty": "medium",
       "name": "Angola",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Angola.svg",
       "license": "Public domain"
     },
@@ -44,6 +49,7 @@
       "alpha3": "ATG",
       "difficulty": "hard",
       "name": "Antigua and Barbuda",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/8/89/Flag_of_Antigua_and_Barbuda.svg",
       "license": "Public domain"
     },
@@ -52,6 +58,7 @@
       "alpha3": "ARG",
       "difficulty": "easy",
       "name": "Argentina",
+      "continent": "South America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg",
       "license": "Public domain"
     },
@@ -60,6 +67,7 @@
       "alpha3": "ARM",
       "difficulty": "medium",
       "name": "Armenia",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_Armenia.svg",
       "license": "Public domain"
     },
@@ -68,6 +76,7 @@
       "alpha3": "AUS",
       "difficulty": "easy",
       "name": "Australia",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg",
       "license": "Public domain"
     },
@@ -76,6 +85,7 @@
       "alpha3": "AUT",
       "difficulty": "medium",
       "name": "Austria",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg",
       "license": "Public domain"
     },
@@ -84,6 +94,7 @@
       "alpha3": "AZE",
       "difficulty": "hard",
       "name": "Azerbaijan",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Azerbaijan.svg",
       "license": "Public domain"
     },
@@ -92,6 +103,7 @@
       "alpha3": "BHS",
       "difficulty": "medium",
       "name": "Bahamas",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/93/Flag_of_the_Bahamas.svg",
       "license": "Public domain"
     },
@@ -100,6 +112,7 @@
       "alpha3": "BHR",
       "difficulty": "easy",
       "name": "Bahrain",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Bahrain.svg",
       "license": "Public domain"
     },
@@ -108,6 +121,7 @@
       "alpha3": "BGD",
       "difficulty": "easy",
       "name": "Bangladesh",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg",
       "license": "Public domain"
     },
@@ -116,6 +130,7 @@
       "alpha3": "BRB",
       "difficulty": "hard",
       "name": "Barbados",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/e/ef/Flag_of_Barbados.svg",
       "license": "Public domain"
     },
@@ -124,6 +139,7 @@
       "alpha3": "BLR",
       "difficulty": "medium",
       "name": "Belarus",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/8/85/Flag_of_Belarus.svg",
       "license": "Public domain"
     },
@@ -132,6 +148,7 @@
       "alpha3": "BEL",
       "difficulty": "easy",
       "name": "Belgium",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg",
       "license": "Public domain"
     },
@@ -140,6 +157,7 @@
       "alpha3": "BLZ",
       "difficulty": "hard",
       "name": "Belize",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/e/e7/Flag_of_Belize.svg",
       "license": "Public domain"
     },
@@ -148,6 +166,7 @@
       "alpha3": "BEN",
       "difficulty": "hard",
       "name": "Benin",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/0a/Flag_of_Benin.svg",
       "license": "Public domain"
     },
@@ -156,6 +175,7 @@
       "alpha3": "BMU",
       "difficulty": "hard",
       "name": "Bermuda",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/b/bf/Flag_of_Bermuda.svg",
       "license": "Public domain"
     },
@@ -164,6 +184,7 @@
       "alpha3": "BTN",
       "difficulty": "easy",
       "name": "Bhutan",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/91/Flag_of_Bhutan.svg",
       "license": "Public domain"
     },
@@ -172,6 +193,7 @@
       "alpha3": "BOL",
       "difficulty": "medium",
       "name": "Bolivia",
+      "continent": "South America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/b/b3/Bandera_de_Bolivia_%28Estado%29.svg",
       "license": "Public domain"
     },
@@ -180,6 +202,7 @@
       "alpha3": "BIH",
       "difficulty": "hard",
       "name": "Bosnia and Herzegovina",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/b/bf/Flag_of_Bosnia_and_Herzegovina.svg",
       "license": "Public domain"
     },
@@ -188,6 +211,7 @@
       "alpha3": "BWA",
       "difficulty": "medium",
       "name": "Botswana",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_Botswana.svg",
       "license": "Public domain"
     },
@@ -196,6 +220,7 @@
       "alpha3": "BRA",
       "difficulty": "easy",
       "name": "Brazil",
+      "continent": "South America",
       "file_url": "//upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
       "license": "Public domain"
     },
@@ -204,6 +229,7 @@
       "alpha3": "BRN",
       "difficulty": "medium",
       "name": "Brunei",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/9c/Flag_of_Brunei.svg",
       "license": "Public domain"
     },
@@ -212,6 +238,7 @@
       "alpha3": "BGR",
       "difficulty": "medium",
       "name": "Bulgaria",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Bulgaria.svg",
       "license": "Public domain"
     },
@@ -220,6 +247,7 @@
       "alpha3": "BFA",
       "difficulty": "hard",
       "name": "Burkina Faso",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/3/31/Flag_of_Burkina_Faso.svg",
       "license": "Public domain"
     },
@@ -228,6 +256,7 @@
       "alpha3": "BDI",
       "difficulty": "hard",
       "name": "Burundi",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/5/50/Flag_of_Burundi.svg",
       "license": "Public domain"
     },
@@ -236,6 +265,7 @@
       "alpha3": "CPV",
       "difficulty": "hard",
       "name": "Cabo Verde",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/3/38/Flag_of_Cape_Verde.svg",
       "license": "Public domain"
     },
@@ -244,6 +274,7 @@
       "alpha3": "KHM",
       "difficulty": "easy",
       "name": "Cambodia",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_Cambodia.svg",
       "license": "Public domain"
     },
@@ -252,6 +283,7 @@
       "alpha3": "CMR",
       "difficulty": "medium",
       "name": "Cameroon",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/4f/Flag_of_Cameroon.svg",
       "license": "Public domain"
     },
@@ -260,6 +292,7 @@
       "alpha3": "CAN",
       "difficulty": "easy",
       "name": "Canada",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg",
       "license": "Public domain"
     },
@@ -268,6 +301,7 @@
       "alpha3": "CAF",
       "difficulty": "hard",
       "name": "Central African Republic",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/6f/Flag_of_the_Central_African_Republic.svg",
       "license": "Public domain"
     },
@@ -276,6 +310,7 @@
       "alpha3": "TCD",
       "difficulty": "hard",
       "name": "Chad",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/4b/Flag_of_Chad.svg",
       "license": "Public domain"
     },
@@ -284,6 +319,7 @@
       "alpha3": "CHL",
       "difficulty": "easy",
       "name": "Chile",
+      "continent": "South America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/7/78/Flag_of_Chile.svg",
       "license": "Public domain"
     },
@@ -292,6 +328,7 @@
       "alpha3": "CHN",
       "difficulty": "easy",
       "name": "China",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg",
       "license": "Public domain"
     },
@@ -300,6 +337,7 @@
       "alpha3": "COL",
       "difficulty": "easy",
       "name": "Colombia",
+      "continent": "South America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg",
       "license": "Public domain"
     },
@@ -308,6 +346,7 @@
       "alpha3": "COM",
       "difficulty": "hard",
       "name": "Comoros",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/94/Flag_of_the_Comoros.svg",
       "license": "Public domain"
     },
@@ -316,6 +355,7 @@
       "alpha3": "COG",
       "difficulty": "medium",
       "name": "Congo",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/92/Flag_of_the_Republic_of_the_Congo.svg",
       "license": "Public domain"
     },
@@ -324,6 +364,7 @@
       "alpha3": "COD",
       "difficulty": "medium",
       "name": "Democratic Republic of the Congo",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/6f/Flag_of_the_Democratic_Republic_of_the_Congo.svg",
       "license": "Public domain"
     },
@@ -332,6 +373,7 @@
       "alpha3": "CRI",
       "difficulty": "easy",
       "name": "Costa Rica",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/f2/Flag_of_Costa_Rica.svg",
       "license": "Public domain"
     },
@@ -340,6 +382,7 @@
       "difficulty": "medium",
       "alpha3": "CIV",
       "name": "Ivory Coast",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_C%C3%B4te_d%27Ivoire.svg",
       "license": "Public domain"
     },
@@ -348,6 +391,7 @@
       "difficulty": "easy",
       "alpha3": "HRV",
       "name": "Croatia",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg",
       "license": "Public domain"
     },
@@ -356,6 +400,7 @@
       "difficulty": "easy",
       "alpha3": "CUB",
       "name": "Cuba",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/b/bd/Flag_of_Cuba.svg",
       "license": "Public domain"
     },
@@ -364,6 +409,7 @@
       "difficulty": "easy",
       "alpha3": "CYP",
       "name": "Cyprus",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Cyprus.svg",
       "license": "Public domain"
     },
@@ -372,6 +418,7 @@
       "alpha3": "CZE",
       "difficulty": "medium",
       "name": "Czech Republic",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_Czech_Republic.svg",
       "license": "Public domain"
     },
@@ -380,6 +427,7 @@
       "alpha3": "DNK",
       "difficulty": "easy",
       "name": "Denmark",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/9c/Flag_of_Denmark.svg",
       "license": "Public domain"
     },
@@ -388,6 +436,7 @@
       "alpha3": "DJI",
       "difficulty": "medium",
       "name": "Djibouti",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_Djibouti.svg",
       "license": "Public domain"
     },
@@ -396,6 +445,7 @@
       "alpha3": "DMA",
       "difficulty": "medium",
       "name": "Dominica",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/c/c4/Flag_of_Dominica.svg",
       "license": "Public domain"
     },
@@ -404,6 +454,7 @@
       "alpha3": "DOM",
       "difficulty": "medium",
       "name": "Dominican Republic",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_the_Dominican_Republic.svg",
       "license": "Public domain"
     },
@@ -412,6 +463,7 @@
       "alpha3": "ECU",
       "difficulty": "easy",
       "name": "Ecuador",
+      "continent": "South America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/e/e8/Flag_of_Ecuador.svg",
       "license": "Public domain"
     },
@@ -420,6 +472,7 @@
       "alpha3": "EGY",
       "difficulty": "easy",
       "name": "Egypt",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
       "license": "Public domain"
     },
@@ -428,6 +481,7 @@
       "alpha3": "SLV",
       "difficulty": "medium",
       "name": "El Salvador",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_El_Salvador.svg",
       "license": "Public domain"
     },
@@ -436,6 +490,7 @@
       "alpha3": "GNQ",
       "difficulty": "hard",
       "name": "Equatorial Guinea",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/3/31/Flag_of_Equatorial_Guinea.svg",
       "license": "Public domain"
     },
@@ -444,6 +499,7 @@
       "alpha3": "ERI",
       "difficulty": "medium",
       "name": "Eritrea",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/2/29/Flag_of_Eritrea.svg",
       "license": "Public domain"
     },
@@ -452,6 +508,7 @@
       "alpha3": "EST",
       "difficulty": "medium",
       "name": "Estonia",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/8/8f/Flag_of_Estonia.svg",
       "license": "Public domain"
     },
@@ -460,6 +517,7 @@
       "alpha3": "SWZ",
       "difficulty": "hard",
       "name": "Eswatini",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/fb/Flag_of_Eswatini.svg",
       "license": "Public domain"
     },
@@ -468,6 +526,7 @@
       "alpha3": "ETH",
       "difficulty": "medium",
       "name": "Ethiopia",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/7/71/Flag_of_Ethiopia.svg",
       "license": "Public domain"
     },
@@ -476,6 +535,7 @@
       "alpha3": "FJI",
       "difficulty": "hard",
       "name": "Fiji",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Fiji.svg",
       "license": "Public domain"
     },
@@ -484,6 +544,7 @@
       "alpha3": "FIN",
       "difficulty": "easy",
       "name": "Finland",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Finland.svg",
       "license": "Public domain"
     },
@@ -492,6 +553,7 @@
       "alpha3": "FRA",
       "difficulty": "easy",
       "name": "France",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
       "license": "Public domain"
     },
@@ -500,6 +562,7 @@
       "alpha3": "GAB",
       "difficulty": "hard",
       "name": "Gabon",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/04/Flag_of_Gabon.svg",
       "license": "Public domain"
     },
@@ -508,6 +571,7 @@
       "alpha3": "GMB",
       "difficulty": "hard",
       "name": "Gambia",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_The_Gambia.svg",
       "license": "Public domain"
     },
@@ -515,6 +579,7 @@
       "url": "/wiki/Georgia_(country)",
       "alpha3": "GEO",
       "name": "Georgia",
+      "continent": "Asia",
       "difficulty": "medium",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/0f/Flag_of_Georgia.svg",
       "license": "Public domain"
@@ -524,6 +589,7 @@
       "alpha3": "DEU",
       "difficulty": "easy",
       "name": "Germany",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
       "license": "Public domain"
     },
@@ -532,6 +598,7 @@
       "alpha3": "GHA",
       "difficulty": "medium",
       "name": "Ghana",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Ghana.svg",
       "license": "Public domain"
     },
@@ -540,6 +607,7 @@
       "alpha3": "GRC",
       "difficulty": "medium",
       "name": "Greece",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Greece.svg",
       "license": "Public domain"
     },
@@ -548,6 +616,7 @@
       "alpha3": "GRL",
       "difficulty": "medium",
       "name": "Greenland",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_Greenland.svg",
       "license": "Public domain"
     },
@@ -556,6 +625,7 @@
       "alpha3": "GRD",
       "difficulty": "hard",
       "name": "Grenada",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Grenada.svg",
       "license": "Public domain"
     },
@@ -564,6 +634,7 @@
       "alpha3": "GUM",
       "difficulty": "hard",
       "name": "Guam",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/07/Flag_of_Guam.svg",
       "license": "Public domain"
     },
@@ -572,6 +643,7 @@
       "alpha3": "GTM",
       "difficulty": "medium",
       "name": "Guatemala",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/e/ec/Flag_of_Guatemala.svg",
       "license": "Public domain"
     },
@@ -580,6 +652,7 @@
       "alpha3": "GIN",
       "difficulty": "hard",
       "name": "Guinea",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/e/ed/Flag_of_Guinea.svg",
       "license": "Public domain"
     },
@@ -588,6 +661,7 @@
       "alpha3": "GNB",
       "difficulty": "hard",
       "name": "Guinea-Bissau",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_Guinea-Bissau.svg",
       "license": "Public domain"
     },
@@ -596,6 +670,7 @@
       "alpha3": "GUY",
       "difficulty": "hard",
       "name": "Guyana",
+      "continent": "South America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_Guyana.svg",
       "license": "Public domain"
     },
@@ -604,6 +679,7 @@
       "alpha3": "HTI",
       "difficulty": "medium",
       "name": "Haiti",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/5/56/Flag_of_Haiti.svg",
       "license": "Public domain"
     },
@@ -612,6 +688,7 @@
       "alpha3": "VAT",
       "difficulty": "medium",
       "name": "Vatican City",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/00/Flag_of_the_Vatican_City.svg",
       "license": "Public domain"
     },
@@ -620,6 +697,7 @@
       "alpha3": "HND",
       "difficulty": "medium",
       "name": "Honduras",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/8/82/Flag_of_Honduras.svg",
       "license": "Public domain"
     },
@@ -628,6 +706,7 @@
       "alpha3": "HKG",
       "difficulty": "easy",
       "name": "Hong Kong",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/5/5b/Flag_of_Hong_Kong.svg",
       "license": "Public domain"
     },
@@ -636,6 +715,7 @@
       "alpha3": "HUN",
       "difficulty": "medium",
       "name": "Hungary",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_Hungary.svg",
       "license": "Public domain"
     },
@@ -644,6 +724,7 @@
       "alpha3": "ISL",
       "difficulty": "medium",
       "name": "Iceland",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Iceland.svg",
       "license": "Public domain"
     },
@@ -652,6 +733,7 @@
       "alpha3": "IND",
       "difficulty": "easy",
       "name": "India",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
       "license": "Public domain"
     },
@@ -660,6 +742,7 @@
       "alpha3": "IDN",
       "difficulty": "easy",
       "name": "Indonesia",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg",
       "license": "Public domain"
     },
@@ -668,6 +751,7 @@
       "alpha3": "IRN",
       "difficulty": "easy",
       "name": "Iran",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/c/ca/Flag_of_Iran.svg",
       "license": "Public domain"
     },
@@ -676,6 +760,7 @@
       "alpha3": "IRQ",
       "difficulty": "easy",
       "name": "Iraq",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/f6/Flag_of_Iraq.svg",
       "license": "Public domain"
     },
@@ -684,6 +769,7 @@
       "alpha3": "IRL",
       "difficulty": "medium",
       "name": "Ireland",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/45/Flag_of_Ireland.svg",
       "license": "Public domain"
     },
@@ -692,6 +778,7 @@
       "alpha3": "ISR",
       "difficulty": "medium",
       "name": "Israel",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/d/d4/Flag_of_Israel.svg",
       "license": "Public domain"
     },
@@ -700,6 +787,7 @@
       "alpha3": "ITA",
       "difficulty": "easy",
       "name": "Italy",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg",
       "license": "Public domain"
     },
@@ -708,6 +796,7 @@
       "alpha3": "JAM",
       "difficulty": "easy",
       "name": "Jamaica",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/0a/Flag_of_Jamaica.svg",
       "license": "Public domain"
     },
@@ -716,6 +805,7 @@
       "alpha3": "JPN",
       "difficulty": "easy",
       "name": "Japan",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
       "license": "Public domain"
     },
@@ -724,6 +814,7 @@
       "alpha3": "JOR",
       "difficulty": "medium",
       "name": "Jordan",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/c/c0/Flag_of_Jordan.svg",
       "license": "Public domain"
     },
@@ -732,6 +823,7 @@
       "alpha3": "KAZ",
       "difficulty": "medium",
       "name": "Kazakhstan",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/d/d3/Flag_of_Kazakhstan.svg",
       "license": "Public domain"
     },
@@ -740,6 +832,7 @@
       "alpha3": "KEN",
       "difficulty": "medium",
       "name": "Kenya",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Kenya.svg",
       "license": "Public domain"
     },
@@ -748,6 +841,7 @@
       "alpha3": "KIR",
       "difficulty": "hard",
       "name": "Kiribati",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/d/d3/Flag_of_Kiribati.svg",
       "license": "Public domain"
     },
@@ -756,6 +850,7 @@
       "alpha3": "PRK",
       "difficulty": "medium",
       "name": "North Korea",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/5/51/Flag_of_North_Korea.svg",
       "license": "Public domain"
     },
@@ -764,6 +859,7 @@
       "alpha3": "KOR",
       "difficulty": "easy",
       "name": "South Korea",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg",
       "license": "Public domain"
     },
@@ -772,6 +868,7 @@
       "alpha3": "KWT",
       "difficulty": "medium",
       "name": "Kuwait",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/a/aa/Flag_of_Kuwait.svg",
       "license": "Public domain"
     },
@@ -780,6 +877,7 @@
       "alpha3": "KGZ",
       "difficulty": "hard",
       "name": "Kyrgyzstan",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/c/c7/Flag_of_Kyrgyzstan.svg",
       "license": "Public domain"
     },
@@ -788,6 +886,7 @@
       "alpha3": "LAO",
       "difficulty": "medium",
       "name": "Laos",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/5/56/Flag_of_Laos.svg",
       "license": "Public domain"
     },
@@ -796,6 +895,7 @@
       "alpha3": "LVA",
       "difficulty": "medium",
       "name": "Latvia",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/8/84/Flag_of_Latvia.svg",
       "license": "Public domain"
     },
@@ -804,6 +904,7 @@
       "alpha3": "LBN",
       "difficulty": "easy",
       "name": "Lebanon",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/5/59/Flag_of_Lebanon.svg",
       "license": "Public domain"
     },
@@ -812,6 +913,7 @@
       "alpha3": "LSO",
       "difficulty": "medium",
       "name": "Lesotho",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/4a/Flag_of_Lesotho.svg",
       "license": "Public domain"
     },
@@ -820,6 +922,7 @@
       "alpha3": "LBR",
       "difficulty": "medium",
       "name": "Liberia",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_Liberia.svg",
       "license": "Public domain"
     },
@@ -828,6 +931,7 @@
       "alpha3": "LBY",
       "difficulty": "medium",
       "name": "Libya",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Libya.svg",
       "license": "Public domain"
     },
@@ -836,6 +940,7 @@
       "alpha3": "LIE",
       "difficulty": "hard",
       "name": "Liechtenstein",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/47/Flag_of_Liechtenstein.svg",
       "license": "Public domain"
     },
@@ -844,6 +949,7 @@
       "alpha3": "LTU",
       "difficulty": "medium",
       "name": "Lithuania",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Lithuania.svg",
       "license": "Public domain"
     },
@@ -852,6 +958,7 @@
       "alpha3": "LUX",
       "difficulty": "hard",
       "name": "Luxembourg",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/d/da/Flag_of_Luxembourg.svg",
       "license": "Public domain"
     },
@@ -859,7 +966,8 @@
       "url": "/wiki/Macau",
       "alpha3": "MAC",
       "difficulty": "medium",
-      "name": "Macao",
+      "name": "Macau",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/63/Flag_of_Macau.svg",
       "license": "Public domain"
     },
@@ -868,6 +976,7 @@
       "alpha3": "MDG",
       "difficulty": "medium",
       "name": "Madagascar",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Madagascar.svg",
       "license": "Public domain"
     },
@@ -876,6 +985,7 @@
       "alpha3": "MWI",
       "difficulty": "hard",
       "name": "Malawi",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/d/d1/Flag_of_Malawi.svg",
       "license": "Public domain"
     },
@@ -884,6 +994,7 @@
       "alpha3": "MYS",
       "difficulty": "easy",
       "name": "Malaysia",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/66/Flag_of_Malaysia.svg",
       "license": "Public domain"
     },
@@ -892,6 +1003,7 @@
       "alpha3": "MDV",
       "difficulty": "medium",
       "name": "Maldives",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/0f/Flag_of_Maldives.svg",
       "license": "Public domain"
     },
@@ -900,6 +1012,7 @@
       "alpha3": "MLI",
       "difficulty": "medium",
       "name": "Mali",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/92/Flag_of_Mali.svg",
       "license": "Public domain"
     },
@@ -908,6 +1021,7 @@
       "alpha3": "MLT",
       "difficulty": "easy",
       "name": "Malta",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/7/73/Flag_of_Malta.svg",
       "license": "Public domain"
     },
@@ -916,6 +1030,7 @@
       "alpha3": "MHL",
       "difficulty": "hard",
       "name": "Marshall Islands",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/2/2e/Flag_of_the_Marshall_Islands.svg",
       "license": "Public domain"
     },
@@ -924,6 +1039,7 @@
       "alpha3": "MRT",
       "difficulty": "hard",
       "name": "Mauritania",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/43/Flag_of_Mauritania.svg",
       "license": "Public domain"
     },
@@ -932,6 +1048,7 @@
       "alpha3": "MUS",
       "difficulty": "hard",
       "name": "Mauritius",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Mauritius.svg",
       "license": "Public domain"
     },
@@ -940,6 +1057,7 @@
       "alpha3": "MEX",
       "difficulty": "easy",
       "name": "Mexico",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg",
       "license": "Public domain"
     },
@@ -948,6 +1066,7 @@
       "alpha3": "MDA",
       "difficulty": "medium",
       "name": "Moldova",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/2/27/Flag_of_Moldova.svg",
       "license": "Public domain"
     },
@@ -956,6 +1075,7 @@
       "alpha3": "MCO",
       "difficulty": "hard",
       "name": "Monaco",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/e/ea/Flag_of_Monaco.svg",
       "license": "Public domain"
     },
@@ -964,6 +1084,7 @@
       "alpha3": "MNG",
       "difficulty": "easy",
       "name": "Mongolia",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/4c/Flag_of_Mongolia.svg",
       "license": "Public domain"
     },
@@ -972,6 +1093,7 @@
       "alpha3": "MNE",
       "difficulty": "medium",
       "name": "Montenegro",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/64/Flag_of_Montenegro.svg",
       "license": "Public domain"
     },
@@ -980,6 +1102,7 @@
       "alpha3": "MAR",
       "difficulty": "medium",
       "name": "Morocco",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/2/2c/Flag_of_Morocco.svg",
       "license": "Public domain"
     },
@@ -988,6 +1111,7 @@
       "alpha3": "MOZ",
       "difficulty": "hard",
       "name": "Mozambique",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/d/d0/Flag_of_Mozambique.svg",
       "license": "Public domain"
     },
@@ -996,6 +1120,7 @@
       "alpha3": "MMR",
       "difficulty": "easy",
       "name": "Myanmar",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/8/8c/Flag_of_Myanmar.svg",
       "license": "Public domain"
     },
@@ -1004,6 +1129,7 @@
       "alpha3": "NAM",
       "difficulty": "medium",
       "name": "Namibia",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/00/Flag_of_Namibia.svg",
       "license": "Public domain"
     },
@@ -1012,6 +1138,7 @@
       "alpha3": "NRU",
       "difficulty": "hard",
       "name": "Nauru",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/3/30/Flag_of_Nauru.svg",
       "license": "Public domain"
     },
@@ -1020,6 +1147,7 @@
       "alpha3": "NPL",
       "difficulty": "easy",
       "name": "Nepal",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg",
       "license": "Public domain"
     },
@@ -1028,6 +1156,7 @@
       "alpha3": "NLD",
       "difficulty": "medium",
       "name": "Netherlands",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg",
       "license": "Public domain"
     },
@@ -1036,6 +1165,7 @@
       "alpha3": "NZL",
       "difficulty": "easy",
       "name": "New Zealand",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg",
       "license": "Public domain"
     },
@@ -1044,6 +1174,7 @@
       "alpha3": "NIC",
       "difficulty": "medium",
       "name": "Nicaragua",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Nicaragua.svg",
       "license": "Public domain"
     },
@@ -1052,6 +1183,7 @@
       "alpha3": "NER",
       "difficulty": "hard",
       "name": "Niger",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/f4/Flag_of_Niger.svg",
       "license": "Public domain"
     },
@@ -1060,6 +1192,7 @@
       "alpha3": "NGA",
       "difficulty": "medium",
       "name": "Nigeria",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
       "license": "Public domain"
     },
@@ -1068,6 +1201,7 @@
       "alpha3": "MKD",
       "difficulty": "hard",
       "name": "North Macedonia",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_North_Macedonia.svg",
       "license": "Public domain"
     },
@@ -1076,6 +1210,7 @@
       "alpha3": "NOR",
       "difficulty": "easy",
       "name": "Norway",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg",
       "license": "Public domain"
     },
@@ -1084,6 +1219,7 @@
       "alpha3": "OMN",
       "difficulty": "easy",
       "name": "Oman",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Oman.svg",
       "license": "Public domain"
     },
@@ -1092,6 +1228,7 @@
       "alpha3": "PAK",
       "difficulty": "easy",
       "name": "Pakistan",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg",
       "license": "Public domain"
     },
@@ -1100,6 +1237,7 @@
       "alpha3": "PLW",
       "difficulty": "medium",
       "name": "Palau",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Palau.svg",
       "license": "Public domain"
     },
@@ -1108,6 +1246,7 @@
       "alpha3": "PSE",
       "difficulty": "hard",
       "name": "Palestine",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/00/Flag_of_Palestine.svg",
       "license": "Public domain"
     },
@@ -1116,6 +1255,7 @@
       "alpha3": "PAN",
       "difficulty": "medium",
       "name": "Panama",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/a/ab/Flag_of_Panama.svg",
       "license": "Public domain"
     },
@@ -1124,6 +1264,7 @@
       "alpha3": "PNG",
       "difficulty": "hard",
       "name": "Papua New Guinea",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/e/e3/Flag_of_Papua_New_Guinea.svg",
       "license": "Public domain"
     },
@@ -1132,6 +1273,7 @@
       "alpha3": "PRY",
       "difficulty": "medium",
       "name": "Paraguay",
+      "continent": "South America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/2/27/Flag_of_Paraguay.svg",
       "license": "Public domain"
     },
@@ -1140,6 +1282,7 @@
       "alpha3": "PER",
       "difficulty": "easy",
       "name": "Peru",
+      "continent": "South America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Peru.svg",
       "license": "Public domain"
     },
@@ -1148,6 +1291,7 @@
       "alpha3": "PHL",
       "difficulty": "easy",
       "name": "Philippines",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg",
       "license": "Public domain"
     },
@@ -1156,6 +1300,7 @@
       "alpha3": "POL",
       "difficulty": "medium",
       "name": "Poland",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/en/1/12/Flag_of_Poland.svg",
       "license": "Public domain"
     },
@@ -1164,6 +1309,7 @@
       "alpha3": "PRT",
       "difficulty": "easy",
       "name": "Portugal",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg",
       "license": "Public domain"
     },
@@ -1172,6 +1318,7 @@
       "alpha3": "PRI",
       "difficulty": "medium",
       "name": "Puerto Rico",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/2/28/Flag_of_Puerto_Rico.svg",
       "license": "Public domain"
     },
@@ -1180,6 +1327,7 @@
       "alpha3": "QAT",
       "difficulty": "medium",
       "name": "Qatar",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Qatar.svg",
       "license": "Public domain"
     },
@@ -1188,6 +1336,7 @@
       "alpha3": "ROU",
       "difficulty": "medium",
       "name": "Romania",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/7/73/Flag_of_Romania.svg",
       "license": "Public domain"
     },
@@ -1196,6 +1345,7 @@
       "alpha3": "RUS",
       "difficulty": "easy",
       "name": "Russia",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg",
       "license": "Public domain"
     },
@@ -1204,6 +1354,7 @@
       "alpha3": "RWA",
       "difficulty": "hard",
       "name": "Rwanda",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/1/17/Flag_of_Rwanda.svg",
       "license": "Public domain"
     },
@@ -1212,6 +1363,7 @@
       "alpha3": "KNA",
       "difficulty": "hard",
       "name": "Saint Kitts and Nevis",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Saint_Kitts_and_Nevis.svg",
       "license": "Public domain"
     },
@@ -1220,6 +1372,7 @@
       "alpha3": "LCA",
       "difficulty": "hard",
       "name": "Saint Lucia",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Saint_Lucia.svg",
       "license": "Public domain"
     },
@@ -1228,6 +1381,7 @@
       "alpha3": "VCT",
       "difficulty": "hard",
       "name": "Saint Vincent and the Grenadines",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/6d/Flag_of_Saint_Vincent_and_the_Grenadines.svg",
       "license": "Public domain"
     },
@@ -1236,6 +1390,7 @@
       "alpha3": "WSM",
       "difficulty": "medium",
       "name": "Samoa",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/3/31/Flag_of_Samoa.svg",
       "license": "Public domain"
     },
@@ -1244,6 +1399,7 @@
       "alpha3": "SMR",
       "difficulty": "medium",
       "name": "San Marino",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/b/b1/Flag_of_San_Marino.svg",
       "license": "Public domain"
     },
@@ -1252,6 +1408,7 @@
       "alpha3": "STP",
       "difficulty": "hard",
       "name": "Sao Tome and Principe",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/4f/Flag_of_Sao_Tome_and_Principe.svg",
       "license": "Public domain"
     },
@@ -1260,6 +1417,7 @@
       "alpha3": "SEN",
       "difficulty": "medium",
       "name": "Senegal",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/fd/Flag_of_Senegal.svg",
       "license": "Public domain"
     },
@@ -1268,6 +1426,7 @@
       "alpha3": "SRB",
       "difficulty": "medium",
       "name": "Serbia",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/ff/Flag_of_Serbia.svg",
       "license": "Public domain"
     },
@@ -1276,6 +1435,7 @@
       "alpha3": "SYC",
       "difficulty": "medium",
       "name": "Seychelles",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Seychelles.svg",
       "license": "Public domain"
     },
@@ -1284,6 +1444,7 @@
       "alpha3": "SLE",
       "difficulty": "medium",
       "name": "Sierra Leone",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/1/17/Flag_of_Sierra_Leone.svg",
       "license": "Public domain"
     },
@@ -1292,6 +1453,7 @@
       "alpha3": "SGP",
       "difficulty": "easy",
       "name": "Singapore",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Singapore.svg",
       "license": "Public domain"
     },
@@ -1300,6 +1462,7 @@
       "alpha3": "SVK",
       "difficulty": "medium",
       "name": "Slovakia",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/e/e6/Flag_of_Slovakia.svg",
       "license": "Public domain"
     },
@@ -1308,6 +1471,7 @@
       "alpha3": "SVN",
       "difficulty": "medium",
       "name": "Slovenia",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/f0/Flag_of_Slovenia.svg",
       "license": "Public domain"
     },
@@ -1316,6 +1480,7 @@
       "alpha3": "SLB",
       "difficulty": "hard",
       "name": "Solomon Islands",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/7/74/Flag_of_the_Solomon_Islands.svg",
       "license": "Public domain"
     },
@@ -1324,6 +1489,7 @@
       "alpha3": "SOM",
       "difficulty": "medium",
       "name": "Somalia",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/a/a0/Flag_of_Somalia.svg",
       "license": "Public domain"
     },
@@ -1332,6 +1498,7 @@
       "alpha3": "ZAF",
       "difficulty": "easy",
       "name": "South Africa",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg",
       "license": "Public domain"
     },
@@ -1340,6 +1507,7 @@
       "alpha3": "SSD",
       "difficulty": "medium",
       "name": "South Sudan",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/7/7a/Flag_of_South_Sudan.svg",
       "license": "Public domain"
     },
@@ -1348,6 +1516,7 @@
       "alpha3": "ESP",
       "difficulty": "easy",
       "name": "Spain",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/8/89/Bandera_de_Espa%C3%B1a.svg",
       "license": "Public domain"
     },
@@ -1356,6 +1525,7 @@
       "alpha3": "LKA",
       "difficulty": "easy",
       "name": "Sri Lanka",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/1/11/Flag_of_Sri_Lanka.svg",
       "license": "Public domain"
     },
@@ -1364,6 +1534,7 @@
       "alpha3": "SDN",
       "difficulty": "medium",
       "name": "Sudan",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_Sudan.svg",
       "license": "Public domain"
     },
@@ -1372,6 +1543,7 @@
       "alpha3": "SUR",
       "difficulty": "medium",
       "name": "Suriname",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/60/Flag_of_Suriname.svg",
       "license": "Public domain"
     },
@@ -1380,6 +1552,7 @@
       "alpha3": "SWE",
       "difficulty": "easy",
       "name": "Sweden",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/en/4/4c/Flag_of_Sweden.svg",
       "license": "Public domain"
     },
@@ -1388,6 +1561,7 @@
       "alpha3": "CHE",
       "difficulty": "easy",
       "name": "Switzerland",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Switzerland.svg",
       "license": "Public domain"
     },
@@ -1396,6 +1570,7 @@
       "alpha3": "SYR",
       "difficulty": "easy",
       "name": "Syria",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/5/53/Flag_of_Syria.svg",
       "license": "Public domain"
     },
@@ -1404,6 +1579,7 @@
       "alpha3": "TJK",
       "difficulty": "hard",
       "name": "Tajikistan",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/d/d0/Flag_of_Tajikistan.svg",
       "license": "Public domain"
     },
@@ -1412,6 +1588,7 @@
       "alpha3": "TZA",
       "difficulty": "medium",
       "name": "Tanzania",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/3/38/Flag_of_Tanzania.svg",
       "license": "Public domain"
     },
@@ -1420,6 +1597,7 @@
       "alpha3": "THA",
       "difficulty": "easy",
       "name": "Thailand",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Thailand.svg",
       "license": "Public domain"
     },
@@ -1428,6 +1606,7 @@
       "alpha3": "TLS",
       "difficulty": "medium",
       "name": "Timor-Leste",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/2/26/Flag_of_East_Timor.svg",
       "license": "Public domain"
     },
@@ -1436,6 +1615,7 @@
       "alpha3": "TGO",
       "difficulty": "medium",
       "name": "Togo",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/68/Flag_of_Togo.svg",
       "license": "Public domain"
     },
@@ -1444,6 +1624,7 @@
       "alpha3": "TON",
       "difficulty": "hard",
       "name": "Tonga",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Tonga.svg",
       "license": "Public domain"
     },
@@ -1452,6 +1633,7 @@
       "alpha3": "TTO",
       "difficulty": "hard",
       "name": "Trinidad and Tobago",
+      "continent": "South America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/64/Flag_of_Trinidad_and_Tobago.svg",
       "license": "Public domain"
     },
@@ -1460,6 +1642,7 @@
       "alpha3": "TUN",
       "difficulty": "medium",
       "name": "Tunisia",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/c/ce/Flag_of_Tunisia.svg",
       "license": "Public domain"
     },
@@ -1468,6 +1651,7 @@
       "alpha3": "TUR",
       "difficulty": "easy",
       "name": "Turkey",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg",
       "license": "Public domain"
     },
@@ -1476,6 +1660,7 @@
       "alpha3": "TKM",
       "difficulty": "hard",
       "name": "Turkmenistan",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Turkmenistan.svg",
       "license": "Public domain"
     },
@@ -1484,6 +1669,7 @@
       "alpha3": "TUV",
       "difficulty": "hard",
       "name": "Tuvalu",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/3/38/Flag_of_Tuvalu.svg",
       "license": "Public domain"
     },
@@ -1492,6 +1678,7 @@
       "alpha3": "UGA",
       "difficulty": "medium",
       "name": "Uganda",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/4e/Flag_of_Uganda.svg",
       "license": "Public domain"
     },
@@ -1500,6 +1687,7 @@
       "alpha3": "UKR",
       "difficulty": "easy",
       "name": "Ukraine",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg",
       "license": "Public domain"
     },
@@ -1508,6 +1696,7 @@
       "alpha3": "ARE",
       "difficulty": "easy",
       "name": "United Arab Emirates",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_United_Arab_Emirates.svg",
       "license": "Public domain"
     },
@@ -1516,6 +1705,7 @@
       "alpha3": "GBR",
       "difficulty": "easy",
       "name": "United Kingdom",
+      "continent": "Europe",
       "file_url": "//upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
       "license": "Public domain"
     },
@@ -1524,6 +1714,7 @@
       "alpha3": "USA",
       "difficulty": "easy",
       "name": "United States of America",
+      "continent": "North America",
       "file_url": "//upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
       "license": "Public domain"
     },
@@ -1532,6 +1723,7 @@
       "alpha3": "URY",
       "difficulty": "medium",
       "name": "Uruguay",
+      "continent": "South America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Uruguay.svg",
       "license": "Public domain"
     },
@@ -1540,6 +1732,7 @@
       "alpha3": "UZB",
       "difficulty": "hard",
       "name": "Uzbekistan",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/8/84/Flag_of_Uzbekistan.svg",
       "license": "Public domain"
     },
@@ -1548,6 +1741,7 @@
       "alpha3": "VUT",
       "difficulty": "hard",
       "name": "Vanuatu",
+      "continent": "Oceania",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/6e/Flag_of_Vanuatu_%28official%29.svg",
       "license": "Public domain"
     },
@@ -1556,6 +1750,7 @@
       "alpha3": "VEN",
       "difficulty": "easy",
       "name": "Venezuela",
+      "continent": "South America",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/06/Flag_of_Venezuela.svg",
       "license": "Public domain"
     },
@@ -1564,6 +1759,7 @@
       "alpha3": "VNM",
       "difficulty": "easy",
       "name": "Vietnam",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg",
       "license": "Public domain"
     },
@@ -1572,6 +1768,7 @@
       "alpha3": "YEM",
       "difficulty": "medium",
       "name": "Yemen",
+      "continent": "Asia",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/8/89/Flag_of_Yemen.svg",
       "license": "Public domain"
     },
@@ -1580,6 +1777,7 @@
       "alpha3": "ZMB",
       "difficulty": "hard",
       "name": "Zambia",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/0/06/Flag_of_Zambia.svg",
       "license": "Public domain"
     },
@@ -1588,6 +1786,7 @@
       "alpha3": "ZWE",
       "difficulty": "medium",
       "name": "Zimbabwe",
+      "continent": "Africa",
       "file_url": "//upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg",
       "license": "Public domain"
     }

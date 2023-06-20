@@ -15,9 +15,11 @@ Flagmaster is a flag guessing game.
 ## Tech
 - NextJS - Frontend and APIs
 - Tailwind - Overall Styling of the application
+- Headless UI - Form Components
+- React Icons - used some icons
 - NextAuth (AWS Cognito) - User Authentication
 - AWS S3 - File storage of all images and leaderboards data
-- AWS DynamoDB - Datastore
+- AWS DynamoDB - Datastore (Single Table Design, Data stream)
 - AWS Lambda - for other data processing
 
 ## Installation
