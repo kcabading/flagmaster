@@ -26,7 +26,7 @@ async function getChallengeRecordById (id: string) {
   console.log('getITEM COmmand ')
   let response = await client.send(
     new GetItemCommand({
-        TableName: 'flagmasters',
+        TableName: 'flagmaster',
         Key: {
           "pk": { S: 'challenges' },
           "sk": { S: `CHALLENGE#${id}` },
@@ -95,11 +95,13 @@ export async function POST(req:NextRequest, { params }: IGetParams) {
       let points = Number(Object.values(Item?.points || 10)[0])
       let timeToFinish = Number(Object.values(Item?.timeToFinish || 60)[0])
       
-      let pointsEarned = status === 'PASSED' ? calculatePoints(points, timeToFinish, timeUsed, flagNumberOption, correctAnswer) : '0'
+      console.log(points, timeToFinish, timeUsed, flagNumberOption, correctAnswer)
 
+      let pointsEarned = status === 'PASSED' ? calculatePoints(points, timeToFinish, timeUsed, flagNumberOption, correctAnswer) : '0'
+      
       const updateResult = await client.send(
         new UpdateItemCommand({
-            TableName: 'flagmasters',
+            TableName: 'flagmaster',
             Key: {
               "pk": { S: `USER#${userId}` },
               "sk": { S: `CHALLENGE#${challengeId}` },
@@ -116,7 +118,6 @@ export async function POST(req:NextRequest, { params }: IGetParams) {
             }
         })
       )
-      console.log('UPDATE RESULT', updateResult)
         
       return NextResponse.json({ message: 'Successfully updated game result' })
     } catch (error) {

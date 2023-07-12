@@ -3,16 +3,15 @@
 import Link from "next/link"
 import { useState, useEffect } from 'react'
 import SigninButton from "../SigninButton"
-
-
 import { Switch } from '@headlessui/react'
 import useColorMode from "@/hooks/useColorMode"
 import Image from "next/image"
 
-import {AiOutlineMenu, AiOutlineClose, AiFillSetting, AiFillFacebook, AiFillInstagram}  from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineClose, AiFillSetting, AiFillFacebook, AiFillInstagram}  from "react-icons/ai";
 import useIsLoggedIn from '@/hooks/useIsLoggedIn'
-
 import { useRouter } from "next/navigation"
+
+import { BsSun, BsMoon } from "react-icons/bs";
 
 const Navigation = function () {
 
@@ -28,7 +27,14 @@ const Navigation = function () {
         router.push(link)
     }
 
+    const toggleTheme = function() {
+        console.log('theme')
+        console.log(switcheEnabled)
+        setSwitchEnabled(!switcheEnabled)
+    }
+
     useEffect(() => {   
+        console.log('changing theme')
         setColorMode( switcheEnabled ? "dark" : "light")
     }, [switcheEnabled])
 
@@ -40,14 +46,17 @@ const Navigation = function () {
                         <Link href="/"><Image className="inline" src="/flagmaster.png" width={50} height={50} alt="flagmaster logo"/>Flag Master</Link>
                     </h1>
                     <div className="flex max-sm:hidden dark:text-white">
-                        <Link href="/flags">Flags</Link>
+                        { isLoggedIn && <Link href="/play">Play</Link> }
+                        <Link className="ml-3" href="/flags">Flags</Link>
                         <Link href="/leaderboards" className="ml-3" >Leaderboards</Link>
-                        { isLoggedIn && <Link className="ml-3" href="/play">Play</Link> }
                     </div>
                     <div className="flex max-sm:hidden dark:text-white">
                         <SigninButton />
-                        { isLoggedIn && <Link className="ml-3 text-2xl" href="/settings"><AiFillSetting/></Link> }
-                        <Switch
+                        {/* { isLoggedIn && <Link className="ml-3 text-2xl" href="/settings"><AiFillSetting/></Link> } */}
+                        <button className="ml-3 px-3 rounded-md hover:text-black hover:bg-slate-100" onClick={toggleTheme}>
+                           { switcheEnabled ? <BsMoon /> : <BsSun /> }
+                        </button>
+                        {/* <Switch
                             checked={switcheEnabled}
                             onChange={setSwitchEnabled}
                             className={`${
@@ -60,7 +69,7 @@ const Navigation = function () {
                                     switcheEnabled ? 'translate-x-6' : 'translate-x-1'
                                 } inline-block h-4 w-4 transform rounded-full bg-white transition`}
                             />
-                        </Switch>
+                        </Switch> */}
                     </div>
                     {
                         mobileNavEnabled
@@ -76,9 +85,9 @@ const Navigation = function () {
                     <div className="w-full flex text-xl my-3">
                         <SigninButton />
                     </div>
+                    { isLoggedIn && <button onClick={ () => handleNavClick('/play')} className="text-xl my-3 text-left">Play</button> }
                     <button onClick={ () => handleNavClick('/flags')} className="text-xl my-3 text-left">Flags</button>
                     <button onClick={ () => handleNavClick('/leaderboards')} className="text-xl my-3 text-left">Leaderboards</button>
-                    { isLoggedIn && <button onClick={ () => handleNavClick('/play')} className="text-xl my-3 text-left">Play</button> }
                     <div className="text-xl flex justify-between my-3">
                         <label htmlFor="">Dark Mode?</label>
                         <Switch

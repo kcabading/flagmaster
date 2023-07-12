@@ -75,8 +75,9 @@ const Challenge = function( props: IPageProps ) {
         console.log('use effect')
         getChallenge(challengeId)
             .then((data) => {
-            setGameOptions(JSON.parse(data));
-            setIsLoading(false);
+                console.log('game options: ', data)
+                setGameOptions(JSON.parse(data));
+                setIsLoading(false);
             })
     }, [])
 

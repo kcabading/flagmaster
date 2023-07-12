@@ -138,7 +138,7 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
                             initialTimeOption={initialTimeOption}
                         />
 
-                        <div className="w-1/3 sm:text-xl text-right">Answers: {correctAnswer}/{flagNumberOption}</div>
+                        <div className="w-1/3 sm:text-xl text-right">Correct: {correctAnswer}/{flagNumberOption}</div>
                     </div>
                     <div className='mt-5'>
                     { flagUrl && <Image priority={true} src={flagUrl} width={300} height={300} alt="flag image" className="m-auto md:w-1/2 max-sm:w-full border-slate-500 border-2" /> }

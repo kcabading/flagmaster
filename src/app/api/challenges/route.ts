@@ -22,7 +22,9 @@ type Challenge = {
     completed: boolean,
     pointsEarned: number,
     timeTaken: string,
-    status: string
+    status: string,
+    level: string,
+    continent: string
 }
  
 export async function GET(req:NextRequest) {
@@ -32,15 +34,18 @@ export async function GET(req:NextRequest) {
     // get current user id
     let userId = token?.sub
     let userEmail = session?.user?.email
+    console.log('SESSION')
+    console.log(session)
+
     if (session && userId) {
         //Signed in
-        console.log('SESSION')
-        console.log(session)
+        console.log('SIGNED IN')
+        console.log('getting challenges!!')
         let challenges:Challenge[] = []
         try {
             const promise1 = client.send(
                 new QueryCommand({
-                    TableName: 'flagmasters',
+                    TableName: 'flagmaster',
                     KeyConditionExpression: "pk = :pk",
                     ExpressionAttributeValues: {
                         ":pk": {S: "challenges"}
@@ -50,7 +55,7 @@ export async function GET(req:NextRequest) {
 
             const promise2 = client.send(
                 new QueryCommand({
-                    TableName: 'flagmasters',
+                    TableName: 'flagmaster',
                     KeyConditionExpression: "pk = :pk and begins_with(sk, :sk)",
                     ExpressionAttributeValues: {
                         ":pk": {S: `USER#${userEmail}`},
@@ -61,10 +66,12 @@ export async function GET(req:NextRequest) {
             
             let [challenges, userChallenges] = await Promise.all([promise1, promise2])
 
-            
+            console.log('challenges', challenges)
             console.log('use challenges', userChallenges.Items)
             
             let allChallenges = challenges.Items?.map( challenge => {
+
+                console.log('ITEM', challenge)
                 let sk = Object.values(challenge.sk)[0]
                 let challengeSortKey = sk.split('#')[1]
 
@@ -73,10 +80,12 @@ export async function GET(req:NextRequest) {
                     title : Object.values(challenge.title)[0],
                     points : Object.values(challenge.points)[0],
                     mode : Object.values(challenge.mode)[0],
+                    level: Object.values(challenge.level)[0],
+                    continent: Object.values(challenge.continent)[0],
                     completed: false,
                     pointsEarned: 0,
                     timeTaken: '',
-                    status: '',
+                    status: ''
                 }
 
                 // loop through user challenges
@@ -98,32 +107,11 @@ export async function GET(req:NextRequest) {
 
             })
 
-
-            // console.log('ALL CHALLENGES', allChallenges)
-
-            
-            // if (Items?.length) {
-            //     challenges = Items.map( item => {
-
-            //         let sk = Object.values(item.sk)[0]
-            //         let challengeSortKey = sk.split('#')[1]
-
-            //         return {
-            //             sk : challengeSortKey,
-            //             title : Object.values(item.title)[0],
-            //             points : Object.values(item.points)[0],
-            //             mode : Object.values(item.mode)[0]
-            //         }
-            //     })
-            // }
-
-
-            // console.log('ITEM!!!!!!!!')
-            // console.log(Items)
             return NextResponse.json(allChallenges);
 
         } catch (error) {
-            console.log('NOT SIGNED IN')
+            console.log('error getting challenges')
+            console.log(error)
             NextResponse.json({ error }, { status: 500 })
         } 
     } else {
