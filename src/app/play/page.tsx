@@ -9,7 +9,7 @@ import getURL from '../../utils/getURL'
 
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import { Skeleton } from '../../components/ui/skeleton'
+import Skeleton from '../../components/ui/skeleton'
 import {
     Select,
     SelectContent,
