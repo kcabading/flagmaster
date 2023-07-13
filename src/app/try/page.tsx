@@ -9,6 +9,7 @@ const Try = () => {
         initialTimeOption:0, 
         ascTimeOption: true, 
         modeOption: 'multiple',
+        continent: 'all',
         flagNumberOption: searchParams.has('flag') ? Number(searchParams.get('flag')) : 5,
         difficultyOption: searchParams.has('level') ? String(searchParams.get('level')?.toLowerCase()) : 'easy'
     }
