@@ -1,21 +1,22 @@
 import countries from '@/data/countries.json'
 import useLocalStorage from './useLocalStorage'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
-const useFlagGenerator = function(flagCount: number, difficulty: string) {
+const useFlagGenerator = function(flagCount: number, difficulty: string, continent: string) {
 
     const [usedFlags, setUsedFlags] = useLocalStorage('chosenFlags', '[]')
     const [flag, setGeneratedFlag] = useState<string>('')
     const [flagUrl, setFlagUrl] = useState<string>('')
     const [choices, setChoices] = useState<string[]>([])
 
-    function generateFlagFromData(){
+    function generateFlagFromData () {
         let flagName: string, flagUrl: string, filteredCountries
-        
-        if (difficulty === 'all') {
-            filteredCountries = countries
+        if (continent !== 'all') {
+            filteredCountries = countries.filter( country => country.continent === continent)
         } else {
-            filteredCountries = countries.filter(country => country.difficulty === difficulty)
+            filteredCountries = countries.filter( country => {
+                return difficulty === 'all' ? true  :  country.difficulty == difficulty
+            })
         }
 
         let rand = Math.random() * filteredCountries.length
@@ -35,6 +36,7 @@ const useFlagGenerator = function(flagCount: number, difficulty: string) {
         do {
             generatedFlag = generateFlagFromData()
         } while (parsedFlags?.includes(generatedFlag.flagName))
+
         let {flagName, flagUrl} = generatedFlag
         // add the generated flag in the choices
         options.push(flagName)

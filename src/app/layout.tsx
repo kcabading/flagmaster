@@ -1,4 +1,4 @@
-import './globals.css'
+import './global.css'
 import Navigation from '../components/layouts/Nav'
 import Footer from '../components/layouts/Footer'
 

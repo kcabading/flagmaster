@@ -22,9 +22,7 @@ const Timer = function (initial: number, ascending: boolean) {
     }
 
     function reset() {
-        console.log('reset from usetimer time', initial)
         setCounter(initial)
-        // setTimer(convertTimeToString(initial))
     }
     
     return { timer: convertTimeToString(counter), counter, stop, start, reset }

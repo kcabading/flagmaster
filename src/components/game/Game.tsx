@@ -23,6 +23,7 @@ interface GameProps {
     ascTimeOption: boolean,
     modeOption: string // multiple, fill,
     difficultyOption: string,
+    continent: string,
     handleGameFinished: (
         challengeId: string, 
         timer: string | number, 
@@ -32,8 +33,8 @@ interface GameProps {
         ) => void
 }
 
-const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption, handleGameFinished }:GameProps ) {
-    console.log('GAME RENDER')
+const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption, continent, handleGameFinished }:GameProps ) {
+    
     const [ flagCount, setFlagCount ] = useState(0)
     const { timer, start, stop, reset } = useTimer(initialTimeOption, ascTimeOption)
     const [ answerHistory, setAnswerHistory ] = useState<AnswerHistory[]>([])
@@ -44,7 +45,7 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
     
     const [ correctAnswer, setCorrectAnswer ] = useState(0)
     const [ answered, setAnswered ] = useState(false)
-    const { flag, flagUrl, choices, usedFlags, setUsedFlags, generateNewFlag } = useFlagGenerator(flagCount, difficultyOption)
+    const { flag, flagUrl, choices, usedFlags, setUsedFlags, generateNewFlag } = useFlagGenerator(flagCount, difficultyOption, continent)
 
     function handleReset() {
         setUsedFlags('[]')
@@ -68,15 +69,20 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
             setFlagCount( prev => prev + 1)
             if (guess === flag) setCorrectAnswer( prev => prev + 1)
             setAnswered(false)
-            let parsedFlags = JSON.parse(usedFlags)
-            let newUsedFlags: string = '[]'
-            if(usedFlags.length > 0) {
-                parsedFlags.push(flag)
-                newUsedFlags = JSON.stringify(parsedFlags)
-            } else {
-                newUsedFlags = JSON.stringify([flag])
-            }
-            setUsedFlags(newUsedFlags)
+            
+            setUsedFlags((prev:string) => {
+                let newUsedFlags: string = '[]'
+                let parsedFlags = JSON.parse(prev)
+
+                if(usedFlags.length > 0) {
+                    parsedFlags.push(flag)
+                    newUsedFlags = JSON.stringify(parsedFlags)
+                } else {
+                    newUsedFlags = JSON.stringify([flag])
+                }
+                return newUsedFlags
+            })
+
         }, 500)
     }
 
@@ -99,6 +105,7 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
     }
 
     if (flagCount === flagNumberOption ||  (!ascTimeOption && timer === '00:00')) {
+        console.log('DONE')
         stop()
         let timeTaken =  initialTimeOption > 0 ? convertTimeToString(initialTimeOption - convertTimeToNumber(timer)) : timer
         let status =  correctAnswer < (flagNumberOption / 2) || answerHistory.length !== flagNumberOption ? 'FAILED' : 'PASSED'
@@ -113,7 +120,9 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
     }, [flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption])
 
     useEffect(() => {
-        generateNewFlag()
+        if (flagCount !== flagNumberOption) {
+            generateNewFlag()
+        }
     }, [flagCount])
 
     return (
@@ -158,7 +167,7 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
                     <div className="choices mt-5">
                         {
                             modeOption === 'fill'
-                            ? <GameGuessLetters 
+                            ? <GameGuessLetters
                                 powerUps={powerUps} 
                                 flagLetters={flag} 
                                 handleCorrectAnswer={handleGuessFlag} 

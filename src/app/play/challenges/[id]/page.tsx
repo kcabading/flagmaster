@@ -13,7 +13,8 @@ interface IGameOptions {
     initialTimeOption: number,
     ascTimeOption: boolean,
     modeOption: string,
-    difficultyOption: string
+    difficultyOption: string,
+    continent: string
 }
 
 function handleGameFinished(
@@ -51,7 +52,6 @@ async function getChallenge(challengeId: string) {
         // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data');
     }
-    
     return res.json();
 }
 
@@ -65,7 +65,8 @@ const Challenge = function( props: IPageProps ) {
         initialTimeOption: 0,
         ascTimeOption: true,
         modeOption: 'multiple',
-        difficultyOption: 'easy'
+        difficultyOption: 'easy',
+        continent: 'all'
     })
 
     const [ isLoading, setIsLoading] = useState(true)
@@ -75,7 +76,6 @@ const Challenge = function( props: IPageProps ) {
         console.log('use effect')
         getChallenge(challengeId)
             .then((data) => {
-                console.log('game options: ', data)
                 setGameOptions(JSON.parse(data));
                 setIsLoading(false);
             })
