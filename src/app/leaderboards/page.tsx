@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from 'react'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import getURL from '../../utils/getURL'
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ILeader {
     userPK: string,
@@ -55,7 +56,12 @@ const Leaderboards = function() {
             <div className="w-full">
                 { 
                     isLoading
-                    ? <>Loading...</>
+                    ? 
+                        Array.from(Array(10).keys()).map(( id ) => (
+                            <div key={id} className="flex items-center space-x-4 py-3">
+                                <Skeleton className="h-20 w-[100%]" />
+                            </div>
+                        ))
                     :
                     <ul className="leader-list">
                         {leaders.map( (leader, index) => {
