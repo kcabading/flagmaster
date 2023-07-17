@@ -16,9 +16,11 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+import Challenge from './challenges/[id]/page'
 
 const continents = ['all','Asia','Africa','Europe','North America','South America','Oceania']
 const levels = ['all', 'easy', 'medium', 'hard']
+const modes = ['all', 'multiple', 'fill']
 
 
 function classNames(...classes:string[]) {
@@ -59,7 +61,9 @@ const Play = function( props: IPageProps ) {
     console.log(searchParams.get('flag'))
     const filterByContinent = searchParams.has('continent') ? searchParams.get('continent') : continents[0]
     const filterByLevel = searchParams.has('level') ? searchParams.get('level') : levels[0]
+    const filterByMode = searchParams.has('mode') ? searchParams.get('mode') : modes[0]
 
+    const [selectedMode, setSelectedMode] = useState(filterByMode)
     const [selectedContinent, setSelectedContinent] = useState(filterByContinent)
     const [selectedLevel, setSelectedLevel] = useState(filterByLevel)
 
@@ -88,6 +92,9 @@ const Play = function( props: IPageProps ) {
         return selectedLevel === 'all' ? true  :  challenge.level == selectedLevel
     }).filter( challenge => {
         return selectedContinent === 'all' ? true  :  challenge.continent == selectedContinent
+    }).filter( challenge => {
+        console.log(challenge.mode)
+        return selectedMode === 'all' ? true  :  challenge.mode == selectedMode
     })
     
     return (
@@ -98,7 +105,23 @@ const Play = function( props: IPageProps ) {
                     <div className='by-difficulty mb-5'>
                         <div className="filters w-full flex mb-5">
                             <div className="w-full flex items-center justify-end dark:text-white">
-                                
+                                <div className='mr-2'>
+                                    <Select onValueChange={setSelectedMode} defaultValue="all">
+                                        <SelectTrigger className="w-[180px]">
+                                            <SelectValue placeholder="Select a Level" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup className='text'>
+                                                <SelectLabel>By Game Mode</SelectLabel>
+                                                {
+                                                    modes.map( (mode) => {
+                                                        return <SelectItem key={mode} value={mode}>{mode}</SelectItem>
+                                                    })
+                                                }
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
                                 <div className='mr-2'>
                                     <Select onValueChange={setSelectedLevel} defaultValue="all">
                                         <SelectTrigger className="w-[180px]">

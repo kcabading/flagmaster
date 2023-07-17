@@ -4,6 +4,8 @@ import Game from '@/components/game/Game'
 import getURL from '@/utils/getURL'
 import { useEffect, useState } from 'react'
 
+import { usePathname, useSearchParams } from 'next/navigation'
+
 interface IPageProps {
     params: { id: string }
 }
@@ -71,6 +73,9 @@ const Challenge = function( props: IPageProps ) {
 
     const [ isLoading, setIsLoading] = useState(true)
 
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+
     useEffect(() => {
         setIsLoading(true)
         console.log('use effect')
@@ -80,6 +85,15 @@ const Challenge = function( props: IPageProps ) {
                 setIsLoading(false);
             })
     }, [])
+
+
+    useEffect(() => {
+        const url = `${pathname}?${searchParams}`
+        console.log('changing url?')
+        console.log(url)
+        // You can now use the current URL
+        // ...
+      }, [pathname, searchParams])
 
     return (
         <>
