@@ -14,7 +14,16 @@ import {
     SelectLabel,
     SelectTrigger,
     SelectValue,
-  } from "@/components/ui/select"
+} from "@/components/ui/select"
+
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
 
 interface IPageProps {
@@ -25,12 +34,62 @@ const continents = ['all','Asia','Africa','Europe','North America','South Americ
 
 const Flags =  (props: IPageProps) => {
 
-    // const session = await getServerSession(authOptions);
-    // console.log('SESSION', session)
     const searchParams = useSearchParams()
 
     const filterByContinent = searchParams.has('continent') ? searchParams.get('continent') : continents[0]
     const [selectedContinent, setSelectedContinent] = useState(filterByContinent)
+    const [open, setOpen] = useState(true);
+
+    const initFlagDetails = {
+        name: 'test',
+        file_url: '',
+        alpha3: '',
+        continent: '',
+        capital: 'test',
+        description: 'test',
+        population: 0,
+        area: 0
+    }
+
+    const [flagDetails, setFlagDetails] = useState(initFlagDetails)
+
+    type ICountry = {
+        url: string;
+        alpha3: string;
+        difficulty: string;
+        name: string;
+        continent: string;
+        file_url: string;
+        license: string;
+    }
+
+    async function handleOpenFlagDetails(country:ICountry) {
+
+        let countryDetails = {}
+        const res = await fetch(`https://restcountries.com/v3.1/alpha/${country.alpha3}`)
+        const resObject = await res.json()
+
+        if(resObject.length) {
+            const countryOtherDetails = resObject[0]
+            countryDetails = {
+                ...country,
+                area: countryOtherDetails.area,
+                population: countryOtherDetails.population,
+                capital: countryOtherDetails.capital[0]
+            }
+            console.log('Flag Data')
+            console.log(countryOtherDetails, countryDetails)
+        }
+
+        // set flag details
+        setFlagDetails((prev) => {
+            return {
+                ...prev,
+                ...countryDetails
+            }
+        })
+        setOpen(true)
+    }
 
     let filteredCountries = countries.filter( country => {
         return selectedContinent === 'all' ? true  :  country.continent === selectedContinent
@@ -38,6 +97,26 @@ const Flags =  (props: IPageProps) => {
 
     return (
         <>
+            <Dialog open={open} onOpenChange={setOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <Image className='m-auto border-2' src={flagDetails.file_url} width={300} height={300} alt={flagDetails.name}/>
+                        <DialogTitle className='text-center text-lg'>{flagDetails.name}</DialogTitle>
+                        <DialogDescription>
+                            <div className="text-lg text-center">
+                                <ul className='flag-details text-black'>
+                                    <li><span className='font-bold'>Country Code:</span> {flagDetails.alpha3}</li>
+                                    <li><span className='font-bold'>Capital:</span> {flagDetails.capital}</li>
+                                    <li><span className='font-bold'>Continent:</span> {flagDetails.continent}</li>
+                                    <li><span className='font-bold'>Population:</span> {flagDetails.population}</li>
+                                    <li><span className='font-bold'>Area:</span> {flagDetails.area}</li>
+                                    <li><span className='font-bold'>Description:</span> {flagDetails.description}</li>
+                                </ul>
+                            </div>
+                        </DialogDescription>
+                    </DialogHeader>
+                </DialogContent>
+            </Dialog>
             <div className='lg:w-3/4 max-lg:px-4 w-full'>
                 <div className='flex justify-between mb-5'>
                     <h1 className='font-bold mb-2 text-2xl'>List of Flags</h1>
@@ -63,13 +142,15 @@ const Flags =  (props: IPageProps) => {
                         </Select>
                     </div>
                 </div>
+                <div>
+                </div>
                 <div className="grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-5 gap-4">
                     {
                         filteredCountries.map((country, index) => {
                             return (
                                 <div key={index}>
                                     <p className='text-md'>{country.name}</p>
-                                    <div className=''>
+                                    <div className='' onClick={ (e) => handleOpenFlagDetails(country)}>
                                         <Image src={country.file_url} width={300} height={300} alt={country.name} className='border-2 hover:drop-shadow-lg m-auto max-sm:w-full border-slate-500' />
                                     </div>
                                 </div>
