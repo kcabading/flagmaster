@@ -16,9 +16,7 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-import Challenge from './challenges/[id]/page'
-import { Checkbox } from '@/components/ui/checkbox'
-import { channel } from 'diagnostics_channel'
+
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from "@/components/ui/label"
 
@@ -84,7 +82,6 @@ const Play = function( props: IPageProps ) {
     }
 
     function handleStatusFilterChange(status: string) {
-        console.log('change event', status)
         setSelectedStatus(status)
     }
 
@@ -121,7 +118,6 @@ const Play = function( props: IPageProps ) {
             case 'NOT-STARTED':
                 return challenge.status === ''
             default:
-                console.log(challenge.status)
                 return challenge.status === selectedStatus
         }
     })

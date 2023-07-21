@@ -28,13 +28,10 @@ const Navigation = function () {
     }
 
     const toggleTheme = function() {
-        console.log('theme')
-        console.log(switcheEnabled)
         setSwitchEnabled(!switcheEnabled)
     }
 
     useEffect(() => {   
-        console.log('changing theme')
         setColorMode( switcheEnabled ? "dark" : "light")
     }, [switcheEnabled])
 

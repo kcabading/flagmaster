@@ -2,8 +2,6 @@
 
 import countries from '@/data/countries.json'
 import { useState } from 'react';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/data/authOptions'
 import Image from 'next/image'
 import { useSearchParams, usePathname } from "next/navigation"
 import { Skeleton } from '@/components/ui/skeleton';
@@ -21,10 +19,8 @@ import {
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogHeader,
-    DialogTitle,
-    DialogTrigger,
+    DialogTitle
 } from "@/components/ui/dialog"
 
 

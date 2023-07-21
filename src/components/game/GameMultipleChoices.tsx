@@ -12,14 +12,10 @@ interface IMultipleChoicesProps {
 const GameMultipleChoices = ({ flag, answered, chosenFlag, choices, handleGuessFlag, powerUps}: IMultipleChoicesProps) => {
 
     useEffect( () => {
-        console.log('powerups')
-        console.log(powerUps)
         if (powerUps.includes('5050')) {
             let correctAnswerButton
             // let randomChoices = Math.floor(Math.random() * 4)
             let allInputs:HTMLCollection = document.getElementsByClassName('flag-choices')
-            console.log(allInputs)
-            console.log(flag)
 
             Array.from(allInputs).forEach( (element:any, index) => {
                 if (element.innerText === flag) {
@@ -35,16 +31,12 @@ const GameMultipleChoices = ({ flag, answered, chosenFlag, choices, handleGuessF
                 randomChoices.push(randomIndex)
             }
 
-            console.log(randomChoices)
-
             Array.from(allInputs).forEach( (element:any, index) => {
                 if (randomChoices.includes(index)) {
                     element.innerText = '-'
                     element.setAttribute('disabled', 'true')
                 }
             })
-
-            console.log(correctAnswerButton)
             
         } 
 

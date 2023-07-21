@@ -115,7 +115,6 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
     }
 
     useEffect(() => {
-        console.log('use effect')
         setSkipFlag(false)
         let letterOrder = 0
         setGuessLetters( () => {
@@ -150,8 +149,6 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
 
 
     useEffect( () => {
-        console.log('powerups')
-        console.log(powerUps)
         if (powerUps.includes('reveal1')) {
 
             let onlyFlagLetters = guessLetters.filter( (letter) => letter.order !== null)
@@ -177,8 +174,6 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
                 if (randomLetters.includes(randomIndex)) continue
                 randomLetters.push(randomIndex)
             }
-
-            console.log('RANDOM LETTERS', randomLetters)
             
             let allInputs:HTMLCollection = document.getElementsByClassName('letter-inputs')
 
@@ -186,7 +181,6 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
                 if (randomLetters.includes(index)) {
                     element.value = onlyFlagLetters[index].value
                     element.setAttribute('disabled', 'true')
-                    console.log('revealing letter', onlyFlagLetters[index].value)
                 } else {
                     element.value = ''
                 }

@@ -72,6 +72,7 @@ const Challenge = function( props: IPageProps ) {
     })
 
     const [ isLoading, setIsLoading] = useState(true)
+    const [ preventLeaving, setPreventLeaving ] = useState(false)
 
     const pathname = usePathname()
     const searchParams = useSearchParams()
@@ -82,18 +83,24 @@ const Challenge = function( props: IPageProps ) {
             .then((data) => {
                 setGameOptions(JSON.parse(data));
                 setIsLoading(false);
+                setPreventLeaving(true)
             })
     }, [])
 
 
-    useEffect(() => {
-        const url = `${pathname}?${searchParams}`
-        console.log('changing url?')
-        console.log(url)
-        // You can now use the current URL
-        // ...
-      }, [pathname, searchParams])
+    // useEffect(() => {
+    //     const url = `${pathname}?${searchParams}`
+    //     console.log('changing url?')
+    //     console.log(url)
 
+    //     return () => {
+    //         alert('dont!')
+    //         console.log('changing url?')
+    //         console.log(url)
+    //     }
+    //     // You can now use the current URL
+    //     // ...
+    //   }, [pathname, searchParams])
     return (
         <>
             <h1 className='font-bold text-xl mb-5'>Challenge#: {challengeId}</h1>
