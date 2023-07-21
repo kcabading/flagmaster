@@ -127,8 +127,14 @@ const Flags =  (props: IPageProps) => {
                                     {
                                     Array.from(Array(6).keys()).map(( id ) => (
                                         <div key={id} className="flex items-center justify-center space-x-4 py-1">
-                                            <div className="space-y-2 text-center flex-row justify-center">
-                                                <Skeleton className={`h-4 w-[${ id % 2 === 0 ? '250px' : '350px' }]`} />
+                                            <div className="space-y-1 text-center flex-row justify-center">
+                                                {
+                                                id % 2 === 0
+                                                ?
+                                                    <Skeleton className="h-4 w-[250px]" />
+                                                :
+                                                    <Skeleton className="h-4 w-[320px]" />
+                                                }
                                             </div>
                                         </div>
                                     ))

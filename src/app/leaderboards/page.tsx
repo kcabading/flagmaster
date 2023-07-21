@@ -75,9 +75,9 @@ const Leaderboards = function() {
                                                 <li>&middot;</li>
                                                 <li>Last played: {leader.lastPlayed}</li>
                                             </ul>
-                                            <div className="points-range rounded-lg w-full h-4 bg-slate-500 mt-2 overflow-hidden">
+                                            {/* <div className="points-range rounded-lg w-full h-4 bg-slate-500 mt-2 overflow-hidden">
                                                 <div className="w-3/5 bg-yellow-400 h-full" />
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="w-1/5 font-bold lg:text-2xl">{leader.totalPoints}</div>

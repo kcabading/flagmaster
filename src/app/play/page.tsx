@@ -17,10 +17,15 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import Challenge from './challenges/[id]/page'
+import { Checkbox } from '@/components/ui/checkbox'
+import { channel } from 'diagnostics_channel'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Label } from "@/components/ui/label"
 
-const continents = ['all','Asia','Africa','Europe','North America','South America','Oceania']
-const levels = ['all', 'easy', 'medium', 'hard']
-const modes = ['all', 'multiple', 'fill']
+const continents = ['All Continents','Asia','Africa','Europe','North America','South America','Oceania']
+const levels = ['All Levels', 'easy', 'medium', 'hard']
+const modes = ['All Game Modes', 'multiple', 'fill']
+const status = ['ALL STATUS', 'NOT STARTED', 'PASSED', 'FAILED']
 
 
 function classNames(...classes:string[]) {
@@ -60,10 +65,14 @@ const Play = function( props: IPageProps ) {
     const filterByContinent = searchParams.has('continent') ? searchParams.get('continent') : continents[0]
     const filterByLevel = searchParams.has('level') ? searchParams.get('level') : levels[0]
     const filterByMode = searchParams.has('mode') ? searchParams.get('mode') : modes[0]
+    const filterByStatus = searchParams.has('status') ? searchParams.get('status') : status[0]
+
 
     const [selectedMode, setSelectedMode] = useState(filterByMode)
     const [selectedContinent, setSelectedContinent] = useState(filterByContinent)
     const [selectedLevel, setSelectedLevel] = useState(filterByLevel)
+    const [selectedStatus, setSelectedStatus] = useState(filterByStatus)
+    const [challengesNumber, setChallengesNumber] = useState({ completed: 0, failed: 0, total: 0 })
 
     const router = useRouter()
     let currentUser = useCurrentUser()
@@ -74,22 +83,47 @@ const Play = function( props: IPageProps ) {
         router.push(getURL() +  `play/challenges/${id}`)
     }
 
+    function handleStatusFilterChange(status: string) {
+        console.log('change event', status)
+        setSelectedStatus(status)
+    }
+
     
     useEffect(() => {
         setIsLoading(true);
         getAllChallenges()
             .then((data) => {
                 setChallenges(data);
+
+                setChallengesNumber((prev) => {
+                    return {
+                        ...prev,
+                        completed: data.filter( (item: IChallenges) => item.status === 'PASSED').length,
+                        failed: data.filter( (item:IChallenges) => item.status === 'FAILED').length,
+                        total: data.length
+                    }
+                })
                 setIsLoading(false);
             })
     }, [])
 
+
     let filteredChallenges = challenges.filter( challenge => {
-        return selectedLevel === 'all' ? true  :  challenge.level == selectedLevel
+        return selectedLevel === 'All Levels' ? true  :  challenge.level == selectedLevel
     }).filter( challenge => {
-        return selectedContinent === 'all' ? true  :  challenge.continent == selectedContinent
+        return selectedContinent === 'All Continents' ? true  :  challenge.continent == selectedContinent
     }).filter( challenge => {
-        return selectedMode === 'all' ? true  :  challenge.mode == selectedMode
+        return selectedMode === 'All Game Modes' ? true  :  challenge.mode == selectedMode
+    }).filter( challenge => {
+        switch (selectedStatus) {
+            case 'ALL STATUS':
+                return true
+            case 'NOT-STARTED':
+                return challenge.status === ''
+            default:
+                console.log(challenge.status)
+                return challenge.status === selectedStatus
+        }
     })
     
     return (
@@ -98,14 +132,14 @@ const Play = function( props: IPageProps ) {
                 <p className='text-left mb-5'><span className='text-2xl font-bold'>Hi {currentUser?.name}</span>, are you up for a challenge or ready to battle other players?</p>
                 <div className="challenges">
                     <div className='by-difficulty mb-5'>
-                        <div className="filters w-full flex mb-5">
+                        <div className="filters w-full mb-5">
                             <div className="w-full flex items-center justify-between dark:text-white">
                                 <div className='max-sm:w-1/2'>
-                                    <h2 className='font-bold'>Challenges</h2>
+                                    <h2 className='font-bold text-lg'>Challenges</h2>
                                 </div>
                                 <div className="filters flex flex-wrap max-sm:w-1/2 justify-end">
                                     <div className='mr-2'>
-                                        <Select onValueChange={setSelectedMode} defaultValue="all">
+                                        <Select onValueChange={setSelectedMode} defaultValue="All Game Modes">
                                             <SelectTrigger className="w-[180px]">
                                                 <SelectValue placeholder="Select a Level" />
                                             </SelectTrigger>
@@ -122,7 +156,7 @@ const Play = function( props: IPageProps ) {
                                         </Select>
                                     </div>
                                     <div className='mr-2'>
-                                        <Select onValueChange={setSelectedLevel} defaultValue="all">
+                                        <Select onValueChange={setSelectedLevel} defaultValue="All Levels">
                                             <SelectTrigger className="w-[180px]">
                                                 <SelectValue placeholder="Select a Level" />
                                             </SelectTrigger>
@@ -139,7 +173,7 @@ const Play = function( props: IPageProps ) {
                                         </Select>
                                     </div>
                                     <div>
-                                        <Select onValueChange={setSelectedContinent} defaultValue="all">
+                                        <Select onValueChange={setSelectedContinent} defaultValue="All Continents">
                                             <SelectTrigger className="w-[180px]">
                                                 <SelectValue placeholder="Select a Level" />
                                             </SelectTrigger>
@@ -159,6 +193,28 @@ const Play = function( props: IPageProps ) {
                                             </SelectContent>
                                         </Select>
                                     </div>
+                                </div>
+                            </div>
+                            <div className="status-filters flex justify-between mt-3">
+                                <div>
+                                    <span className='sm:text-sm text-xs'>Completed {challengesNumber.completed}/10</span>&nbsp; | &nbsp;
+                                    <span className='sm:text-sm text-xs'>Failed {challengesNumber.failed}/10</span>
+                                </div>
+                                <div className='flex justify-end'>
+                                    <RadioGroup className='flex' onValueChange={handleStatusFilterChange}>
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="PASSED" id="option-one" />
+                                            <Label className="sm:text-sm text-xs" htmlFor="option-one">Completed</Label>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="FAILED" id="option-two" />
+                                            <Label className="sm:text-sm text-xs" htmlFor="option-two">Failed</Label>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="NOT-STARTED" id="option-two" />
+                                            <Label className="sm:text-sm text-xs" htmlFor="option-two">Not Started</Label>
+                                        </div>
+                                    </RadioGroup>
                                 </div>
                             </div>
                         </div>
