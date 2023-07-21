@@ -12,7 +12,7 @@ const SigninButton = () => {
             Sign Out
             </button>
           :
-            <button onClick={() => signIn('cognito')} className="cursor-pointer">
+            <button onClick={() => signIn('cognito', { callbackUrl: '/play' })} className="cursor-pointer">
             Sign In
             </button>
         }
