@@ -4,7 +4,6 @@ import convertTimeToString from '@/utils/convertTimeToString'
 
 const Timer = function (initial: number, ascending: boolean) {
     const [counter, setCounter] = useState(initial)
-    // const [timer, setTimer] = useState(convertTimeToString(initial))
     const [interval, setCounterInterval] = useState<number>()
 
     function stop() {
@@ -16,7 +15,6 @@ const Timer = function (initial: number, ascending: boolean) {
             setCounter( (prev) => {
                 return ascending ? prev + 1 : prev - 1
             })
-            // setTimer(convertTimeToString(ascending ? counter + 1 : counter - 1))
         }, 1000)
         setCounterInterval(counterInterval)
     }

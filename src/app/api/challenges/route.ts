@@ -40,7 +40,6 @@ export async function GET(req:NextRequest) {
     if (session && userId) {
         //Signed in
         console.log('SIGNED IN')
-        console.log('getting challenges!!')
         let challenges:Challenge[] = []
         try {
             const promise1 = client.send(
@@ -65,13 +64,9 @@ export async function GET(req:NextRequest) {
             )
             
             let [challenges, userChallenges] = await Promise.all([promise1, promise2])
-
-            console.log('challenges', challenges)
-            console.log('use challenges', userChallenges.Items)
             
             let allChallenges = challenges.Items?.map( challenge => {
 
-                console.log('ITEM', challenge)
                 let sk = Object.values(challenge.sk)[0]
                 let challengeSortKey = sk.split('#')[1]
 

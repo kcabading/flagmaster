@@ -6,6 +6,8 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/data/authOptions'
 import Image from 'next/image'
 import { useSearchParams, usePathname } from "next/navigation"
+import { Skeleton } from '@/components/ui/skeleton';
+
 import {
     Select,
     SelectContent,
@@ -30,7 +32,7 @@ interface IPageProps {
     params: { id: string }
 }
 
-const continents = ['all','Asia','Africa','Europe','North America','South America','Oceania']
+const continents = ['All Continents','Asia','Africa','Europe','North America','South America','Oceania']
 
 const Flags =  (props: IPageProps) => {
 
@@ -38,7 +40,8 @@ const Flags =  (props: IPageProps) => {
 
     const filterByContinent = searchParams.has('continent') ? searchParams.get('continent') : continents[0]
     const [selectedContinent, setSelectedContinent] = useState(filterByContinent)
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
+    const [isLoadingCountry, setIsLoadingCountry] = useState(false)
 
     const initFlagDetails = {
         name: 'test',
@@ -66,6 +69,15 @@ const Flags =  (props: IPageProps) => {
     async function handleOpenFlagDetails(country:ICountry) {
 
         let countryDetails = {}
+        setFlagDetails( (prev) => {
+            return {
+                ...initFlagDetails,
+                file_url: country.file_url,
+                name: country.name
+            }
+        })
+        setIsLoadingCountry(true)
+        setOpen(true)
         const res = await fetch(`https://restcountries.com/v3.1/alpha/${country.alpha3}`)
         const resObject = await res.json()
 
@@ -77,22 +89,19 @@ const Flags =  (props: IPageProps) => {
                 population: countryOtherDetails.population,
                 capital: countryOtherDetails.capital[0]
             }
-            console.log('Flag Data')
-            console.log(countryOtherDetails, countryDetails)
-        }
-
-        // set flag details
-        setFlagDetails((prev) => {
-            return {
-                ...prev,
-                ...countryDetails
-            }
-        })
-        setOpen(true)
+            // set flag details
+            setFlagDetails((prev) => {
+                return {
+                    ...prev,
+                    ...countryDetails
+                }
+            })
+            setIsLoadingCountry(false)
+        }        
     }
 
     let filteredCountries = countries.filter( country => {
-        return selectedContinent === 'all' ? true  :  country.continent === selectedContinent
+        return selectedContinent === 'All Continents' ? true  :  country.continent === selectedContinent
     })
 
     return (
@@ -101,9 +110,10 @@ const Flags =  (props: IPageProps) => {
                 <DialogContent>
                     <DialogHeader>
                         <Image className='m-auto border-2' src={flagDetails.file_url} width={300} height={300} alt={flagDetails.name}/>
-                        <DialogTitle className='text-center text-lg'>{flagDetails.name}</DialogTitle>
-                        <DialogDescription>
+                        <DialogTitle className='text-center text-xl'>{flagDetails.name}</DialogTitle>
+                        
                             <div className="text-lg text-center">
+                                { !isLoadingCountry ?
                                 <ul className='flag-details text-black'>
                                     <li><span className='font-bold'>Country Code:</span> {flagDetails.alpha3}</li>
                                     <li><span className='font-bold'>Capital:</span> {flagDetails.capital}</li>
@@ -112,8 +122,20 @@ const Flags =  (props: IPageProps) => {
                                     <li><span className='font-bold'>Area:</span> {flagDetails.area}</li>
                                     <li><span className='font-bold'>Description:</span> {flagDetails.description}</li>
                                 </ul>
+                                :
+                                <div className='text-center'>
+                                    {
+                                    Array.from(Array(6).keys()).map(( id ) => (
+                                        <div key={id} className="flex items-center justify-center space-x-4 py-1">
+                                            <div className="space-y-2 text-center flex-row justify-center">
+                                                <Skeleton className={`h-4 w-[${ id % 2 === 0 ? '250px' : '350px' }]`} />
+                                            </div>
+                                        </div>
+                                    ))
+                                    }
+                                </div>
+                                }
                             </div>
-                        </DialogDescription>
                     </DialogHeader>
                 </DialogContent>
             </Dialog>
@@ -121,9 +143,9 @@ const Flags =  (props: IPageProps) => {
                 <div className='flex justify-between mb-5'>
                     <h1 className='font-bold mb-2 text-2xl'>List of Flags</h1>
                     <div>
-                        <Select onValueChange={setSelectedContinent} defaultValue="all">
+                        <Select onValueChange={setSelectedContinent} defaultValue='All Continents'>
                             <SelectTrigger className="w-[180px]">
-                                <SelectValue placeholder="Select a Level" />
+                                <SelectValue placeholder="Select a Continent" />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
@@ -133,10 +155,6 @@ const Flags =  (props: IPageProps) => {
                                             return <SelectItem key={continent} value={continent}>{continent}</SelectItem>
                                         })
                                     }
-                                    
-                                    {/* <SelectItem value="easy">Easy</SelectItem>
-                                    <SelectItem value="medium">Medium</SelectItem>
-                                    <SelectItem value="hard">Hard</SelectItem> */}
                                 </SelectGroup>
                             </SelectContent>
                         </Select>

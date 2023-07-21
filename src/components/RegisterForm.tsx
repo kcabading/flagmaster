@@ -6,9 +6,6 @@ const RegisterForm = () => {
 
 
     const { data: session } = useSession();
-    
-    console.log(session?.user);
-    console.log(session)
 
     function handleRegister () {
         signIn('cognito')

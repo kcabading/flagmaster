@@ -26,17 +26,11 @@ export async function GET(req:NextRequest) {
             Key: process.env.LEADERBOARDS_KEY,
         }
 
-        console.log('INPUT', input)
-
         let command = new GetObjectCommand(input);
         const response: any = await client.send(command);
         const str = await response.Body.transformToString();
-        console.log(str);
         let leaderboards = JSON.parse(str)
-        console.log('LEADERBOARDS', leaderboards)
 
-        
-        // console.log(Items)
         return NextResponse.json(leaderboards);
 
     } catch (error) {

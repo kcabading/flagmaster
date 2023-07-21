@@ -105,7 +105,6 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
     }
 
     if (flagCount === flagNumberOption ||  (!ascTimeOption && timer === '00:00')) {
-        console.log('DONE')
         stop()
         let timeTaken =  initialTimeOption > 0 ? convertTimeToString(initialTimeOption - convertTimeToNumber(timer)) : timer
         let status =  correctAnswer < (flagNumberOption / 2) || answerHistory.length !== flagNumberOption ? 'FAILED' : 'PASSED'

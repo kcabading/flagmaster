@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation'
 import { signIn, useSession } from 'next-auth/react'
 
 export default function Home() {
-  console.log('render')
   
   const router = useRouter();
   const { data: session } = useSession();
@@ -20,13 +19,10 @@ export default function Home() {
   }
 
   function handleFlagNumberChange(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log(e.target.value)
     setNoOfFlags(Number(e.target.value))
   }
 
   function handleLevelChange(level: string) {
-
-    console.log('event', level)
     setLevel(level)
   }
 

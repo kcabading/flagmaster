@@ -42,12 +42,10 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
         if(e.key === 'Backspace' || e.key === 'ArrowLeft') {
             
             nextInputIndex = currentOrder -1
-            console.log(nextInputIndex)
             let prevInput = letterInputs[nextInputIndex] as HTMLInputElement 
 
             if (nextInputIndex >= 0 && nextInputIndex < letterInputs.length) {
                 prevInput.focus()
-                console.log('NEXT INDEX', nextInputIndex)
 
                 if (prevInput.hasAttribute('disabled') && ( (nextInputIndex - 1) !== -1)) {
                     let nextNextInput = letterInputs[nextInputIndex - 1] as HTMLInputElement
@@ -74,7 +72,6 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
                 })
 
                 if (guessAnswer.toLowerCase() === flagLetters.replaceAll(' ', '').replaceAll('-','').toLowerCase()) {
-                    console.log('correct answer')
                     setIsCorrect(true)
                     currentInput.blur()
                     handleCorrectAnswer(flagLetters)
@@ -85,11 +82,9 @@ const GameGuessLetters = ({ flagLetters, handleCorrectAnswer, handleIncorrectAns
             } 
 
             if (nextInputIndex > 0 && nextInputIndex < letterInputs.length) {
-                console.log('next focus')
                 nextInput.focus()
 
                 if (nextInput.hasAttribute('disabled') && ( (nextInputIndex + 1) < letterInputs.length) ) {
-                    console.log('next focus has disabled')
                     // nextInput.focus()
                     let nextNextInput = letterInputs[nextInputIndex + 1] as HTMLInputElement
                     nextNextInput.focus()                        

@@ -23,7 +23,6 @@ type IGetParams = {
 }
 
 async function getChallengeRecordById (id: string) {
-  console.log('getITEM COmmand ')
   let response = await client.send(
     new GetItemCommand({
         TableName: 'flagmaster',
@@ -48,7 +47,6 @@ export async function GET(req:NextRequest, { params }: IGetParams) {
     if (session && userId) {
       try {
         let { Item } = await getChallengeRecordById(challengeId)
-        console.log('CHALLENGE ITEM', Item)
         let jsonOptions = Item?.gameOptions || {}
         
         return NextResponse.json(Object.values(jsonOptions)[0]);
@@ -94,8 +92,6 @@ export async function POST(req:NextRequest, { params }: IGetParams) {
       let { Item } = await getChallengeRecordById(challengeId)
       let points = Number(Object.values(Item?.points || 10)[0])
       let timeToFinish = Number(Object.values(Item?.timeToFinish || 60)[0])
-      
-      console.log(points, timeToFinish, timeUsed, flagNumberOption, correctAnswer)
 
       let pointsEarned = status === 'PASSED' ? calculatePoints(points, timeToFinish, timeUsed, flagNumberOption, correctAnswer) : '0'
       

@@ -26,7 +26,6 @@ function rankToText(rank: number): string {
 }
 
 async function getLeaderBoardsData() {
-    console.log(getURL())
     const res = await fetch( getURL() + 'api/leaderboards');
     if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
@@ -44,7 +43,6 @@ const Leaderboards = function() {
     useEffect(() => {
         getLeaderBoardsData()
             .then((data) => {
-                console.log(data)
                 setLeaders(data);
                 setIsLoading(false);
             })
