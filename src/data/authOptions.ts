@@ -1,5 +1,9 @@
 import { AuthOptions } from "next-auth";
 
+type CognitoProfile = {
+  [key:string] : any
+}
+
 import CognitoProvider from "next-auth/providers/cognito";
 export const authOptions: AuthOptions = {
     providers: [
@@ -14,11 +18,9 @@ export const authOptions: AuthOptions = {
     session: { strategy: "jwt" },
     callbacks: {
       async jwt({ token, account, profile }) {
-        // console.log(account)
-        // console.log(profile)
-        // console.log(typeof profile)
         if (profile && !token.hasOwnProperty('cognito:username')) {
-          token.username = profile["cognito:username"]
+          // @ts-ignore
+          token.username = profile['cognito:username']
         }
         // if (profile) {
         //   token.
