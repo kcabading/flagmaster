@@ -110,7 +110,7 @@ const Flags =  (props: IPageProps) => {
                         
                             <div className="text-lg text-center">
                                 { !isLoadingCountry ?
-                                <ul className='flag-details text-black'>
+                                <ul className='flag-details text-black dark:text-white'>
                                     <li><span className='font-bold'>Country Code:</span> {flagDetails.alpha3}</li>
                                     <li><span className='font-bold'>Capital:</span> {flagDetails.capital}</li>
                                     <li><span className='font-bold'>Continent:</span> {flagDetails.continent}</li>
@@ -127,9 +127,9 @@ const Flags =  (props: IPageProps) => {
                                                 {
                                                 id % 2 === 0
                                                 ?
-                                                    <Skeleton className="h-4 w-[250px]" />
+                                                    <Skeleton className="h-5 w-[200px]" />
                                                 :
-                                                    <Skeleton className="h-4 w-[320px]" />
+                                                    <Skeleton className="h-5 w-[250px]" />
                                                 }
                                             </div>
                                         </div>
