@@ -1,8 +1,10 @@
-import { RadioGroup } from "@headlessui/react"
 import { useState } from "react"
 
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Label } from "@/components/ui/label"
+
 type quizOptionsProps = {
-    setNoOfFlags: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    setNoOfFlags: (noOfFlags: string) => void,
     setLevel: (level: string) => void,
 }
 
@@ -15,7 +17,21 @@ const QuizOptions = function (props: quizOptionsProps) {
         <>
             <div className="flex flex-col">
                 <label htmlFor="noOfFlags"  className="my-1">How many flags:</label>
-                <div className="flex">
+                <RadioGroup className='flex' onValueChange={props.setNoOfFlags}>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="10" id="option-one" />
+                        <Label className="sm:text-sm text-xs" htmlFor="option-one">10</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="20" id="option-two" />
+                        <Label className="sm:text-sm text-xs" htmlFor="option-two">20</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="30" id="option-two" />
+                        <Label className="sm:text-sm text-xs" htmlFor="option-two">30</Label>
+                    </div>
+                </RadioGroup>
+                {/* <div className="flex">
                     {
                         noOfFlags.map( (number, index) => {
                             return (
@@ -26,15 +42,29 @@ const QuizOptions = function (props: quizOptionsProps) {
                             )
                         })
                     }
-                </div>
+                </div> */}
                 
                 {/* <input type="number" name="noOfFlags" className="dark:text-black border-2 border-black" onChange={props.setNoOfFlags}/> */}
                 <label className="my-1">Difficulty</label>
-                <select name="difficulty" id="difficulty" className="dark:text-black border-2 border-slate-300" onChange={(e) => props.setLevel(e.target.value)}>
+                <RadioGroup className='flex' onValueChange={props.setLevel}>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="Easy" id="option-one" />
+                        <Label className="sm:text-sm text-xs" htmlFor="option-one">Easy</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="Medium" id="option-two" />
+                        <Label className="sm:text-sm text-xs" htmlFor="option-two">Medium</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="Hard" id="option-two" />
+                        <Label className="sm:text-sm text-xs" htmlFor="option-two">Hard</Label>
+                    </div>
+                </RadioGroup>
+                {/* <select name="difficulty" id="difficulty" className="dark:text-black border-2 border-slate-300" onChange={(e) => props.setLevel(e.target.value)}>
                     <option value="Easy">Easy</option>
                     <option value="Medium">Medium</option>
                     <option value="Hard">Hard</option>
-                </select>
+                </select> */}
             </div>
         </>
     )

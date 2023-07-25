@@ -18,8 +18,8 @@ export default function Home() {
     router.push(`try?flag=${noOfFlags}&level=${level}`);
   }
 
-  function handleFlagNumberChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setNoOfFlags(Number(e.target.value))
+  function handleFlagNumberChange(noOfFlags: string) {
+    setNoOfFlags(Number(noOfFlags))
   }
 
   function handleLevelChange(level: string) {
