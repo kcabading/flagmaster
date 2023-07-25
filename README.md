@@ -3,7 +3,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 # Flagmaster
 
-Flagmaster is a flag guessing game. 
+Flagmaster is a flag guessing game. I've created this web application while learning NextJS and improve my knowledge on flags at the same time.
+https://flagmaster.vercel.app
 
 ## Features
 - Play the game in different mode and difficulty levels
