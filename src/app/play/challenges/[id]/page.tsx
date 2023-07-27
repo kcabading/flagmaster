@@ -5,6 +5,7 @@ import getURL from '@/utils/getURL'
 import { useEffect, useState } from 'react'
 
 import { usePathname, useSearchParams } from 'next/navigation'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface IPageProps {
     params: { id: string }
@@ -78,7 +79,6 @@ const Challenge = function( props: IPageProps ) {
     const searchParams = useSearchParams()
 
     useEffect(() => {
-        setIsLoading(true)
         getChallenge(challengeId)
             .then((data) => {
                 setGameOptions(JSON.parse(data));
@@ -87,26 +87,24 @@ const Challenge = function( props: IPageProps ) {
             })
     }, [])
 
-
-    // useEffect(() => {
-    //     const url = `${pathname}?${searchParams}`
-    //     console.log('changing url?')
-    //     console.log(url)
-
-    //     return () => {
-    //         alert('dont!')
-    //         console.log('changing url?')
-    //         console.log(url)
-    //     }
-    //     // You can now use the current URL
-    //     // ...
-    //   }, [pathname, searchParams])
     return (
         <>
-            <h1 className='font-bold text-xl mb-5'>Challenge#: {challengeId}</h1>
+            <h1 className='font-bold text-xl mb-4'>Challenge#: {challengeId}</h1>
             {
                 isLoading
-                ? <p>Loading...</p>
+                ? 
+                    <div className="lg:w-1/2 w-full text-center max-lg:px-4 space-y-4">
+
+                        <div className="flex justify-between items-center">
+                            <Skeleton className="h-4 w-[150px] max-sm:w-[100px]" />
+                            <Skeleton className="w-[150px] h-10 max-sm:w-[100px]" />
+                            <Skeleton className="h-4 w-[150px] max-sm:w-[100px]" />
+                        </div>
+                        <div className="flex justify-center">
+                            <Skeleton className="h-[250px] w-[350px]" />
+                        </div>            
+                    </div>    
+                
                 : <Game {...gameOptions} handleGameFinished={handleGameFinished} challengeId={challengeId} />
             }
         </>

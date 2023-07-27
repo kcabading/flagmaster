@@ -56,7 +56,7 @@ const Leaderboards = function() {
                     isLoading
                     ? 
                         Array.from(Array(10).keys()).map(( id ) => (
-                            <div key={id} className="flex items-center space-x-4 py-3">
+                            <div key={id} className="flex items-center space-x-4 py-1">
                                 <Skeleton className="h-20 w-[100%]" />
                             </div>
                         ))

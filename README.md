@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 # Flagmaster
 
-Flagmaster is a flag guessing game. I've created this web application while learning NextJS and improve my knowledge on flags at the same time.
+Flagmaster is a flag guessing game. I've created this web application while learning NextJS and improve my knowledge on flags at the same time.gi
 https://flagmaster.vercel.app
 
 ## Features
@@ -23,9 +23,34 @@ https://flagmaster.vercel.app
 - AWS DynamoDB - Datastore (Single Table Design, Data stream)
 - AWS Lambda - for other data processing
 
+## Roadmap
+- [x] Home and Basic Layout pages
+- [x] Flag page
+- [x] Play Page (list all challenges)
+- [x] Game Modes (Multiple an Fill in the blanks)
+- [x] Game Components
+- [x] Leaderboards page
+- [ ] Multiplayer page
+
 ## Installation
 
+First, create your .env file with the following entries
+```bash
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=
+NEXT_PUBLIC_SITE_URL=
+COGNITO_CLIENT_ID=
+COGNITO_CLIENT_SECRET=
+COGNITO_ISSUER=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_REGION=
+DB_TABLE=DYNAMODB TABLE
+LEADERBOARDS_KEY=S3KEY WHERE YOUR leaderboard file is located
+```
+
 First, run the development server:
+
 
 ```bash
 npm run dev

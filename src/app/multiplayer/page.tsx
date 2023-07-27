@@ -3,7 +3,7 @@
 const Multiplayer = function() {
 
     return (
-        <h1>Multiplayer Page</h1>
+        <h1>This page is under construction</h1>
     )
 
 }

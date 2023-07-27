@@ -19,6 +19,7 @@ import {
 
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from "@/components/ui/label"
+import Link from 'next/link'
 
 const continents = ['All Continents','Asia','Africa','Europe','North America','South America','Oceania']
 const levels = ['All Levels', 'easy', 'medium', 'hard']
@@ -70,7 +71,7 @@ const Play = function( props: IPageProps ) {
     const [selectedContinent, setSelectedContinent] = useState(filterByContinent)
     const [selectedLevel, setSelectedLevel] = useState(filterByLevel)
     const [selectedStatus, setSelectedStatus] = useState(filterByStatus)
-    const [challengesNumber, setChallengesNumber] = useState({ completed: 0, failed: 0, total: 0 })
+    const [challengesNumber, setChallengesNumber] = useState({ completed: 0, failed: 0, total: 0, totalPoints: 0 })
 
     const router = useRouter()
     let currentUser = useCurrentUser()
@@ -96,8 +97,9 @@ const Play = function( props: IPageProps ) {
                     return {
                         ...prev,
                         completed: data.filter( (item: IChallenges) => item.status === 'PASSED').length,
-                        failed: data.filter( (item:IChallenges) => item.status === 'FAILED').length,
-                        total: data.length
+                        failed: data.filter( (item: IChallenges) => item.status === 'FAILED').length,
+                        total: data.length,
+                        totalPoints: data.reduce( (acc: number, item: IChallenges) => Number(item.pointsEarned) + acc , 0)
                     }
                 })
                 setIsLoading(false);
@@ -121,11 +123,16 @@ const Play = function( props: IPageProps ) {
                 return challenge.status === selectedStatus
         }
     })
+
+    console.log(challengesNumber)
     
     return (
         <>
             <div className="lg:w-3/4 max-lg:px-4">
-                <p className='text-left mb-5'><span className='text-2xl font-bold'>Hi {currentUser?.name}</span>, are you up for a challenge or ready to battle other players?</p>
+                <div className="flex justify-between items-center mb-5">
+                    <p className='text-left'><span className='text-2xl font-bold'>Hi {currentUser?.name}</span>, are you up for a challenge or ready to battle other players? </p>
+                    <Link href="/multiplayer" className='bg-amber-500 hover:bg-amber-300 rounded px-2 text-white py-2 max-sm:text-sm'>Battle Now!</Link>
+                </div>
                 <div className="challenges">
                     <div className='by-difficulty mb-5'>
                         <div className="filters w-full mb-5">
@@ -133,7 +140,7 @@ const Play = function( props: IPageProps ) {
                                 <div className='max-sm:w-1/2'>
                                     <h2 className='font-bold text-lg'>Challenges</h2>
                                 </div>
-                                <div className="filters flex flex-wrap max-sm:w-1/2 justify-end">
+                                <div className="filters flex max-sm:flex-col flex-wrap max-sm:w-1/2 justify-end">
                                     <div className='mr-2'>
                                         <Select onValueChange={setSelectedMode} defaultValue="All Game Modes">
                                             <SelectTrigger className="w-[180px]">
@@ -194,7 +201,8 @@ const Play = function( props: IPageProps ) {
                             <div className="status-filters flex justify-between mt-3">
                                 <div>
                                     <span className='sm:text-sm text-xs'>Completed {challengesNumber.completed}/10</span>&nbsp; | &nbsp;
-                                    <span className='sm:text-sm text-xs'>Failed {challengesNumber.failed}/10</span>
+                                    <span className='sm:text-sm text-xs'>Failed {challengesNumber.failed}/10</span>&nbsp; | &nbsp;
+                                    <span className='sm:text-sm text-xs'>Points {challengesNumber.totalPoints}</span>
                                 </div>
                                 <div className='flex justify-end'>
                                     <RadioGroup className='flex' onValueChange={handleStatusFilterChange}>
@@ -218,11 +226,14 @@ const Play = function( props: IPageProps ) {
                         isLoading 
                         ?
                             Array.from(Array(10).keys()).map(( id ) => (
-                                <div key={id} className="flex items-center space-x-4 py-3">
-                                    <div className="space-y-2">
-                                        <Skeleton className="h-4 w-[350px]" />
-                                        <Skeleton className="h-4 w-[300px]" />
+                                <div key={id} className="flex justify-between items-center px-2">
+                                    <div className="flex items-center space-x-4 py-3">
+                                        <div className="space-y-2">
+                                            <Skeleton className="h-4 w-[350px] max-sm:w-[220px]" />
+                                            <Skeleton className="h-4 w-[300px] max-sm:w-[150px]" />
+                                        </div>
                                     </div>
+                                    <Skeleton className="h-8 w-[200px] max-sm:w-[100px]" />
                                 </div>
                             ))
                         :

@@ -37,7 +37,7 @@ const Navigation = function () {
 
     return (
         <>
-            <nav className="w-full fixed backdrop-blur border-b border-slate-900/10 dark:border-slate-50/[0.06] bg-white/75 dark:bg-slate-900/75 py-3 max-lg:px-4">
+            <nav className="w-full fixed backdrop-blur border-b border-slate-900/10 dark:border-slate-50/[0.06] bg-white/75 dark:bg-slate-900/75 py-3 max-lg:px-4 z-50">
                 <div className="z-10 lg:z-50 flex items-center justify-between w-full lg:w-3/4 m-auto">
                     <h1 className="text-black font-bold font-mont dark:text-white">
                         <Link href="/"><Image className="inline" src="/flagmaster.png" width={50} height={50} alt="flagmaster logo"/>Flag Master</Link>
@@ -77,7 +77,7 @@ const Navigation = function () {
             </nav>
             <nav className={`
                 ${mobileNavEnabled ? 'right-0' : 'right-[100%]'}
-                z-10 mt-[75px] w-full h-full fixed bg-slate-800/90 transition-right ease-in-out duration-200 sm:hidden p-5 text-white`}>
+                mt-[75px] w-full h-full fixed bg-slate-800/90 transition-right ease-in-out duration-200 sm:hidden p-5 text-white z-50`}>
                 <div className="flex flex-col">
                     <div className="w-full flex text-xl my-3">
                         <SigninButton />
@@ -86,7 +86,7 @@ const Navigation = function () {
                     <button onClick={ () => handleNavClick('/flags')} className="text-xl my-3 text-left">Flags</button>
                     <button onClick={ () => handleNavClick('/leaderboards')} className="text-xl my-3 text-left">Leaderboards</button>
                     <div className="text-xl flex justify-between my-3">
-                        <label htmlFor="">Dark Mode?</label>
+                        <label htmlFor="">Dark Mode</label>
                         <Switch
                             checked={switcheEnabled}
                             onChange={setSwitchEnabled}
