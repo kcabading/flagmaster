@@ -13,13 +13,18 @@ export default function Home() {
 
   const [ noOfFlags, setNoOfFlags] = useState(5)
   const [ level, setLevel] = useState('easy')
+  const [ mode, setMode] = useState('multiple')
 
   function handleTryNow() {
-    router.push(`try?flag=${noOfFlags}&level=${level}`);
+    router.push(`try?flag=${noOfFlags}&level=${level}&mode=${mode}`);
   }
 
   function handleFlagNumberChange(noOfFlags: string) {
     setNoOfFlags(Number(noOfFlags))
+  }
+
+  function handleModeChange(mode: string) {
+    setMode(mode)
   }
 
   function handleLevelChange(level: string) {
@@ -35,7 +40,7 @@ export default function Home() {
               <p className='text-xl'>Think you know flags? Prepare for a thrilling challenge that will put your knowledge to the test. Guess flags from around the world, earn points, and conquer the leaderboard. Become the ultimate FlagMaster champion today!</p>
             </div>
             <div className="quick-start flex flex-col place-items-center sm:w-1/3">
-                <QuizOptions setNoOfFlags={handleFlagNumberChange} setLevel={handleLevelChange}/>
+                <QuizOptions setNoOfFlags={handleFlagNumberChange} setLevel={handleLevelChange} setMode={handleModeChange}/>
                 <button className='mt-3 border-2 border-slate-500 rounded-lg py-2 px-4 font-bold hover:bg-amber-400' onClick={handleTryNow}>Try it Now !</button>
             </div>
           </div>

@@ -165,7 +165,7 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
                         </div>
                         :
                         <div className="power-ups mt-4">
-                            <button title='Remove 2 Incorrect answer' disabled={powerUps.includes('5050') || powerUpsUsed ?  true: false} onClick={ () => addPowerUps('5050')} className={`${powerUps.includes('5050') ? 'bg-gray-300 ': 'bg-lime-500'}  border-2 px-2 py-1 text-white rounded-md mx-2`}><BsCircleHalf className='inline'/> 50/50</button>
+                            <button title='Remove 2 Incorrect answers' disabled={powerUps.includes('5050') || powerUpsUsed ?  true: false} onClick={ () => addPowerUps('5050')} className={`${powerUps.includes('5050') ? 'bg-gray-300 ': 'bg-lime-500'}  border-2 px-2 py-1 text-white rounded-md mx-2`}><BsCircleHalf className='inline'/> 50/50</button>
                         </div>
                     }
                     <div className="choices mt-5">
