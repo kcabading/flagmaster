@@ -7,6 +7,7 @@ import { useSearchParams, usePathname } from "next/navigation"
 import getURL from '../../utils/getURL'
 
 import { Skeleton } from '../../components/ui/skeleton'
+
 import {
     Select,
     SelectContent,
@@ -124,7 +125,6 @@ const Play = function( props: IPageProps ) {
         }
     })
 
-    console.log(challengesNumber)
     
     return (
         <>

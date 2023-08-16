@@ -42,10 +42,10 @@ const Navigation = function () {
                     <h1 className="text-black font-bold font-mont dark:text-white">
                         <Link href="/"><Image className="inline" src="/flagmaster.png" width={50} height={50} alt="flagmaster logo"/>Flag Master</Link>
                     </h1>
-                    <div className="flex max-sm:hidden dark:text-white">
-                        { isLoggedIn && <Link href="/play">Play</Link> }
-                        <Link className="ml-3" href="/flags">Flags</Link>
-                        <Link href="/leaderboards" className="ml-3" >Leaderboards</Link>
+                    <div className="flex max-sm:hidden dark:text-white font-semibold">
+                        { isLoggedIn && <Link href="/play" className="hover:text-amber-500">Play</Link> }
+                        <Link className="ml-3 hover:text-amber-500" href="/flags">Flags</Link>
+                        <Link href="/leaderboards" className="ml-3 hover:text-amber-500" >Leaderboards</Link>
                     </div>
                     <div className="flex max-sm:hidden dark:text-white">
                         <SigninButton />

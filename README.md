@@ -7,11 +7,11 @@ Flagmaster is a flag guessing game. I've created this web application while lear
 https://flagmaster.vercel.app
 
 ## Features
-- Play the game in different mode and difficulty levels
-- Use powerups to help you in the game
-- Finish different challenges
-- Battle other players ( in-progress)
-- Leaderboards
+- Play the game in different mode (Multiple, Fill in the blanks, Give me 5) and difficulty levels (Easy, Medium, Hard).
+- Use powerups to help you in the game.
+- Finish different challenges.
+- Battle other players ( in-progress).
+- Leaderboards.
 
 ## Tech
 - NextJS - Frontend and APIs
@@ -30,6 +30,7 @@ https://flagmaster.vercel.app
 - [x] Game Modes (Multiple an Fill in the blanks)
 - [x] Game Components
 - [x] Leaderboards page
+- [ ] New Game Mode (Give me 5!)
 - [ ] Multiplayer page
 
 ## Installation

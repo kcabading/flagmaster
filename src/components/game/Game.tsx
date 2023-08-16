@@ -158,14 +158,14 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
                         modeOption === 'fill'
                         ?
                         <div className="power-ups mt-4">
-                            <button disabled={powerUps.includes('reveal1') || powerUpsUsed ?  true: false} onClick={ () => addPowerUps('reveal1')} className={`${powerUps.includes('reveal1') ? 'bg-gray-300 ': 'bg-lime-500'}  border-2 px-2 py-1 text-white rounded-md mx-2`}>
+                            <button title='Revel 1 letter' disabled={powerUps.includes('reveal1') || powerUpsUsed ?  true: false} onClick={ () => addPowerUps('reveal1')} className={`${powerUps.includes('reveal1') ? 'bg-gray-300 ': 'bg-lime-500'}  border-2 px-2 py-1 text-white rounded-md mx-2`}>
                                 <AiFillEye className='inline'/> Reveal 1</button>
-                            <button disabled={powerUps.includes('reveal2') || powerUpsUsed ? true: false} onClick={ () => addPowerUps('reveal2')} className={`${powerUps.includes('reveal2') ? 'bg-gray-300 ': 'bg-lime-500'}  border-2 px-2 py-1 text-white rounded-md mx-2`}>
+                            <button title='Revel 2 letters' disabled={powerUps.includes('reveal2') || powerUpsUsed ? true: false} onClick={ () => addPowerUps('reveal2')} className={`${powerUps.includes('reveal2') ? 'bg-gray-300 ': 'bg-lime-500'}  border-2 px-2 py-1 text-white rounded-md mx-2`}>
                                 <AiFillEye className='inline' /><AiFillEye className='inline' /> Reveal 2</button>
                         </div>
                         :
                         <div className="power-ups mt-4">
-                            <button disabled={powerUps.includes('5050') || powerUpsUsed ?  true: false} onClick={ () => addPowerUps('5050')} className={`${powerUps.includes('5050') ? 'bg-gray-300 ': 'bg-lime-500'}  border-2 px-2 py-1 text-white rounded-md mx-2`}><BsCircleHalf className='inline'/> 50/50</button>
+                            <button title='Remove 2 Incorrect answer' disabled={powerUps.includes('5050') || powerUpsUsed ?  true: false} onClick={ () => addPowerUps('5050')} className={`${powerUps.includes('5050') ? 'bg-gray-300 ': 'bg-lime-500'}  border-2 px-2 py-1 text-white rounded-md mx-2`}><BsCircleHalf className='inline'/> 50/50</button>
                         </div>
                     }
                     <div className="choices mt-5">

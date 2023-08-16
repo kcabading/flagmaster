@@ -28,7 +28,6 @@ function rankToText(rank: number): string {
 async function getLeaderBoardsData() {
     const res = await fetch( getURL() + 'api/leaderboards');
     if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data');
     }
     
