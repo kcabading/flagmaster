@@ -9,11 +9,8 @@ type quizOptionsProps = {
     setMode: (mode: string) => void
 }
 
-
 const QuizOptions = function (props: quizOptionsProps) {
-
-    let noOfFlags = [10, 20, 30]
-
+    
     return (
         <>
             <div className="flex flex-col">

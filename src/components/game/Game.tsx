@@ -141,8 +141,8 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
                     answerHistory={answerHistory}
                 />
                 :
-                <div className='lg:w-1/2 w-full text-center max-lg:px-4'>
-                    <div className="counter flex justify-between w-full items-center">
+                <div className='lg:w-1/2 w-full text-center max-lg:px-4 relative'>
+                    <div className="counter flex justify-between w-full items-center max-sm:top-[70px] max-sm:dark:bg-slate-900 max-sm:sticky max-sm:bg-white max-sm:py-3">
                         <div className="w-1/3 sm:text-xl text-left">Flags: {flagCount}/{flagNumberOption}</div>
                         <Timer 
                             timer={timer}
