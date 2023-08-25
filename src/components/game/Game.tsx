@@ -54,7 +54,7 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
     const [flagCompleted, setFlagCompleted] = useState<boolean>(false)
     const [isGameFinish, setIsGameFinish] =useState<boolean>(false)
 
-    const { isCompatible } = useBrowserCompatibility(modeOption)
+    const { speechNotSupported } = useBrowserCompatibility(modeOption)
     
     const [ powerUps, setPowerUps] = useState<string[]>([])
     const [ powerUpsUsed, setPowerUpUsed] = useState(false)
@@ -191,7 +191,7 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
 
     return (
         <>
-            { !isCompatible
+            {  speechNotSupported
                 && 
                 <CommonAlertDialog 
                     show={true} 

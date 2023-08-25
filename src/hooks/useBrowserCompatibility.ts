@@ -39,7 +39,7 @@ const useBrowserCompatibility = (mode: string) => {
         return getBrowserName(navigator.userAgent)
     }, [navigator.userAgent])
 
-    return { isCompatible: mode === 'speech' && !incompatibleList.includes(browserName)}
+    return { speechNotSupported: mode === 'speech' && incompatibleList.includes(browserName)}
 
 }
 
