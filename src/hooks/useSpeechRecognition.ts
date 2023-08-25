@@ -11,14 +11,12 @@ type TRecognitionEvents = {
 }
 
 const useSpeechRecognition = () => {
-
-    // const recognitionRef = useRef(null)    
     // @ts-ignore
-    let SpeechRecognition = window.webkitSpeechRecognition
+    let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
     // @ts-ignore
-    let SpeechGrammarList = window.webkitSpeechGrammarList
-    // @ts-ignore
-    let SpeechRecognitionEvent = window.webkitSpeechRecognitionEvent
+    // let SpeechGrammarList = window.webkitSpeechGrammarList
+    // // @ts-ignore
+    // let SpeechRecognitionEvent = window.webkitSpeechRecognitionEvent
 
     // const countries = ['Australia', 'Fiji', 'Guam', 'Kiribati', 'Marshall Islands', 'Nauru', 'New Zealand', 'Palau', 'Papua New Guinea', 'Samoa', 'Solomon Islands', 'Tonga', 'Tuvalu', 'Vanuatu'];
 

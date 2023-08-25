@@ -41,6 +41,10 @@ const GameSpeech = ({flag, handleGuessFlag}: TGimmeSpeechProps ) => {
         let correctFlag = flag.toLowerCase()    
         let guessedCountry = speechText.trim()
 
+        alert(correctFlag + ":" + guessedCountry)
+        alert(correctFlag.length + ":" + guessedCountry.length)
+        
+
         if ( guessedCountry == correctFlag || guessedCountry.search(correctFlag) !== -1 ) {
             console.log('CORRECT ANSWER!', flag)
             setIsCorrect(true)
