@@ -42,12 +42,17 @@ interface GameProps {
 
 const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption, continent, handleGameFinished }:GameProps ) {
 
+    console.log('GAME RENDER')
     const router = useRouter();
-    
     const [ flagCount, setFlagCount ] = useState(0)
-    const { timer, start, stop, reset } = useTimer(initialTimeOption, ascTimeOption)
+    // const { start, stop, reset } = useTimer(initialTimeOption, ascTimeOption)
     const [ answerHistory, setAnswerHistory ] = useState<AnswerHistory[]>([])
     const [ chosenFlag, setChosenFlag ] = useState<string | null>(null)
+
+    const [timeTaken, setTimeTaken] = useState<string>('')
+    const [isTimesUp, setIsTimesUp] = useState<boolean>(false)
+    const [flagCompleted, setFlagCompleted] = useState<boolean>(false)
+    const [isGameFinish, setIsGameFinish] =useState<boolean>(false)
 
     const { isCompatible } = useBrowserCompatibility(modeOption)
     
@@ -65,8 +70,10 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
         setCorrectAnswer(0)
         setAnswerHistory([])
         setPowerUps([])
-        reset()
-        start()
+        setTimeTaken('')
+        setIsTimesUp(false)
+        setFlagCompleted(false)
+        setIsGameFinish(false)
     }
     
     function handleGuessFlag( guess: string ) {
@@ -115,14 +122,23 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
         })
     }
 
-    if (flagCount === flagNumberOption ||  (!ascTimeOption && timer === '00:00')) {
-        stop()
+    if ( !isGameFinish && !flagCompleted && flagCount === flagNumberOption) {
+        console.log('set flag completed')
+        setFlagCompleted(true)
+    }
+
+    function handleGameFinish(timer: string) {
         let timeTaken =  initialTimeOption > 0 ? convertTimeToString(initialTimeOption - convertTimeToNumber(timer)) : timer
         let status =  correctAnswer < (flagNumberOption / 2) || answerHistory.length !== flagNumberOption ? 'FAILED' : 'PASSED'
         handleGameFinished(challengeId, timeTaken, status, flagNumberOption, correctAnswer)
-    } 
+        setTimeout(() => {
+            setTimeTaken(timeTaken)
+            setIsGameFinish(true)    
+        }, 500);
+    }
     
     useEffect(() => {
+        console.log('handle reset')
         handleReset()
         return () => {
             handleReset()
@@ -185,12 +201,12 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
                     cancelHandler={()=>router.back()}/>}
 
             {
-                flagCount === flagNumberOption ||  (!ascTimeOption && timer === '00:00')
+                isGameFinish
                 ? 
                 <Results
                     correctAnswer={correctAnswer}
                     noOfFlags={flagNumberOption}
-                    timer={timer}
+                    timer={timeTaken}
                     initialTime={initialTimeOption}
                     handleReset={handleReset}
                     answerHistory={answerHistory}
@@ -199,9 +215,11 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
                 <div className='lg:w-1/2 w-full text-center max-lg:px-4 relative'>
                     <div className="counter flex justify-between w-full items-center max-sm:top-[70px] max-sm:dark:bg-slate-900 max-sm:sticky max-sm:bg-white max-sm:py-3">
                         <div className="w-1/3 sm:text-xl text-left">Flags: {flagCount}/{flagNumberOption}</div>
-                        <Timer 
-                            timer={timer}
-                            initialTimeOption={initialTimeOption}
+                        <Timer
+                            initialTimeOption={5}
+                            ascTimeOption={ascTimeOption}
+                            handleGameFinish={handleGameFinish}
+                            flagCompleted={flagCompleted}
                         />
 
                         <div className="w-1/3 sm:text-xl text-right">Correct: {correctAnswer}/{flagNumberOption}</div>
@@ -225,7 +243,13 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
                     }
                     <div className="choices mt-5">
 
-                        {renderGameMode(modeOption)}
+                        {/* <GameSpeech 
+                            flag={flag}
+                            handleGuessFlag={handleGuessFlag}
+                            powerUps={powerUps}
+                        /> */}
+
+                        { renderGameMode(modeOption)}
                         {/* {
 
                             {this.renderSwitch(param)}

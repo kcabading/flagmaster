@@ -27,6 +27,7 @@ function handleGameFinished(
     flagNumberOption: number,
     correctAnswer: number
     ){
+
     const apiURL = getURL() + `api/challenges/${challengeId}`
 
     let gameResult = {
@@ -103,7 +104,7 @@ const Challenge = function( props: IPageProps ) {
                         <div className="flex justify-center">
                             <Skeleton className="h-[250px] w-[350px]" />
                         </div>            
-                    </div>    
+                    </div>
                 
                 : <Game {...gameOptions} handleGameFinished={handleGameFinished} challengeId={challengeId} />
             }

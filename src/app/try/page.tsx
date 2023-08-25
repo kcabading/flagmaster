@@ -2,7 +2,6 @@
 
 import { useSearchParams, usePathname } from "next/navigation"
 import Game from "@/components/game/Game"
-import GameGimme5 from "@/components/game/GameGimme5"
 
 const Try = () => {
     const searchParams = useSearchParams()
@@ -21,7 +20,6 @@ const Try = () => {
     }
 
     return (
-        // <GameGimme5 />
         <Game {...gameOptions} challengeId="" handleGameFinished={handleGameFinished}/>
     )
 }
