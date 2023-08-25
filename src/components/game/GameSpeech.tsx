@@ -62,8 +62,12 @@ const GameSpeech = ({flag, handleGuessFlag}: TGimmeSpeechProps ) => {
     }
 
     function resetSpeech() {
+        console.log('RESET SPEECH')
         recognition.stop()
-        recognition.start()
+        setTimeout(() => {
+            recognition.start()    
+        }, 200);
+        
     }
 
     recognition.onspeechstart = function(event:any){
@@ -83,7 +87,7 @@ const GameSpeech = ({flag, handleGuessFlag}: TGimmeSpeechProps ) => {
         console.log('error', event)
         // setSpeechStatus(SpeechStatus.OFF)
         // setSpeechStatusText('Voice Recognition Error. Please reset')
-        // resetSpeech()
+        if (event.error === 'no-speech') resetSpeech()
         // recognition.start()
     }
 
