@@ -216,7 +216,7 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
                     <div className="counter flex justify-between w-full items-center max-sm:top-[70px] max-sm:dark:bg-slate-900 max-sm:sticky max-sm:bg-white max-sm:py-3">
                         <div className="w-1/3 sm:text-xl text-left">Flags: {flagCount}/{flagNumberOption}</div>
                         <Timer
-                            initialTimeOption={5}
+                            initialTimeOption={initialTimeOption}
                             ascTimeOption={ascTimeOption}
                             handleGameFinish={handleGameFinish}
                             flagCompleted={flagCompleted}
