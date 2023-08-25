@@ -39,10 +39,10 @@ const GameSpeech = ({flag, handleGuessFlag}: TGimmeSpeechProps ) => {
     function handleSpeechReceive(speechText: string) {
 
         let correctFlag = flag.toLowerCase()    
-        let guessedCountry = speechText.trim()
+        let guessedCountry = speechText.trim().toLowerCase()
 
-        alert(correctFlag + ":" + guessedCountry)
-        alert(correctFlag.length + ":" + guessedCountry.length)
+        // alert(correctFlag + ":" + guessedCountry)
+        // alert(correctFlag.length + ":" + guessedCountry.length)
         
 
         if ( guessedCountry == correctFlag || guessedCountry.search(correctFlag) !== -1 ) {
