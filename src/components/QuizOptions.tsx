@@ -37,7 +37,11 @@ const QuizOptions = function (props: quizOptionsProps) {
                     </div>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="fill" id="option-two" />
-                        <Label className="sm:text-sm text-xs" htmlFor="option-two">Fill (Guess the answer)</Label>
+                        <Label className="sm:text-sm text-xs" htmlFor="option-two">Fill</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="speech" id="option-three" />
+                        <Label className="sm:text-sm text-xs" htmlFor="option-two">Speech</Label>
                     </div>
                 </RadioGroup>
                 <label className="my-1">Difficulty</label>

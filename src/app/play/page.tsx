@@ -21,6 +21,7 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from "@/components/ui/label"
 import Link from 'next/link'
+import useBrowserCompatibility from '@/hooks/useBrowserCompatibility'
 
 const continents = ['All Continents','Asia','Africa','Europe','North America','South America','Oceania']
 const levels = ['All Levels', 'easy', 'medium', 'hard']
@@ -66,7 +67,6 @@ const Play = function( props: IPageProps ) {
     const filterByLevel = searchParams.has('level') ? searchParams.get('level') : levels[0]
     const filterByMode = searchParams.has('mode') ? searchParams.get('mode') : modes[0]
     const filterByStatus = searchParams.has('status') ? searchParams.get('status') : status[0]
-
 
     const [selectedMode, setSelectedMode] = useState(filterByMode)
     const [selectedContinent, setSelectedContinent] = useState(filterByContinent)

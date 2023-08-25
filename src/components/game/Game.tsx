@@ -13,6 +13,10 @@ import Timer from '../Timer'
 
 import { AiFillEye } from 'react-icons/ai'
 import {BsCircleHalf} from 'react-icons/bs'
+import GameSpeech from './GameSpeech'
+import useBrowserCompatibility from '@/hooks/useBrowserCompatibility'
+import CommonAlertDialog, { AlertDialogTypes } from '../common/CommonAlertDialog'
+import { useRouter } from 'next/navigation'
 
 type AnswerHistory = {
   answer: string,
@@ -37,11 +41,15 @@ interface GameProps {
 }
 
 const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption, continent, handleGameFinished }:GameProps ) {
+
+    const router = useRouter();
     
     const [ flagCount, setFlagCount ] = useState(0)
     const { timer, start, stop, reset } = useTimer(initialTimeOption, ascTimeOption)
     const [ answerHistory, setAnswerHistory ] = useState<AnswerHistory[]>([])
     const [ chosenFlag, setChosenFlag ] = useState<string | null>(null)
+
+    const { isCompatible } = useBrowserCompatibility(modeOption)
     
     const [ powerUps, setPowerUps] = useState<string[]>([])
     const [ powerUpsUsed, setPowerUpUsed] = useState(false)
@@ -121,6 +129,44 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
         }
     }, [flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption])
 
+
+    const renderGameMode = (modeOption: string): any => {
+
+        switch (modeOption) {
+            case 'fill':
+                return  (
+                    <GameGuessLetters
+                        powerUps={powerUps} 
+                        flagLetters={flag} 
+                        handleCorrectAnswer={handleGuessFlag} 
+                        handleIncorrectAnswer={handleIncorrectAnswer} 
+                        handleSkip={handleSkip}
+                    />
+                )
+            case 'multiple':
+                return (
+                    <GameMultipleChoices
+                        powerUps={powerUps}
+                        flag={flag} 
+                        answered={answered} 
+                        chosenFlag={chosenFlag} 
+                        choices={choices}
+                        handleGuessFlag={handleGuessFlag} 
+                    />
+                )
+            case 'speech':
+                return (
+                    <GameSpeech 
+                        flag={flag}
+                        handleGuessFlag={handleGuessFlag}
+                        powerUps={powerUps}
+                    />
+                )
+            default:
+                break;
+        }
+    }
+
     useEffect(() => {
         if (flagCount !== flagNumberOption) {
             generateNewFlag()
@@ -129,6 +175,15 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
 
     return (
         <>
+            { !isCompatible
+                && 
+                <CommonAlertDialog 
+                    show={true} 
+                    type={AlertDialogTypes.DANGER} 
+                    text='Speech Recognition not supported by your browser'
+                    cancelText='Go Back'
+                    cancelHandler={()=>router.back()}/>}
+
             {
                 flagCount === flagNumberOption ||  (!ascTimeOption && timer === '00:00')
                 ? 
@@ -169,22 +224,27 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
                         </div>
                     }
                     <div className="choices mt-5">
-                        {
-                            modeOption === 'fill'
-                            ? <GameGuessLetters
-                                powerUps={powerUps} 
-                                flagLetters={flag} 
-                                handleCorrectAnswer={handleGuessFlag} 
-                                handleIncorrectAnswer={handleIncorrectAnswer} 
-                                handleSkip={handleSkip}/>
-                            : <GameMultipleChoices
-                                powerUps={powerUps}
-                                flag={flag} 
-                                answered={answered} 
-                                chosenFlag={chosenFlag} 
-                                choices={choices}
-                                handleGuessFlag={handleGuessFlag} />
-                        }
+
+                        {renderGameMode(modeOption)}
+                        {/* {
+
+                            {this.renderSwitch(param)}
+
+                            // modeOption === 'fill'
+                            // ? <GameGuessLetters
+                            //     powerUps={powerUps} 
+                            //     flagLetters={flag} 
+                            //     handleCorrectAnswer={handleGuessFlag} 
+                            //     handleIncorrectAnswer={handleIncorrectAnswer} 
+                            //     handleSkip={handleSkip}/>
+                            // : <GameMultipleChoices
+                            //     powerUps={powerUps}
+                            //     flag={flag} 
+                            //     answered={answered} 
+                            //     chosenFlag={chosenFlag} 
+                            //     choices={choices}
+                            //     handleGuessFlag={handleGuessFlag} />
+                        } */}
                     </div>
                 </div>
             }
