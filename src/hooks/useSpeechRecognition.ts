@@ -10,25 +10,29 @@ type TRecognitionEvents = {
     onSpeechEnd: () => void
 }
 
+import countries from '@/data/countries.json'
+
+const COUNTRIES = countries.map( (country) => country.name)
+
 const useSpeechRecognition = () => {
     // @ts-ignore
     let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
     // @ts-ignore
-    // let SpeechGrammarList = window.webkitSpeechGrammarList
+    let SpeechGrammarList = window.webkitSpeechGrammarList
     // // @ts-ignore
     // let SpeechRecognitionEvent = window.webkitSpeechRecognitionEvent
 
-    // const countries = ['Australia', 'Fiji', 'Guam', 'Kiribati', 'Marshall Islands', 'Nauru', 'New Zealand', 'Palau', 'Papua New Guinea', 'Samoa', 'Solomon Islands', 'Tonga', 'Tuvalu', 'Vanuatu'];
+    // const countries = COUNTRIES
 
     let recognition = new SpeechRecognition();
-    // if (SpeechGrammarList) {
-    //   // SpeechGrammarList is not currently available in Safari, and does not have any effect in any other browser.
-    //   // This code is provided as a demonstration of possible capability. You may choose not to use it.
-    //   var speechRecognitionList = new SpeechGrammarList();
-    //   var grammar = '#JSGF V1.0; grammar countries; public <country> = ' + countries.join(' | ') + ' ;'
-    //   speechRecognitionList.addFromString(grammar, 1);
-    //   recognition.grammars = speechRecognitionList;
-    // }
+    if (SpeechGrammarList) {
+        // SpeechGrammarList is not currently available in Safari, and does not have any effect in any other browser.
+        // This code is provided as a demonstration of possible capability. You may choose not to use it.
+        let speechRecognitionList = new SpeechGrammarList();
+        let grammar = '#JSGF V1.0; grammar countries; public <country> = ' + COUNTRIES.join(' | ') + ' ;'
+        speechRecognitionList.addFromString(grammar, 1);
+        recognition.grammars = speechRecognitionList;
+    }
     recognition.continuous = false;
     recognition.lang = 'en-us'; // en-us or fil
     recognition.interimResults = false;
