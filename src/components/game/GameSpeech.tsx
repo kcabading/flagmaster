@@ -33,29 +33,20 @@ const GameSpeech = ({flag, handleGuessFlag}: TGimmeSpeechProps ) => {
     const [isCorrect, setIsCorrect] = useState<boolean>()
 
     const { recognition } = useSpeechRecognition()
-
-    console.log('RENDER', flag)
     
     function handleSpeechReceive(speechText: string) {
 
         let correctFlag = flag.toLowerCase()    
-        let guessedCountry = speechText.trim().toLowerCase()
-
-        // alert(correctFlag + ":" + guessedCountry)
-        // alert(correctFlag.length + ":" + guessedCountry.length)
-        
+        let guessedCountry = speechText.trim().toLowerCase()        
 
         if ( guessedCountry == correctFlag || guessedCountry.search(correctFlag) !== -1 ) {
-            console.log('CORRECT ANSWER!', flag)
             setIsCorrect(true)
             handleGuessFlag(flag)
         } if (nextWordText.includes(guessedCountry)) {
-            console.log('Incorrect Answer 1!')
             handleGuessFlag('incorrect')
             setIsCorrect(false)
             recognition.stop()
         } else {
-            console.log('Incorrect Answer 2!')
             setIsCorrect(false)
             recognition.stop()
         }
@@ -102,7 +93,6 @@ const GameSpeech = ({flag, handleGuessFlag}: TGimmeSpeechProps ) => {
 
     // @ts-ignore
     recognition.onresult = function(event) {
-        console.log(event.results)
         // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
         // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
         // It has a getter so it can be accessed like an array

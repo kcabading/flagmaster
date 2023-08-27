@@ -28,19 +28,15 @@ function getBrowserName(userAgent:any) {
       return "unknown";
     }
 }
-  
 
-const incompatibleList = ['Firefox', 'Opera']
-
-
-const useBrowserCompatibility = (mode: string) => {
+const useSpeechBrowserCompatibility = (mode: string) => {
 
     const browserName = useMemo(() => {
         return getBrowserName(navigator.userAgent)
     }, [navigator.userAgent])
 
-    return { speechNotSupported: mode === 'speech' && incompatibleList.includes(browserName)}
+    return { speechSupported: mode === 'speech' && browserName==='Google Chrome or Chromium'}
 
 }
 
-export default useBrowserCompatibility
+export default useSpeechBrowserCompatibility

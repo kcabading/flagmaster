@@ -14,7 +14,7 @@ import Timer from '../Timer'
 import { AiFillEye } from 'react-icons/ai'
 import {BsCircleHalf} from 'react-icons/bs'
 import GameSpeech from './GameSpeech'
-import useBrowserCompatibility from '@/hooks/useBrowserCompatibility'
+import useSpeechBrowserCompatibility from '@/hooks/useSpeechBrowserCompatibility'
 import CommonAlertDialog, { AlertDialogTypes } from '../common/CommonAlertDialog'
 import { useRouter } from 'next/navigation'
 
@@ -42,10 +42,8 @@ interface GameProps {
 
 const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTimeOption, modeOption, difficultyOption, continent, handleGameFinished }:GameProps ) {
 
-    console.log('GAME RENDER')
     const router = useRouter();
     const [ flagCount, setFlagCount ] = useState(0)
-    // const { start, stop, reset } = useTimer(initialTimeOption, ascTimeOption)
     const [ answerHistory, setAnswerHistory ] = useState<AnswerHistory[]>([])
     const [ chosenFlag, setChosenFlag ] = useState<string | null>(null)
 
@@ -54,7 +52,7 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
     const [flagCompleted, setFlagCompleted] = useState<boolean>(false)
     const [isGameFinish, setIsGameFinish] =useState<boolean>(false)
 
-    const { speechNotSupported } = useBrowserCompatibility(modeOption)
+    const { speechSupported } = useSpeechBrowserCompatibility(modeOption)
     
     const [ powerUps, setPowerUps] = useState<string[]>([])
     const [ powerUpsUsed, setPowerUpUsed] = useState(false)
@@ -138,7 +136,6 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
     }
     
     useEffect(() => {
-        console.log('handle reset')
         handleReset()
         return () => {
             handleReset()
@@ -191,12 +188,12 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
 
     return (
         <>
-            {  speechNotSupported
+            {  !speechSupported
                 && 
                 <CommonAlertDialog 
                     show={true} 
                     type={AlertDialogTypes.DANGER} 
-                    text='Speech Recognition not supported by your browser'
+                    text='Speech Recognition not supported by your current browser. Currently the application only uses Google Speech Recognition API which only support the Chrome browser.'
                     cancelText='Go Back'
                     cancelHandler={()=>router.back()}/>}
 

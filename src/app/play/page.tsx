@@ -21,7 +21,6 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from "@/components/ui/label"
 import Link from 'next/link'
-import useBrowserCompatibility from '@/hooks/useBrowserCompatibility'
 
 const continents = ['All Continents','Asia','Africa','Europe','North America','South America','Oceania']
 const levels = ['All Levels', 'easy', 'medium', 'hard']

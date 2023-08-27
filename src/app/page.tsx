@@ -39,7 +39,7 @@ export default function Home() {
               <h1 className='font-bold text-4xl mb-5'>Welcome to FlagMaster!</h1>
               <p className='text-xl'>Think you know flags? Prepare for a thrilling challenge that will put your knowledge to the test. Guess flags from around the world, earn points, and conquer the leaderboard. Become the ultimate FlagMaster champion today!</p>
             </div>
-            <div className="quick-start flex flex-col place-items-center sm:w-1/3">
+            <div className="quick-start flex flex-col place-items-center sm:w-1/3 w-full">
                 <QuizOptions setNoOfFlags={handleFlagNumberChange} setLevel={handleLevelChange} setMode={handleModeChange}/>
                 <button className='mt-3 border-2 border-slate-500 rounded-lg py-2 px-4 font-bold hover:bg-amber-400' onClick={handleTryNow}>Try it Now !</button>
             </div>
