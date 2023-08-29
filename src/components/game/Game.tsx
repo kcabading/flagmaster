@@ -188,7 +188,7 @@ const Game = function({ challengeId, flagNumberOption, initialTimeOption, ascTim
 
     return (
         <>
-            {  !speechSupported
+            {  modeOption==='speech' && !speechSupported
                 && 
                 <CommonAlertDialog 
                     show={true} 
